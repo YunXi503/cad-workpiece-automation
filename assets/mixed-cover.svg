@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 246" role="img" aria-label="Synthetic shared-cover guard comparison">
+  <rect width="820" height="246" rx="12" fill="#f5f8fc"/>
+  <g font-family="system-ui,sans-serif" fill="#182f44">
+    <text x="26" y="37" font-size="23" font-weight="bold">Shared source edges can create a false side-line anchor</text>
+    <text x="36" y="79" font-size="16">Local width decision</text>
+    <text x="430" y="79" font-size="16">Source identity check</text>
+    <path d="M40 166 L195 98 L350 166" stroke="#b53f47" stroke-width="4" fill="none"/>
+    <path d="M432 166 L587 166 L742 166" stroke="#237286" stroke-width="4" fill="none"/>
+    <g fill="#386ad4"><circle cx="40" cy="166" r="6"/><circle cx="350" cy="166" r="6"/><circle cx="432" cy="166" r="6"/><circle cx="742" cy="166" r="6"/></g>
+    <circle cx="195" cy="98" r="7" fill="#b53f47"/><circle cx="587" cy="166" r="7" fill="#ec942d"/>
+    <text x="36" y="213" font-size="15">Conflicting anchor · tangent jump 1.029</text>
+    <text x="430" y="213" font-size="15">Inferred midpoint · tangent jump 0</text>
+  </g>
+</svg>

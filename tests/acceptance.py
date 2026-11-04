@@ -1,0 +1,135 @@
+"""Run portable acceptance against the built CLI using a new temporary workspace."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[1]
+DOTNET = os.environ.get("PORTFOLIO_DOTNET", "dotnet")
+CLI = ROOT / "src/Cli/bin/Release/net10.0/Cli.dll"
+
+def command(*args, code=0):
+    process = subprocess.run([DOTNET, str(CLI), *map(str, args)], text=True,
+                             capture_output=True, encoding="utf-8", errors="replace")
+    assert process.returncode == code, (args, process.returncode, process.stdout, process.stderr)
+    return process.stdout, process.stderr
+
+def read(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def main():
+    with tempfile.TemporaryDirectory(prefix="portfolio cold run ") as temp:
+        root = Path(temp)
+        all_cases = {}
+        for case in ("normal", "gap", "height", "reversed", "competing"):
+            source, first, second = [root / f"{case} {step}" for step in ("input", "first", "replay")]
+            command("generate", case, source)
+            command("run", source, first)
+            command("run", source, second)
+            report, _ = command("verify", source, first)
+            all_cases[case] = json.loads(report)["sides"]
+            if case == "competing":
+                rows = read(first / "run.json")["sides"][1]["stations"]
+                assert any(row["state"] == "ambiguous" for row in rows)
+            for name in ("run.json", "cad-plan.json", "verification.json", "overlay.svg"):
+                assert sha(first / name) == sha(second / name), (case, name)
+        assert all(side["reducedCount"] == 3 and side["baselineCount"] == 6 for side in all_cases["normal"])
+        assert all(side["status"] == "checked" for side in all_cases["reversed"])
+        assert all_cases["gap"][1]["status"] == "withheld" and all_cases["gap"][1]["unresolved"] >= 2
+        assert sum(s["status"] == "checked" for s in all_cases["gap"]) == 2
+        assert all(s["roundedXYError"] <= .3 and s["contactSampleMaximum"] >= .7
+                   and s["contactState"] == "exceeds-sampled-limit" for s in all_cases["height"])
+        source, output = root / "normal input", root / "normal first"
+        receipt = output / "cad-plan.json"
+        cad = read(receipt)
+        original = receipt.read_text(encoding="utf-8")
+        cad["sides"][1]["curves"][1]["sweep"] *= -1
+        receipt.write_text(json.dumps(cad), encoding="utf-8")
+        _, reason = command("verify", source, output, code=1)
+        assert "CAD geometry differ" in reason
+        receipt.write_text(original, encoding="utf-8")
+        run_file = output / "run.json"
+        original_run = run_file.read_text(encoding="utf-8")
+        run = read(run_file)
+        run["sides"][0]["stations"][0]["point"]["x"] += .2
+        run_file.write_text(json.dumps(run), encoding="utf-8")
+        _, reason = command("verify", source, output, code=1)
+        assert "section plane" in reason
+
+        run = json.loads(original_run)
+        source_ids = run["sides"][0]["stations"][0]["triangles"]
+        source_ids.append(source_ids[0])
+        run_file.write_text(json.dumps(run), encoding="utf-8")
+        _, reason = command("verify", source, output, code=1)
+        assert "source identities differ" in reason
+
+        # Change all three reports together. Agreement among edited artifacts is not source evidence.
+        report_file = output / "verification.json"
+        original_report = report_file.read_text(encoding="utf-8")
+        cad = json.loads(original)
+        cad["sides"].pop(0)
+        receipt.write_text(json.dumps(cad), encoding="utf-8")
+        for fabricated_gap in (True, False):
+            run = json.loads(original_run)
+            side = run["sides"][0]
+            side.update(fit=None, rounded=None, issue="withheld")
+            report = json.loads(original_report)
+            row = report["sides"][0]
+            row.update(baselineCount=0, reducedCount=0, originalError=None, uniformError=None,
+                       roundedXYError=None, movementBound=None, endpointResidual=None,
+                       jointResidual=None, tangentResidual=None, contactSampleMaximum=None,
+                       contactState="withheld", status="withheld")
+            if fabricated_gap:
+                side["stations"][0].update(state="gap", point=None, triangles=[], cover=None)
+                row.update(observed=row["observed"] - 1, unresolved=1)
+            run_file.write_text(json.dumps(run), encoding="utf-8")
+            report_file.write_text(json.dumps(report), encoding="utf-8")
+            _, reason = command("verify", source, output, code=1)
+            expected = "state or source identities differ" if fabricated_gap else "Withheld side or its reason differs"
+            assert expected in reason
+        receipt.write_text(original, encoding="utf-8")
+        run_file.write_text(original_run, encoding="utf-8")
+        report_file.write_text(original_report, encoding="utf-8")
+
+        job = source / "job.json"
+        original_job = job.read_bytes()
+        for bad_guides in (None, [None]):
+            config = json.loads(original_job)
+            config["guides"] = bad_guides
+            job.write_text(json.dumps(config), encoding="utf-8")
+            bad_output = root / "invalid job"
+            _, reason = command("run", source, bad_output, code=1)
+            assert "guide" in reason.lower() or "synthetic job contract" in reason
+            assert "Unhandled exception" not in reason and not bad_output.exists()
+        job.write_bytes(original_job)
+
+        _, reason = command("generate", "normal", source, code=1)
+        assert "fresh directory" in reason
+
+        preview = output / "overlay.svg"
+        svg = preview.read_text(encoding="utf-8")
+        preview.write_text(svg, encoding="utf-8", newline="\r\n")
+        command("verify", source, output)
+        preview.write_text("<svg/>", encoding="utf-8")
+        _, reason = command("verify", source, output, code=1)
+        assert "Preview overlay differs" in reason
+        preview.unlink()
+        _, reason = command("verify", source, output, code=1)
+        assert "overlay.svg" in reason
+        preview.write_text(svg, encoding="utf-8", newline="\n")
+
+        results = json.loads(command("experiment", "check-all")[0])
+        listed = {row.split("\t")[0] for row in command("experiment", "list")[0].splitlines()}
+        assert all(r["reproduced"] for r in results) and len(listed) == len(results)
+        for result in results:
+            individual = json.loads(command("experiment", "run", result["id"])[0])
+            assert individual == result
+        print(f"5 input cases, 5 deterministic replays, 10 negative controls, {len(results)} experiments passed.")
+
+if __name__ == "__main__":
+    main()
