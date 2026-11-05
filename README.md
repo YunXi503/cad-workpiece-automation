@@ -15,8 +15,8 @@
 
 ## 兩個技術案例
 
-- **幾何演算**。蓋面來源重複會讓程式把同一支持誤配到兩層，形成凹折。我從剖切邊身分定位錯誤錨點，用單變數對照檢查凹折，再以有限曲線點距和 G1（接點兩側切向一致）驗證減段。公開合成基準每側由 6 段合併為 3 段。 [混蓋診斷](docs/history/mixed-cover.md) · [擬合、減段與取整](docs/geometry.md#相切線弧與減段)
-- **3DEX Macro**。在 VSTA 編輯及建置 C# Macro，已從 IDE 的 F5 實跑 `CATMain`。將帶正負掃掠的線弧轉為 Sketcher 實體、端點接合、相切與半徑驅動約束，讓 CATIA 更新後再讀回。草圖身分與輸入指紋核對後才進延伸面。 [Macro 原始碼](macro/MacroWorkflow.cs) · [原生與離線驗證](docs/verification.md)
+- **幾何演算**。蓋面來源重複會讓程式把同一支持誤配到兩層，形成凹折。我從剖切邊身分定位錯誤錨點，用單變數對照檢查凹折，再以有限曲線點距和 G1（接點兩側切向一致）驗證減段。公開示範將合成輪廓預先分割為每側 6 段，通過公差檢查後合併為 3 段。 [混蓋診斷](docs/history/mixed-cover.md) · [擬合、減段與取整](docs/geometry.md#相切線弧與減段)
+- **3DEX Macro**。在 VSTA 編輯及建置 C# Macro，從 IDE 的 F5 實跑 `CATMain`。將帶正負掃掠的線弧轉為 Sketcher 實體、端點接合、相切與半徑驅動約束，讓 CATIA 更新後再讀回。草圖身分與輸入指紋核對後才進延伸面。合成件實測完成 3 個可編輯草圖、15 個有效約束與 3 個延伸面。 [Macro 原始碼](macro/MacroWorkflow.cs) · [去識別驗收證據](docs/verification.md#核對-vsta-驗收證據)
 
 ## 快速開始
 
@@ -37,6 +37,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run mixed-cover
 - **中文**：開發 C#／WinForms 掃描側線重建與 CAD 交付流程，針對剖切拓撲與蓋壁誤配建立來源追查，以有限線弧距離、G1 相切與取整位移界驗證草圖。
 - **中文**：開發與除錯 3DEXPERIENCE CATIA C#／VSTA Macro，建立可編輯的約束草圖、執行原生幾何讀回，並將驗證後的草圖用於延伸面建模。
 - **English**: Developed a C# / WinForms scan-to-CAD workflow for section provenance, tangent line–arc reconstruction, and tolerance-checked dimension rounding.
-- **English**: Developed and debugged CATIA automation in C# for 3DEXPERIENCE VSTA, including editable sketch constraints, native geometry readback, and surface extrusion.
+- **English**: Developed 3DEXPERIENCE CATIA C# macros and ran them with F5 in the VSTA editor, verifying editable sketch constraints, native geometry readback, and surface extrusion.
 
 公開內容使用合成工件與去識別摘要。CLI 已在 Windows 和 Debian Linux 虛擬機建置與重跑。歷史原生建模、公開範例測試與實際製造貼合各有獨立狀態。 [驗證範圍](docs/verification.md) · [作品集審查與修正](docs/review.md)

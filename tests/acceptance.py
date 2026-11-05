@@ -22,7 +22,24 @@ def read(path):
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def check_vsta_evidence():
+    evidence_dir = ROOT / "docs/evidence"
+    receipt = read(evidence_dir / "vsta-editor.json")
+    plan_path = evidence_dir / "vsta-synthetic-plan.json"
+    plan = read(plan_path)
+    assert receipt["planSha256"] == sha(plan_path)
+    workflow = (ROOT / "macro/MacroWorkflow.cs").read_text(encoding="utf-8-sig").rstrip()
+    assert receipt["workflowSha256"] == hashlib.sha256(workflow.encode()).hexdigest()
+    rows, surfaces = receipt["sketchReadbacks"], receipt["surfaces"]
+    assert len(rows) == surfaces["sketchCount"] == surfaces["surfaceCount"] == len(plan["sides"]) == 3
+    assert sorted(row["curves"] for row in rows) == sorted(len(side["curves"]) for side in plan["sides"])
+    assert receipt["readbackLimitMm"] == 1e-7 and all(0 <= row["maxResidual"] <= 1e-7 for row in rows)
+    assert sum(row["activeConstraints"] for row in rows) == 15
+    assert surfaces["zMin"] == plan["zMin"] == plan["planeZ"] - surfaces["negativeOffset"]
+    assert surfaces["zMax"] == plan["zMax"] == plan["planeZ"] + surfaces["positiveOffset"]
+
 def main():
+    check_vsta_evidence()
     with tempfile.TemporaryDirectory(prefix="portfolio cold run ") as temp:
         root = Path(temp)
         all_cases = {}

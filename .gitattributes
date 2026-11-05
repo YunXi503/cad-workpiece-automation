@@ -1,0 +1,2 @@
+# The VSTA receipt hashes the exact bytes read by the native host.
+docs/evidence/vsta-synthetic-plan.json -text whitespace=cr-at-eol

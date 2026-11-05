@@ -1,0 +1,40 @@
+{
+  "schema": "portfolio-vsta-evidence/1",
+  "scope": "synthetic normal case",
+  "host": {
+    "release": "CATIA R2022x",
+    "editor": "Visual Studio 2017 / VSTA",
+    "process": "DSYVstaDebugHost",
+    "entry": "CATMain",
+    "apartment": "MTA"
+  },
+  "planSha256": "ac1138420a5ba036fe6e15a5e5de0097e54d4990a7c3908db4b588e93e026343",
+  "workflowSha256": "b18efbac8b9e4a7208856d08b569218940c1ca525cd3cfa1d924105f036e6eea",
+  "readbackLimitMm": 1e-07,
+  "sketchReadbacks": [
+    {
+      "curves": 3,
+      "activeConstraints": 5,
+      "maxResidual": 7.119291619286993e-15
+    },
+    {
+      "curves": 3,
+      "activeConstraints": 5,
+      "maxResidual": 1.464821375527116e-14
+    },
+    {
+      "curves": 3,
+      "activeConstraints": 5,
+      "maxResidual": 1.464821375527116e-14
+    }
+  ],
+  "surfaces": {
+    "sketchCount": 3,
+    "surfaceCount": 3,
+    "positiveOffset": 3,
+    "negativeOffset": 2,
+    "zMin": 0,
+    "zMax": 5
+  },
+  "status": "verified"
+}

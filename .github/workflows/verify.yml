@@ -23,3 +23,5 @@ jobs:
       - run: python tests/check_docs.py
       - if: runner.os == 'Windows'
         run: dotnet build src/Viewer -c Release
+      - if: runner.os == 'Windows'
+        run: python tests/viewer_open.py

@@ -3,25 +3,38 @@ using Portfolio;
 static class Program
 {
     [STAThread]
-    public static void Main(string[] args)
+    public static int Main(string[] args)
     {
         ApplicationConfiguration.Initialize();
         if (args is ["--smoke", var input, var png, var sideIndex])
         {
-            using var form = new ReviewWindow(Data.Read<RunResult>(input));
-            form.SelectSide(int.Parse(sideIndex, System.Globalization.CultureInfo.InvariantCulture));
+            using var form = new ReviewWindow();
+            string? error = form.TryOpenRun(input);
+            if (error is not null)
+            {
+                Console.Error.WriteLine(error);
+                return 1;
+            }
+            if (!int.TryParse(sideIndex, out int index) || index < 0 || index >= form.SelectedCount)
+            {
+                Console.Error.WriteLine("Side index is outside the report.");
+                return 1;
+            }
+            form.SelectSide(index);
             form.Show();
             Application.DoEvents();
             using var bitmap = new Bitmap(form.Width, form.Height);
             form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, form.Size));
             bitmap.Save(png, System.Drawing.Imaging.ImageFormat.Png);
-            if (form.SelectedCount < 1 || form.PaintCount < 1) Environment.ExitCode = 1;
+            int exitCode = form.PaintCount > 0 ? 0 : 1;
             form.Close();
-            return;
+            return exitCode;
         }
 
-        RunResult? initial = args is [var path] ? Data.Read<RunResult>(path) : null;
-        Application.Run(new ReviewWindow(initial));
+        using var window = new ReviewWindow();
+        if (args is [var path]) window.Shown += (_, _) => window.OpenRunOrWarn(path);
+        Application.Run(window);
+        return 0;
     }
 }
 
@@ -32,7 +45,7 @@ sealed class ReviewWindow : Form
     private readonly Plot plot = new() { Dock = DockStyle.Fill };
     private RunResult? run;
 
-    public ReviewWindow(RunResult? initial)
+    public ReviewWindow()
     {
         Text = "CAD Portfolio — synthetic section review";
         ClientSize = new Size(1000, 580);
@@ -43,32 +56,52 @@ sealed class ReviewWindow : Form
         open.Click += (_, _) =>
         {
             using var dialog = new OpenFileDialog { Filter = "Run report|run.json|JSON|*.json" };
-            if (dialog.ShowDialog(this) != DialogResult.OK) return;
-            try { LoadRun(Data.Read<RunResult>(dialog.FileName)); }
-            catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
-            {
-                MessageBox.Show(this, e.Message, "Invalid run", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            if (dialog.ShowDialog(this) == DialogResult.OK) OpenRunOrWarn(dialog.FileName);
         };
         toolbar.Controls.AddRange([open, sides, summary]);
         Controls.Add(plot);
         Controls.Add(toolbar);
         sides.SelectedIndexChanged += (_, _) => UpdateSelection();
-        if (initial is not null) LoadRun(initial);
     }
 
     public void SelectSide(int index) => sides.SelectedIndex = index;
     public int SelectedCount => sides.Items.Count;
     public int PaintCount => plot.PaintCount;
 
-    private void LoadRun(RunResult value)
+    public void OpenRunOrWarn(string path)
     {
-        if (value.Schema != "portfolio-run/1" || value.Sides.Length == 0)
-            throw new InvalidDataException("Expected a portfolio run report.");
+        if (TryOpenRun(path) is string error)
+            MessageBox.Show(this, error, "Invalid run", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+
+    public string? TryOpenRun(string path)
+    {
+        RunResult value;
+        try
+        {
+            value = Data.Read<RunResult>(path);
+            if (value.Schema != "portfolio-run/1" || value.Sides.Length == 0)
+                throw new InvalidDataException("Expected a portfolio run report with at least one side.");
+            foreach (SideResult? side in value.Sides)
+            {
+                if (side is null || string.IsNullOrWhiteSpace(side.Id) || side.Stations.Any(station => station is null))
+                    throw new InvalidDataException("Each side needs an ID and valid station records.");
+                if ((side.Fit is null && string.IsNullOrWhiteSpace(side.Issue)) ||
+                    (side.Rounded is RoundResult rounded && rounded.Curves.Any(curve => curve is null)))
+                    throw new InvalidDataException($"Side '{side.Id}' has an incomplete geometry report.");
+            }
+        }
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException or ArgumentException
+                                      or NotSupportedException or InvalidDataException or System.Text.Json.JsonException)
+        {
+            return "Cannot open run report: " + error.Message;
+        }
+
         run = value;
         sides.Items.Clear();
         sides.Items.AddRange(value.Sides.Select(s => (object)s.Id).ToArray());
         sides.SelectedIndex = 0;
+        return null;
     }
 
     private void UpdateSelection()
