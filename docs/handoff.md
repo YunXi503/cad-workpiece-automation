@@ -4,7 +4,11 @@
 
 以下 `job.json`／`section` 欄位仍適用於早期解析基準，與新 reviewed-source schema 分開。 [舊懸吊臂回歸](suspension-arm.md)
 
-Viewer與`overlay.svg`的`max fit XY`及紅圈指**取整前擬合**，彩線在取整通過時顯示取整結果；不要將該fit數字當取整後驗收。取整後兩組點距見`source verify`的`cadXYMaximum`與[獨立重算的PNG疊圖](../assets/case-a-fitting.png)，兩個階段各有資料。
+Viewer 直接標示 `max pre-round fit XY`、`display: rounded` 和紅圈的取整前階段。`overlay.svg` 舊標籤 `max fit XY` 及紅圈仍指**取整前擬合**，彩線在取整通過時顯示取整結果。取整後兩組點距見 `source verify` 的 `cadXYMaximum` 與[獨立重算 PNG](../assets/case-a-fitting.png)。
+
+![原始 Case A 的 WinForms 開檔、側別、來源／衍生點、誤差階段及全框覆蓋](../assets/case-a-viewer.png)
+
+這是程式實際開啟原件 `run.json` 後繪出的 lower 側；`0.2941 mm` 是取整前擬合，該側最終取整後最大值為 `0.294194 mm`。完整製造貼合另見[貼面案例](surface-contact.md)。開檔驗證現在覆蓋來源／框空元素、空線弧及空擬合元素，錯誤報告在繪圖前拒絕；這不取代完整 `source verify`。
 
 ## 哪份檔案回答哪個問題
 

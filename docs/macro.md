@@ -52,8 +52,8 @@ $env:PORTFOLIO_CAD_INTEROP = 'path-to-your-CATIA-interop-folder'
 msbuild macro/PortfolioMacro.csproj /p:Configuration=Release "/p:CadInteropDir=$env:PORTFOLIO_CAD_INTEROP"
 $macro = 'macro/bin/Release/PortfolioMacro.exe'
 & $macro probe
-& $macro sketches artifacts/arm-output/cad-plan.json artifacts/sketch-receipt.json
-& $macro surfaces artifacts/arm-output/cad-plan.json artifacts/sketch-receipt.json artifacts/surface-receipt.json
+& $macro sketches artifacts/reviewed-output/cad-plan.json artifacts/sketch-receipt.json
+& $macro surfaces artifacts/reviewed-output/cad-plan.json artifacts/sketch-receipt.json artifacts/surface-receipt.json
 ```
 
 `probe` 先驗證連線和作用中 Part。`reference` 可在目前沒有作用中 Part 時新建空白、未儲存的測試參考件。VSTA 執行時使用宿主提供的應用物件。
