@@ -78,6 +78,8 @@ public static class Fitting
     public static FitResult Fit(XY[] points)
     {
         if (points.Length < 5) throw new InvalidDataException("Five ordered points are required.");
+        int[] cuts = MultiBendFitting.Cuts(points);
+        if (cuts.Length > 0) return MultiBendFitting.Fit(points, cuts);
         var uniform = Sampling.Uniform(points, 0.5);
         XY a = points[0], b = points[^1];
         XY u = (points[2] - a).Unit(), v = (b - points[^3]).Unit();
@@ -166,6 +168,7 @@ public static class Fitting
 
     public static RoundResult Round(Curve[] input)
     {
+        if (input.Length > 3) return MultiBendFitting.Round(input);
         static double Rounded(double x) => Math.Round(x, 2, MidpointRounding.AwayFromZero);
         if (input.Length == 1 && !input[0].IsArc)
         {

@@ -1,0 +1,44 @@
+{
+  "schema": "portfolio-vsta-evidence/1",
+  "scope": "independent synthetic suspension arm B",
+  "host": {
+    "release": "CATIA R2022x",
+    "editor": "Visual Studio 2017 / VSTA",
+    "process": "DSYVstaDebugHost",
+    "entry": "CATMain",
+    "invocation": "Editor Debug.Start (F5 command)",
+    "apartment": "MTA"
+  },
+  "planSha256": "90b46e84dd380587a3e3b1dcf958e034baf51c82b1b87fa5df839e5a80696504",
+  "workflowSha256": "2e543d0d8ed6bca37fee4809dbc7ca9250ab07305c2e00dbc728116dd1d299e6",
+  "readbackLimitMm": 1e-07,
+  "sketchReadbacks": [
+    {
+      "side": "arm-1",
+      "curves": 5,
+      "activeConstraints": 10,
+      "maxResidual": 4.322062729257126e-14
+    },
+    {
+      "side": "arm-2",
+      "curves": 5,
+      "activeConstraints": 10,
+      "maxResidual": 4.0194366942304644e-14
+    },
+    {
+      "side": "arm-3",
+      "curves": 5,
+      "activeConstraints": 10,
+      "maxResidual": 4.0194366942304644e-14
+    }
+  ],
+  "surfaces": {
+    "sketchCount": 3,
+    "surfaceCount": 3,
+    "positiveOffset": 24,
+    "negativeOffset": 12,
+    "zMin": -12,
+    "zMax": 24
+  },
+  "status": "verified"
+}

@@ -1,13 +1,13 @@
 # 接手工程師的五分鐘檢查
 
-接手時先核對原始輸入與輸出，再追到出問題的站位或 CAD 曲線。用 [快速開始](../README.md#快速開始) 產生整件案例，確認命令顯示 `Checked 2/3 CAD sides`，接著執行 `verify`。B 側扣留的原因可用 `section` 回查。 [整件工程案例](workpiece-case.md)
+接手時先核對原始輸入與輸出，再追到出問題的站位或 CAD 曲線。用 [快速開始](../README.md#快速開始) 產生懸吊臂，確認命令顯示 `Checked 3/3 CAD sides`，再執行 `verify`。`section ... arm-1 68` 保留原始套筒干擾，`run.json` 的該站則是另標的工程推估。 [懸吊臂案例](suspension-arm.md)
 
 ## 哪份檔案回答哪個問題
 
 | 要確認的事 | 檔案及欄位 |
 | --- | --- |
 | 這次跑的是哪批輸入 | `job.json` 定義側別、導引區間、探測高度和有限 Z 範圍。`run.json` 的 `inputFingerprint` 綁定設定、ASC 和 STL。 |
-| 某點是量到的還是推估 | `run.json → sides → stations`。依 `index` 找站位，再看 `state`、`triangles` 和 `cover`。`observed` 才能用原始三角面回查，`inferred` 記錄內插。 |
+| 某點是量到的還是推估 | `run.json → sides → stations`。依 `index` 找站位，再看 `state`、`triangles` 和 `cover`。`observed` 可用原始三角面回查。懸吊臂的 `height` 保存來源 Z，`inferred` 的 `sourceState` 保存推估前的未定原因。 |
 | 為什麼一側沒輸出 | 查 `verification.json` 該側的 `status`，再回 `run.json` 看 `issue`。`gap` 示範應保留兩側，第二側因缺口而扣留。 |
 | 數值在哪一層驗證 | `verification.json` 分開記錄草稿點距、取整位移界、取整後 XY、端點／G1 與有限延伸面的三維樣點距離。 |
 | CAD 收到什麼 | `cad-plan.json` 只列通過的側線。座標、半徑和高度以 mm 表示，`sweep` 以弧度表示。從 +Z 看向草圖平面，正值逆時針。Macro 收據把計畫雜湊和草圖身分綁在一起。 |

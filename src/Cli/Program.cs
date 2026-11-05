@@ -60,7 +60,7 @@ try
         case []:
         case ["--help"]:
             Console.WriteLine("CAD workpiece portfolio\n"
-                + "  generate <normal|gap|height|reversed|competing|workpiece|workpiece-height> <new-input-directory>\n"
+                + $"  generate <{string.Join('|', Fixtures.Cases)}> <new-input-directory>\n"
                 + "  run <input-directory> <new-output-directory>\n"
                 + "  verify <input-directory> <output-directory>\n"
                 + "  section <input-directory> <side-id> <zero-based-index>\n"

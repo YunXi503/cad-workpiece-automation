@@ -33,20 +33,21 @@ public static class Verification
         var checks = new List<SideCheck>();
         foreach (var (side, range) in result.Sides.Zip(job.Guides))
         {
-            Station[] replay = Slicing.Trace(triangles, guide, range, job.ProbeZ);
+            Station[] replay = Slicing.Trace(triangles, guide, range, job.ProbeZ, job.Profile);
             Require(side.Stations.Length == replay.Length && side.Stations.All(s => s is not null),
                 "Station count or contents mismatch.");
             foreach (var (s, index) in side.Stations.Select((s, i) => (s, i)))
             {
                 Station expected = replay[index];
-                Require(s.Index == index && s.State == expected.State && s.Cover == expected.Cover
+                Require(s.Index == index && s.State == expected.State && s.Cover == expected.Cover && s.Height == expected.Height
+                    && s.SourceState == expected.SourceState
                     && s.Triangles.SequenceEqual(expected.Triangles), "Station state or source identities differ from scan replay.");
                 if (s.State == "observed")
                 {
-                    Require(s.Point.HasValue && s.Cover == range.Cover && s.Triangles.Length > 0,
+                    Require(s.Point.HasValue && (job.Profile == "formed-shell" || s.Cover == range.Cover) && s.Triangles.Length > 0,
                         "Observed station lacks evidence.");
                     XY point = s.Point!.Value;
-                    XYZ spatial = new(point.X, point.Y, job.ProbeZ);
+                    XYZ spatial = new(point.X, point.Y, s.Height ?? job.ProbeZ);
                     XY left = guide[range.Start + Math.Max(0, index - 1)].Planar();
                     XY right = guide[range.Start + Math.Min(range.Count - 1, index + 1)].Planar();
                     Require(Math.Abs((point - guide[range.Start + index].Planar()).Dot((right - left).Unit())) <= Eps
@@ -59,6 +60,25 @@ public static class Verification
                 {
                     Require(index > 0 && index + 1 < side.Stations.Length && s.Triangles.Length == 0,
                         "Inferred station must be an interior row without source triangles.");
+                    if (job.Profile == "formed-shell")
+                    {
+                        int left = index - 1, right = index + 1;
+                        while (left >= 0 && side.Stations[left].State != "observed") left--;
+                        while (right < side.Stations.Length && side.Stations[right].State != "observed") right++;
+                        Require(left >= 0 && right < side.Stations.Length && s.SourceState is "gap" or "ambiguous",
+                            "Shell inference lacks bounding observations or raw state.");
+                        Station shellLeft = side.Stations[left], shellRight = side.Stations[right];
+                        XY GuidePoint(int k) => guide[range.Start + k].Planar();
+                        XY Across(int k) => (GuidePoint(Math.Min(range.Count - 1, k + 1))
+                            - GuidePoint(Math.Max(0, k - 1))).Unit().Left();
+                        double t = (double)(index - left) / (right - left);
+                        double da = (shellLeft.Point!.Value - GuidePoint(left)).Dot(Across(left));
+                        double db = (shellRight.Point!.Value - GuidePoint(right)).Dot(Across(right));
+                        XY predicted = GuidePoint(index) + Across(index) * (da + (db - da) * t);
+                        Require(shellLeft.Cover == shellRight.Cover && shellLeft.Cover == s.Cover && s.Point is XY shellPoint
+                            && (shellPoint - predicted).Norm() <= Eps, "Shell reference-offset inference differs.");
+                        continue;
+                    }
                     Station a = side.Stations[index - 1], b = side.Stations[index + 1];
                     Require(a.State == "observed" && b.State == "observed" && a.Cover == b.Cover && s.Cover == a.Cover
                         && a.Point is XY p && b.Point is XY q && s.Point is XY m && (m - (p + q) * .5).Norm() <= Eps,
@@ -118,9 +138,10 @@ public static class Verification
 
             double roundedXY = Math.Max(Max(rounded, points), Max(rounded, uniform));
             Require(roundedXY <= .3, "Rounded point distance exceeds 0.3 mm.");
-            double height = Math.Max(0, Math.Max(plan.ZMin - job.ProbeZ, job.ProbeZ - plan.ZMax));
             double sampled = side.Stations.Where(s => s.State == "observed").Max(s =>
             {
+                double z = s.Height ?? job.ProbeZ;
+                double height = Math.Max(0, Math.Max(plan.ZMin - z, z - plan.ZMax));
                 double horizontal = rounded.Min(c => PointDistance(s.Point!.Value, c));
                 return Math.Sqrt(horizontal * horizontal + height * height);
             });

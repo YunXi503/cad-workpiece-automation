@@ -1,12 +1,12 @@
-# 從 3D 掃描到可編輯 CAD 草圖
+# 焊接懸吊臂的掃描幾何重建與 CATIA 自動化
 
 **C# 計算幾何** · **3DEXPERIENCE CATIA C#／VSTA Macro 開發與除錯**
 
-把掃描得到的板金邊緣，轉成工程師能在 CATIA 逐段編輯的直線與圓弧。我的工作包括追查哪些剖切點真的來自目標側壁、控制線弧的擬合誤差，以及用 C# Macro 建立草圖並讀回 CATIA 的結果。公開版用獨立撰寫的程式和合成工件重現這條路徑，也保留早期方案和淘汰原因。
+把有焊道、上下殼和套筒干擾的鈑金掃描，轉成工程師能在 CATIA 編輯的相切直線與圓弧。我的工作包括剖框拓撲、蓋壁支持追查、混蓋凹折診斷、工程推估、線弧驗證，以及 VSTA Macro 編輯、約束和原生讀回。公開案例以全新尺寸的沖壓鈑金焊接懸吊臂重現這些工程問題，並保留歷史方案和淘汰原因。
 
-![一件合成板金的三角網格與三側覆蓋，標出剖框 B29 競爭壁、B10 缺口、C09 推估、排除套筒與有限延伸面距離](assets/workpiece.svg)
+![懸吊臂上下殼、中央開口、三個套筒及橘色焊道，右側是實際從網格切出的套筒干擾、蓋壁及分串剖框](assets/arm-design.png)
 
-圖由 **2,914 個 STL 三角面、241 個剖框和實際驗證輸出**繪製。A、C 側輸出可編輯線弧。B 側的缺口和競爭支持保留，讀者可以重跑圖中 B29 並查到來源三角面。 [完整工程案例](docs/workpiece-case.md) · [放大圖面](assets/workpiece.svg)
+主案例有 **28,170 個 STL 三角面、714 個剖框**，另一種外形有 27,182 面、688 框。兩件使用同一套程式。蓋面標籤由剖框交線推導，生成器的名義輪廓與角色標籤只供後驗核對。兩件都已在 VSTA 編輯器內執行，分別完成 **3 個草圖、15 個有限元件、30 個有效約束與 3 個延伸面**。 [完整懸吊臂案例](docs/suspension-arm.md) · [焊道放大圖](assets/arm-welds.png) · [原生畫面](assets/arm-native.jpg)
 
 | 你想看什麼 | 從這裡開始 |
 | --- | --- |
@@ -17,8 +17,8 @@
 
 ## 兩個技術案例
 
-- **幾何演算**。原專案先追查凹折出現在剖切、工程錨點還是擬合，再用來源邊身分定位誤配。新合成件重現整件掃描中的套筒排除、連續缺口、兩壁競爭、單站推估，以及同一 XY 草圖因延伸高度不足而三維超差的決策。 [整件案例與逐站追查](docs/workpiece-case.md) · [歷史混蓋診斷](docs/history/mixed-cover.md)
-- **3DEX Macro**。在 VSTA 編輯及建置 C# Macro，從 IDE 的 F5 實跑 `CATMain`。將帶正負掃掠的線弧轉為 Sketcher 實體、端點接合、相切與半徑驅動約束，讓 CATIA 更新後再讀回。草圖身分與輸入指紋核對後才進延伸面。合成件實測完成 3 個可編輯草圖、15 個有效約束與 3 個延伸面。 [Macro 原始碼](macro/MacroWorkflow.cs) · [去識別驗收證據](docs/verification.md#核對-vsta-驗收證據)
+- **幾何演算**。從完整 STL 剖出上下蓋、圓角、壁與焊道，沿連通關係尋找靠蓋的壁支持。套筒造成的未定保留於原始剖框，衍生工程草稿以相鄰同蓋支持對參考線的偏移推估。每側有兩個轉折，以有限曲線距離、G1 和尺寸取整核對整鏈。 [剖框到多段線弧](docs/suspension-arm.md) · [歷史混蓋診斷](docs/history/mixed-cover.md)
+- **3DEX Macro**。在 VSTA 編輯、儲存和建置 C#，用編輯器的開始偵錯入口（F5／`Debug.Start`）呼叫宿主 `CATMain`。逐段建立 Sketcher 元件、端點接合、相切與半徑驅動約束，原生讀回後再建有限延伸面。兩種懸吊臂各有獨立收據。 [Macro 原始碼](macro/MacroWorkflow.cs) · [懸吊臂原生驗收](docs/suspension-arm.md#vsta-原生實跑)
 
 ## 快速開始
 
@@ -26,17 +26,17 @@
 
 ```shell
 dotnet build src/Cli -c Release
-dotnet src/Cli/bin/Release/net10.0/Cli.dll generate workpiece artifacts/workpiece-input
-dotnet src/Cli/bin/Release/net10.0/Cli.dll run artifacts/workpiece-input artifacts/workpiece-output
-dotnet src/Cli/bin/Release/net10.0/Cli.dll verify artifacts/workpiece-input artifacts/workpiece-output
-dotnet src/Cli/bin/Release/net10.0/Cli.dll section artifacts/workpiece-input edge-b 29
+dotnet src/Cli/bin/Release/net10.0/Cli.dll generate arm artifacts/arm-input
+dotnet src/Cli/bin/Release/net10.0/Cli.dll run artifacts/arm-input artifacts/arm-output
+dotnet src/Cli/bin/Release/net10.0/Cli.dll verify artifacts/arm-input artifacts/arm-output
+dotnet src/Cli/bin/Release/net10.0/Cli.dll section artifacts/arm-input arm-1 68
 ```
 
-預期印出 `Checked 2/3 CAD sides`。B 側保留 13 個未定站，A、C 側各交付 2 線 1 弧。`section` 列出 B29 的兩個連通分量與 4 個支持三角面 ID。Windows 可用 `dotnet run --project src/Viewer -- artifacts/workpiece-output/run.json` 切換各側。 [逐站輸出與高度對照](docs/workpiece-case.md)
+預期印出 `Checked 3/3 CAD sides`。每側是 3 線 2 弧。`arm-1:68` 的原始剖框保留套筒干擾與 `ambiguous`；衍生草稿中的該站記為推估。原始點、推估點和有限延伸面距離各有欄位。Windows 可用 `dotnet run --project src/Viewer -- artifacts/arm-output/run.json` 切側。 [六個案例與預期結果](docs/suspension-arm.md#重跑與反例)
 
 ### 最小範例與 VSTA
 
-以下命令重跑已完成 VSTA 原生驗收的三側合成基準，並執行獨立的混蓋反例。
+以下命令保留早期三側小型基準，並執行歷史混蓋的獨立反例。主案例的 VSTA 操作見[宿主手冊](docs/macro.md)。
 
 ```shell
 dotnet src/Cli/bin/Release/net10.0/Cli.dll generate normal artifacts/demo-input

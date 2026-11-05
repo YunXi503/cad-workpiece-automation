@@ -31,7 +31,8 @@ def check_vsta_evidence():
     plan = read(plan_path)
     assert receipt["planSha256"] == sha(plan_path)
     workflow = (ROOT / "macro/MacroWorkflow.cs").read_text(encoding="utf-8-sig").rstrip()
-    assert receipt["workflowSha256"] == hashlib.sha256(workflow.encode()).hexdigest()
+    assert receipt["workflowRevision"] == "233ab7a36eace2b6ab33187c348ea266e915335f"
+    assert receipt["workflowSha256"] == "b18efbac8b9e4a7208856d08b569218940c1ca525cd3cfa1d924105f036e6eea"
     rows, surfaces = receipt["sketchReadbacks"], receipt["surfaces"]
     assert len(rows) == surfaces["sketchCount"] == surfaces["surfaceCount"] == len(plan["sides"]) == 3
     assert sorted(row["curves"] for row in rows) == sorted(len(side["curves"]) for side in plan["sides"])
@@ -39,6 +40,19 @@ def check_vsta_evidence():
     assert sum(row["activeConstraints"] for row in rows) == 15
     assert surfaces["zMin"] == plan["zMin"] == plan["planeZ"] - surfaces["negativeOffset"]
     assert surfaces["zMax"] == plan["zMax"] == plan["planeZ"] + surfaces["positiveOffset"]
+    for key in ("a", "b"):
+        receipt = read(evidence_dir / f"arm-vsta-{key}.json")
+        plan_path = evidence_dir / f"arm-plan-{key}.json"
+        plan = read(plan_path)
+        assert receipt["planSha256"] == sha(plan_path)
+        assert receipt["workflowSha256"] == hashlib.sha256(workflow.encode()).hexdigest()
+        assert receipt["host"]["entry"] == "CATMain" and receipt["host"]["process"] == "DSYVstaDebugHost"
+        rows = receipt["sketchReadbacks"]
+        assert [row["side"] for row in rows] == [side["id"] for side in plan["sides"]]
+        assert len(rows) == receipt["surfaces"]["sketchCount"] == receipt["surfaces"]["surfaceCount"] == 3
+        assert all(row["curves"] == len(side["curves"]) == 5 for row, side in zip(rows, plan["sides"], strict=True))
+        assert sum(row["activeConstraints"] for row in rows) == 30
+        assert receipt["readbackLimitMm"] == 1e-7 and all(0 <= row["maxResidual"] <= 1e-7 for row in rows)
 
 def main():
     check_vsta_evidence()

@@ -1,6 +1,8 @@
 # 驗收與證據
 
-首頁的整件合成板金有獨立的逐站與高度單變數對照。下方數字以原生 VSTA 實跑對應的 `normal` 基準為主。 [整件案例驗收](workpiece-case.md#線弧交付與可量測的邊界)
+首頁主案例為兩件沖壓鈑金焊接懸吊臂。兩件均完成三側離線線弧與 VSTA 編輯器宿主執行，每件有 3 草圖、15 有限元件、30 有效約束和 3 延伸面。最大取整 XY 分別為 0.009637、0.009479 mm，最大原生讀回殘差分別為 6.3553e-14、4.3221e-14 mm。 [懸吊臂驗收、反例與原生收據](suspension-arm.md)
+
+下方保留早期 `normal` 基準及歷史結果，各自對應原有測試範圍。
 
 ## 公開合成案例
 
@@ -33,7 +35,7 @@
 
 [去識別收據](evidence/vsta-editor.json) 取自既有公開合成件的 VSTA 實跑。保留宿主入口、每個草圖的元件數、有效約束與最大殘差，以及有限延伸面的讀回數量和範圍。`planSha256` 與兩份原生收據及執行記錄一致。可下載[同一份合成 CAD 計畫](evidence/vsta-synthetic-plan.json)，用 Windows `Get-FileHash` 或 Linux `sha256sum` 核對原始位元組。`workflowSha256` 取自去除 BOM、統一為 LF 並去除尾端空白的 Macro 原始碼。
 
-離線回歸核對兩個雜湊、曲線數、殘差門檻及延伸範圍。重新驗證 CATIA 行為時，可用同一份合成計畫走 VSTA 編輯器入口。 [離線核對](../tests/acceptance.py) · [VSTA 重跑手冊](macro.md#在-vsta-編輯器建置與執行)
+早期收據的 `workflowRevision` 指向當時的公開 Macro 版本。懸吊臂新增 [A 收據](evidence/arm-vsta-a.json)與 [B 收據](evidence/arm-vsta-b.json)，綁定目前 Macro 來源和各自的合成計畫。離線回歸核對計畫雜湊、曲線數、殘差與約束數；原生行為可循 VSTA 入口重跑。 [離線核對](../tests/acceptance.py) · [VSTA 手冊](macro.md#在-vsta-編輯器建置與執行)
 
 ## Debian Linux 執行
 

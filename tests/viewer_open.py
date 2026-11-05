@@ -29,7 +29,7 @@ def main():
             assert result.returncode == 1 and result.stderr.startswith("Cannot open run report:"), result
             assert "Unhandled exception" not in result.stderr and not png.exists(), result
 
-        for case, index in (("normal", 0), ("gap", 1), ("workpiece", 1)):
+        for case, index in (("normal", 0), ("gap", 1), ("workpiece", 1), ("arm", 0)):
             source, output = root / f"{case} input", root / f"{case} output"
             command("generate", case, source)
             command("run", source, output)
@@ -37,7 +37,7 @@ def main():
             assert result.returncode == 0 and png.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"), result
             png.unlink()
 
-    print("Windows viewer: 3 invalid reports rejected, 3 valid reports painted.")
+    print("Windows viewer: 3 invalid reports rejected, 4 valid reports painted.")
 
 
 if __name__ == "__main__":

@@ -26,7 +26,9 @@ CLI 與 WinForms 共享純 C# 幾何核心。Macro 經 JSON 邊界接收毫米�
 | `verification.json` | 原始與等分點最大 XY 偏差、取整位移上界、端點／接點／G1 殘差、取樣三維距離。 |
 | `cad-plan.json` | 版本、毫米單位、來源指紋、草圖平面、有限 Z 範圍及通過的曲線。曲線由首尾、可空圓心及帶符號掃掠角表示。 |
 
-`workpiece` 是整件板金的主要案例，`workpiece-height` 只調整有限面的高度下界。`normal` 是 VSTA 原生驗收的最小三側基準，`reversed` 反轉第二側導引，`gap` 挖空一段支持，`height` 抬高延伸面下界，`competing` 加入競爭壁。依 [README](../README.md#快速開始) 換案例名和新目錄。`section` 可重切指定剖框並顯示推估前的支持判斷及來源交線。幾何計畫可包含已通過的部分側線。 [整件案例](workpiece-case.md)
+`arm` 與 `arm-b` 是兩種懸吊臂外形。`arm-gap` 加入漏掃，`arm-switch` 改變局部蓋寬，`arm-reversed` 反轉導引，`arm-height` 只改有限面高度。設定的 `profile=formed-shell` 啟用來源蓋壁判讀，支持點另有 `height`，工程推估另有 `sourceState`。`section` 重切指定剖框並列出候選蓋與壁的原交線。 [主案例](suspension-arm.md)
+
+`normal`、`reversed`、`gap`、`height`、`competing` 是小型基準。`workpiece` 與 `workpiece-height` 保留早期整件開口板金示範。各案例用相同 `generate`、`run`、`verify` 入口，並選新目錄。 [早期案例](workpiece-case.md)
 
 工作指紋以設定、ASC、STL 的 SHA-256 串接。驗證器從掃描重播每個站位的狀態與來源三角面清單，再以三角面重心座標、剖面位置及有限曲線點距分別複核。即使 `run.json`、`cad-plan.json` 與 `verification.json` 互相一致，仍須符合原始輸入。`overlay.svg` 也會重製後核對內容。 [接手檢查與故障定位](handoff.md)
 

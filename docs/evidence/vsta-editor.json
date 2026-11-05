@@ -10,6 +10,7 @@
   },
   "planSha256": "ac1138420a5ba036fe6e15a5e5de0097e54d4990a7c3908db4b588e93e026343",
   "workflowSha256": "b18efbac8b9e4a7208856d08b569218940c1ca525cd3cfa1d924105f036e6eea",
+  "workflowRevision": "233ab7a36eace2b6ab33187c348ea266e915335f",
   "readbackLimitMm": 1e-07,
   "sketchReadbacks": [
     {

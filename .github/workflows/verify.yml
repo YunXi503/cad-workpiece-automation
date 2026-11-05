@@ -20,6 +20,7 @@ jobs:
           python-version: '3.12'
       - run: dotnet build src/Cli -c Release
       - run: python tests/acceptance.py
+      - run: python tests/arm_acceptance.py
       - run: python tests/check_docs.py
       - if: runner.os == 'Windows'
         run: dotnet build src/Viewer -c Release

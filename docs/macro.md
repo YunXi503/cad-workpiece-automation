@@ -4,18 +4,18 @@
 
 ## 在 VSTA 編輯器建置與執行
 
-1. 依 [最小範例與 VSTA](../README.md#最小範例與-vsta) 生成正常合成件的 `cad-plan.json`。在 CATIA 開啟可用於測試的 3D Shape 參考 Part。
+1. 依 [快速開始](../README.md#快速開始) 生成懸吊臂的 `cad-plan.json`。在 CATIA 開啟可用於測試的 3D Shape 參考 Part。
 2. 在 CATIA 開啟 **Macros → Macro libraries → PLM VSTA projects**，建立獨立的 C# 測試庫，選它並按 **Edit**。本次安裝的 `MacroEdit` 原生命令也可開啟 Macros 視窗。
 3. 把新庫原本的 `namespace` 複製到下列命令。產生器把同一份公開 `MacroWorkflow.cs` 和合成計畫編進來源，並保留宿主提供的 `ThisApplication` 類別介面。需要 Python 3.10 以上。
 
 ```powershell
-py macro/prepare_vsta_sample.py HostGeneratedNamespace artifacts/demo-output/cad-plan.json artifacts/VstaSample.cs
+py macro/prepare_vsta_sample.py HostGeneratedNamespace artifacts/arm-output/cad-plan.json artifacts/VstaSample.cs
 ```
 
 4. 用生成檔替換**新測試庫**的 `ThisApplication.cs`。在該專案加入 `System.Web.Extensions` 參考，保留宿主提供的 INFITF、MECMOD、HybridShapeTypeLib、CATPLMEnvBuild、KnowledgewareTypeLib 等參考。儲存來源並建置該專案。若先從檔案系統替換來源，請在 IDE 重新載入後做一次編輯並儲存，再建置，讓宿主同步更新巨集。
-5. 在方案總管將新庫設為**啟始專案**，按 **F5**。宿主會呼叫 `CATMain`，使用其 `CATIA` 應用物件建立新示範 Part、建草圖、讀回、再建面。從 `%LOCALAPPDATA%\CodexPortfolioVstaQA\editor-catmain-*` 讀取當次 `runtime.txt`、`sketches.json` 與 `surfaces.json`。成功的收據包含草圖身分、幾何計畫雜湊、有效約束及面數。
+5. 在方案總管將新庫設為**啟始專案**，執行 **開始偵錯（F5／Debug.Start）**。宿主會呼叫 `CATMain`，使用其 `CATIA` 應用物件建立新示範 Part、建草圖、讀回、再建面。從 `%LOCALAPPDATA%\CodexPortfolioVstaQA\editor-catmain-*` 讀取當次 `runtime.txt`、`sketches.json` 與 `surfaces.json`。成功的收據包含草圖身分、幾何計畫雜湊、有效約束及面數。
 
-生成的 `MacroPortfolioVerify` 也提供給 CATIA 的巨集清單入口。這次的 IDE 驗收以 **F5 → CATMain → DSYVstaDebugHost** 的收據為準。獨立示範 Part 的模型保存由操作者確認。 [生成器](../macro/prepare_vsta_sample.py) · [CATIA Automation 指南](https://3dswym.3dexperience.3ds.com/post/catia-user-community/best-practice-3dexperience-r2017x-getting-started-with-automation_tBegIl-_QeWphQE2FQw)
+生成的 `MacroPortfolioVerify` 也提供給 CATIA 的巨集清單入口。懸吊臂驗收使用編輯器的 `Debug.Start` 入口啟動 `DSYVstaDebugHost`，由 `CATMain` 執行，兩件各有收據。獨立示範 Part 的模型保存由操作者確認。 [懸吊臂收據](suspension-arm.md#vsta-原生實跑) · [生成器](../macro/prepare_vsta_sample.py) · [CATIA Automation 指南](https://3dswym.3dexperience.3ds.com/post/catia-user-community/best-practice-3dexperience-r2017x-getting-started-with-automation_tBegIl-_QeWphQE2FQw)
 
 ## 草圖與讀回的關鍵步驟
 
@@ -38,8 +38,8 @@ $env:PORTFOLIO_CAD_INTEROP = 'path-to-your-CATIA-interop-folder'
 msbuild macro/PortfolioMacro.csproj /p:Configuration=Release "/p:CadInteropDir=$env:PORTFOLIO_CAD_INTEROP"
 $macro = 'macro/bin/Release/PortfolioMacro.exe'
 & $macro probe
-& $macro sketches artifacts/demo-output/cad-plan.json artifacts/sketch-receipt.json
-& $macro surfaces artifacts/demo-output/cad-plan.json artifacts/sketch-receipt.json artifacts/surface-receipt.json
+& $macro sketches artifacts/arm-output/cad-plan.json artifacts/sketch-receipt.json
+& $macro surfaces artifacts/arm-output/cad-plan.json artifacts/sketch-receipt.json artifacts/surface-receipt.json
 ```
 
 `probe` 先驗證連線和作用中 Part。`reference` 可在目前沒有作用中 Part 時新建空白、未儲存的測試參考件。VSTA 執行時使用宿主提供的應用物件。

@@ -6,17 +6,21 @@ namespace Portfolio;
 
 public sealed record Guide(string Id, int Start, int Count, string Cover);
 public sealed record Job(string Schema, string Case, Guide[] Guides, double ProbeZ,
-    double PlaneZ, double ZMin, double ZMax);
+    double PlaneZ, double ZMin, double ZMax,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? Profile = null);
 public sealed record Triangle(XYZ A, XYZ B, XYZ C);
 public sealed record Edge(XYZ A, XYZ B, int Triangle);
-public sealed record Station(int Index, string State, XY? Point, int[] Triangles, string? Cover);
+public sealed record Station(int Index, string State, XY? Point, int[] Triangles, string? Cover,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] double? Height = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? SourceState = null);
 public sealed record SideResult(string Id, Station[] Stations, FitResult? Fit, RoundResult? Rounded, string? Issue);
 public sealed record RunResult(string Schema, string Case, string InputFingerprint, SideResult[] Sides);
 public sealed record CadSide(string Id, Curve[] Curves);
 public sealed record CadPlan(string Schema, string Units, string Source, double PlaneZ,
     double ZMin, double ZMax, CadSide[] Sides);
 public sealed record SectionEvidence(string Side, int Index, XY Origin, XY Normal, double ProbeZ,
-    Edge[][] Components, Station RawSupport);
+    Edge[][] Components, Station RawSupport,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] ShellSection? Shell = null);
 
 public static class Data
 {
@@ -89,11 +93,17 @@ public static class Data
 
 public static class Fixtures
 {
-    public static readonly string[] Cases = ["normal", "gap", "height", "reversed", "competing", "workpiece", "workpiece-height"];
+    public static readonly string[] Cases = ["normal", "gap", "height", "reversed", "competing", "workpiece", "workpiece-height",
+        "arm", "arm-b", "arm-gap", "arm-height", "arm-switch", "arm-reversed"];
 
     public static void Generate(string folder, string caseId)
     {
         if (!Cases.Contains(caseId)) throw new InvalidDataException("Unknown synthetic case: " + caseId);
+        if (caseId.StartsWith("arm", StringComparison.Ordinal))
+        {
+            SuspensionArmFixture.Generate(folder, caseId);
+            return;
+        }
         Directory.CreateDirectory(folder);
         var points = new List<XYZ>();
         var mesh = new List<Triangle>();
@@ -267,8 +277,9 @@ public static class Slicing
         return new(index, "observed", first, hits.Select(h => h.Triangle).Distinct().Order().ToArray(), cover);
     }
 
-    public static Station[] Trace(Triangle[] mesh, XYZ[] guide, Guide side, double probeZ)
+    public static Station[] Trace(Triangle[] mesh, XYZ[] guide, Guide side, double probeZ, string? profile = null)
     {
+        if (profile == "formed-shell") return ShellSections.Trace(mesh, guide, side);
         if (side.Start < 0 || side.Count < 5 || side.Count > guide.Length - side.Start
             || string.IsNullOrWhiteSpace(side.Id) || string.IsNullOrWhiteSpace(side.Cover))
             throw new InvalidDataException("Invalid guide interval.");
@@ -297,7 +308,8 @@ public static class Slicing
             Station a = rows[i - 1], b = rows[i + 1];
             if (rows[i].State == "gap" && a.State == "observed" && b.State == "observed"
                 && a.Cover is not null && a.Cover == b.Cover && a.Point is XY p && b.Point is XY q)
-                copy[i] = new(i, "inferred", (p + q) * .5, [], a.Cover);
+                copy[i] = new(i, "inferred", (p + q) * .5, [], a.Cover,
+                    a.Height is double za && b.Height is double zb ? (za + zb) / 2 : null);
         }
         return copy;
     }
@@ -313,7 +325,7 @@ public static class Pipeline
         XYZ[] guide = File.ReadLines(asc).Where(line => !string.IsNullOrWhiteSpace(line)).Select(Data.Point).ToArray();
         Triangle[] mesh = Data.LoadStl(stl);
         SideResult[] results = job.Guides.Select(side =>
-            FitSide(side.Id, Slicing.Trace(mesh, guide, side, job.ProbeZ))).ToArray();
+            FitSide(side.Id, Slicing.Trace(mesh, guide, side, job.ProbeZ, job.Profile))).ToArray();
         return (job, new("portfolio-run/1", job.Case, Data.Sha(config) + ":" + Data.Sha(asc) + ":" + Data.Sha(stl), results));
     }
 
@@ -328,8 +340,10 @@ public static class Pipeline
             throw new InvalidDataException("Invalid guide interval or section index.");
         var (origin, normal) = Slicing.Frame(guide, side, index);
         var mesh = Data.LoadStl(Path.Combine(folder, "scan.stl"));
-        var components = Slicing.Components(Slicing.Intersect(mesh, origin, normal, 2.5));
-        return new(id, index, origin, normal, job.ProbeZ, components, Slicing.Observe(index, components, job.ProbeZ, side.Cover));
+        var components = Slicing.Components(Slicing.Intersect(mesh, origin, normal, job.Profile == "formed-shell" ? 110 : 2.5));
+        ShellSection? shell = job.Profile == "formed-shell" ? ShellSections.Inspect(components, origin, normal, index) : null;
+        return new(id, index, origin, normal, job.ProbeZ, components,
+            shell?.Support ?? Slicing.Observe(index, components, job.ProbeZ, side.Cover), shell);
     }
 
     internal static Job ReadJob(string file)
@@ -337,7 +351,9 @@ public static class Pipeline
         Job job = Data.Read<Job>(file);
         if (job.Schema != "synthetic-job/1" || job.ZMin >= job.ZMax
             || !new[] { job.ZMin, job.ZMax, job.PlaneZ, job.ProbeZ }.All(double.IsFinite)
-            || job.Guides.Length == 0 || job.Guides.Any(g => g is null)
+            || job.Profile is not (null or "formed-shell")
+            || job.Guides.Length == 0 || job.Guides.Any(g => g is null
+                || string.IsNullOrWhiteSpace(g.Id) || string.IsNullOrWhiteSpace(g.Cover))
             || job.Guides.Select(g => g.Id).Distinct().Count() != job.Guides.Length)
             throw new InvalidDataException("Invalid synthetic job contract.");
         return job;

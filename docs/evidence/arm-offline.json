@@ -1,0 +1,130 @@
+{
+  "schema": "portfolio-arm-offline/1",
+  "scope": "Synthetic wall anchors, inferred draft samples and weld vertices only.",
+  "cases": {
+    "arm": {
+      "triangles": 28170,
+      "stations": 714,
+      "sourceFingerprint": "bc0438a5b67e1e2fc2026db4036040dcb476da46d5cc12da714893000b831906:84391a15cf9f23bf8c16445ea3423cce437da051eff55041bc192d15984c07f3:b3210b8f1d7d6a9889c60f4ce60a0470bb6c15d2e2e44d727609de8f92bcc90a",
+      "weldVertexXYMaximum": 2.1328040217902577,
+      "sides": [
+        {
+          "id": "arm-1",
+          "observed": 260,
+          "inferred": 3,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 5.147938161798038e-05,
+          "uniformError": 0.007714308292918304,
+          "roundedXYError": 0.006631831070606609,
+          "movementBound": 0.008187527041237238,
+          "endpointResidual": 1.0658141036401503e-14,
+          "jointResidual": 3.552713678800501e-15,
+          "tangentResidual": 2.025966904339278e-15,
+          "contactSampleMaximum": 0.00513823290195633,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        },
+        {
+          "id": "arm-2",
+          "observed": 213,
+          "inferred": 0,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 7.066555922996542e-05,
+          "uniformError": 0.009281141324203546,
+          "roundedXYError": 0.007706950821978253,
+          "movementBound": 0.0064853740676674675,
+          "endpointResidual": 2.842170943040401e-14,
+          "jointResidual": 0,
+          "tangentResidual": 6.86724770124419e-15,
+          "contactSampleMaximum": 0.0033013184197092397,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        },
+        {
+          "id": "arm-3",
+          "observed": 232,
+          "inferred": 6,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 8.25653599960674e-05,
+          "uniformError": 0.009693698626112024,
+          "roundedXYError": 0.009637408955569526,
+          "movementBound": 0.007247698438315343,
+          "endpointResidual": 2.0097183471152322e-14,
+          "jointResidual": 2.929642751054232e-14,
+          "tangentResidual": 1.4432899320127035e-15,
+          "contactSampleMaximum": 0.004351183115881193,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        }
+      ]
+    },
+    "arm-b": {
+      "triangles": 27182,
+      "stations": 688,
+      "sourceFingerprint": "134d9fce11a39de452ed04e0567e7d12345bd0d249de24fa26a79cc20e59999d:1b66644d564b63d2d2f051562e7aff8b9a1c748c144703d754a40b7727a94d84:2e653e2e5972a4f8ea676aa8114274f618d14923b70451097a7e62554ba84034",
+      "weldVertexXYMaximum": 2.133598111151517,
+      "sides": [
+        {
+          "id": "arm-1",
+          "observed": 235,
+          "inferred": 5,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 6.405643003049022e-05,
+          "uniformError": 0.00861905769818705,
+          "roundedXYError": 0.009479169274031918,
+          "movementBound": 0.004640589508941837,
+          "endpointResidual": 4.801714581503802e-15,
+          "jointResidual": 2.864289338439558e-14,
+          "tangentResidual": 5.117875266520903e-16,
+          "contactSampleMaximum": 0.002046263542730742,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        },
+        {
+          "id": "arm-2",
+          "observed": 216,
+          "inferred": 0,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 6.83958260960793e-05,
+          "uniformError": 0.008653399625707436,
+          "roundedXYError": 0.006720540491969018,
+          "movementBound": 0.008038516319579494,
+          "endpointResidual": 0,
+          "jointResidual": 1.4210854715202004e-14,
+          "tangentResidual": 1.2359928991572183e-14,
+          "contactSampleMaximum": 0.004867441076158515,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        },
+        {
+          "id": "arm-3",
+          "observed": 232,
+          "inferred": 0,
+          "unresolved": 0,
+          "baselineCount": 6,
+          "reducedCount": 5,
+          "originalError": 0.00010801295836060376,
+          "uniformError": 0.010949730583897477,
+          "roundedXYError": 0.007655053676035806,
+          "movementBound": 0.009058995457601759,
+          "endpointResidual": 4.8485105935313943e-14,
+          "jointResidual": 7.105427357601002e-15,
+          "tangentResidual": 8.617648093045562e-16,
+          "contactSampleMaximum": 0.007655053676035806,
+          "contactState": "within-sampled-limit",
+          "status": "checked"
+        }
+      ]
+    }
+  }
+}
