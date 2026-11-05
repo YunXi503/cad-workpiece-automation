@@ -25,13 +25,13 @@
     },
     {
       "path": "EXPERIMENT_LOG.md",
-      "bytes": 14677,
-      "sha256": "a406e7a529153c451b8b3cd1ae82e2b9ea23ff93ad1e4d0d3d8de94508458708"
+      "bytes": 16708,
+      "sha256": "e1390664ffc778da1b3c8d3918de362ffa1c05892d717123050ef1fd436c5df8"
     },
     {
       "path": "README.md",
-      "bytes": 8132,
-      "sha256": "4c6ad348df6a5e8255aea75423f0dda61c89d09a9b43424b0031d1c06153e1a3"
+      "bytes": 9019,
+      "sha256": "cc6357b183031ee93c457b452fdb770fd3229dc5803d4a52b056d834531be9e0"
     },
     {
       "path": "assets/arm-design.png",
@@ -55,13 +55,13 @@
     },
     {
       "path": "assets/case-a-contact-detail.png",
-      "bytes": 243100,
-      "sha256": "18f01a6a60a6eea77778008c5fcbbb59d7927932994ab2a93a7e4b64f3ecdb0a"
+      "bytes": 243430,
+      "sha256": "841b7debc40fdb7c0eee1782cc7d0e095614620668490d69e31701734147341c"
     },
     {
       "path": "assets/case-a-contact-probes.png",
-      "bytes": 154661,
-      "sha256": "b3c1ffb21d9772daef93a557ce79575c7b8cb61124ebd254426b176651554cc3"
+      "bytes": 158518,
+      "sha256": "4b24426c27cc4fd51270cdf34790ac6a00fb76a3bc855f38e92c27ecef591e8e"
     },
     {
       "path": "assets/case-a-fitting.png",
@@ -90,8 +90,8 @@
     },
     {
       "path": "assets/case-a-surfaces.png",
-      "bytes": 481979,
-      "sha256": "e61e7ec2a4c734a1fb1e45ca38beccb71b92d575e9d2d281843abdbe8bcc75b1"
+      "bytes": 480233,
+      "sha256": "a06084a3064886ae0c7c0dfab16cb809171422313d60ada16060f8bd0ee6c04d"
     },
     {
       "path": "assets/case-a-viewer.png",
@@ -125,8 +125,13 @@
     },
     {
       "path": "docs/completeness-audit.md",
-      "bytes": 5731,
-      "sha256": "4cc34a7c1af25d2a5282590deee7bbd82270cafe329295c3d5c88996611542ff"
+      "bytes": 6329,
+      "sha256": "33802e720178326c5681aa871301b0a243ef904f8d2300ff7edd470801edf986"
+    },
+    {
+      "path": "docs/engineering-acceptance.md",
+      "bytes": 6850,
+      "sha256": "9d7e40b6a1187840851ebe6582c25f640117c493857a4d7a6a6acd0a7fa9ca7e"
     },
     {
       "path": "docs/engineering-decisions.md",
@@ -175,8 +180,8 @@
     },
     {
       "path": "docs/evidence/case-a-surface-contact.json",
-      "bytes": 1951,
-      "sha256": "e08dc0ccc0f4f1d276436a5fc5cb168d9f9018fd1e3877390368b94df3eec572"
+      "bytes": 2050,
+      "sha256": "5436b04fb50dbd03f5cc255861d6105a9000c6ff6d97c210f5459ae4bdceaeed"
     },
     {
       "path": "docs/evidence/case-a-vsta.json",
@@ -340,13 +345,13 @@
     },
     {
       "path": "docs/original-case.md",
-      "bytes": 9141,
-      "sha256": "644934d4ffabfa9ca35da78a491947ef2094996927696c7731b66d60b01bcd3e"
+      "bytes": 9822,
+      "sha256": "2beb156f7dbc28e85fc9fcf57f04bffe2703be81e4bfe5f3f04bb5cf6954eaeb"
     },
     {
       "path": "docs/project-history.md",
-      "bytes": 3747,
-      "sha256": "e2f2cb01fae71af497679b81ba5b289f0ab6aa715f272c260363d618036ec98a"
+      "bytes": 4152,
+      "sha256": "1c88a6ac2c46d5d5df5e5f332941c96d1fc330129dd78b10ac01fec536dbb3f9"
     },
     {
       "path": "docs/publication.md",
@@ -355,8 +360,8 @@
     },
     {
       "path": "docs/review-original-case.md",
-      "bytes": 7441,
-      "sha256": "02b5333b522c139c4c904bf3f4cdce2094e11d4c808ac668faa04eb04dfc5e24"
+      "bytes": 7805,
+      "sha256": "741ce7e16ec254e0213a602d0662b8e2130705a8858d628c26252d8c1e733704"
     },
     {
       "path": "docs/review.md",
@@ -375,8 +380,8 @@
     },
     {
       "path": "docs/surface-contact.md",
-      "bytes": 7245,
-      "sha256": "5b4014ff2efa23af735a809d9e0e39c91a2ce7a2161e14d74f0f6f04d5dfc7e6"
+      "bytes": 7567,
+      "sha256": "53bab7b998cd1aba58e03c55d6b355ed966fff8152098a9fc43a0f9f18cdd784"
     },
     {
       "path": "docs/suspension-arm.md",
@@ -390,8 +395,8 @@
     },
     {
       "path": "docs/verification.md",
-      "bytes": 10005,
-      "sha256": "505ac814936c847850fa62989fcd943bf726088124333177b75303296996cc96"
+      "bytes": 11310,
+      "sha256": "9b7f80d604ed0f91e3863d71fe35a71fa9f2ba2f89a76ff53f2bf2a7aba82147"
     },
     {
       "path": "docs/workpiece-case.md",
@@ -610,8 +615,8 @@
     },
     {
       "path": "tools/render_surface_contact.py",
-      "bytes": 15531,
-      "sha256": "ebcae888f9698acbf55422dbeaa226e901e8dec73877afa2014ce3dfafebd83e"
+      "bytes": 15664,
+      "sha256": "c13d09a8ab6623c645946bf1d4e4c63703ec9758639b716b11cb13e628b783bb"
     },
     {
       "path": "tools/render_workpiece.py",

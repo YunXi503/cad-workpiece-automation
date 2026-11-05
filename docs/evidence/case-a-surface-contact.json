@@ -7,6 +7,7 @@
   "zMin": -50,
   "zMax": 50,
   "thresholdMm": 0.3,
+  "thresholdRole": "legacy contact diagnostic reference; not the engineering-draft delivery gate",
   "comparisonToleranceMm": 1e-07,
   "measurement": "analytic finite curves, independent closest points; display tessellation is not measured",
   "scope": "119 original approximate engineering-anchor endpoints only; not a physically established contact band or full-STL Hausdorff distance",
@@ -47,15 +48,15 @@
   "figures": [
     {
       "path": "assets/case-a-surfaces.png",
-      "sha256": "e61e7ec2a4c734a1fb1e45ca38beccb71b92d575e9d2d281843abdbe8bcc75b1"
+      "sha256": "a06084a3064886ae0c7c0dfab16cb809171422313d60ada16060f8bd0ee6c04d"
     },
     {
       "path": "assets/case-a-contact-detail.png",
-      "sha256": "18f01a6a60a6eea77778008c5fcbbb59d7927932994ab2a93a7e4b64f3ecdb0a"
+      "sha256": "841b7debc40fdb7c0eee1782cc7d0e095614620668490d69e31701734147341c"
     },
     {
       "path": "assets/case-a-contact-probes.png",
-      "sha256": "b3c1ffb21d9772daef93a557ce79575c7b8cb61124ebd254426b176651554cc3"
+      "sha256": "4b24426c27cc4fd51270cdf34790ac6a00fb76a3bc855f38e92c27ecef591e8e"
     }
   ]
 }
