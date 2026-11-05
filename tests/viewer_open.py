@@ -40,12 +40,31 @@ def main():
         source, output = root / "reviewed input", root / "reviewed output"
         command("source", "generate", source)
         command("source", "run", source / "case.json", output)
+        valid = json.loads((output/"run.json").read_text())
+        # Exercise nested JSON elements that nullable annotations cannot reject on their own.
+        invalid = [
+            ("source-null", lambda d: d["sides"][0].update(sourceSupports=[None])),
+            ("frame-null", lambda d: d["sides"][0].update(sourceFrames=[None])),
+            ("fit-null", lambda d: d["sides"][0]["fit"].update(curves=[None])),
+            ("baseline-null", lambda d: d["sides"][0]["fit"].update(baseline=[None])),
+            ("fit-empty", lambda d: d["sides"][0]["fit"].update(curves=[])),
+            ("rounded-empty", lambda d: d["sides"][0]["rounded"].update(curves=[])),
+        ]
+        for name, mutate in invalid:
+            data = json.loads(json.dumps(valid))
+            mutate(data)
+            report = root/f"{name}.json"
+            report.write_text(json.dumps(data), encoding="utf-8")
+            result = open_report(report)
+            assert result.returncode == 1 and result.stderr.startswith("Cannot open run report:"), result
+            assert "Unhandled exception" not in result.stderr and not png.exists(), result
         for index in range(3):
             result = open_report(output / "run.json", index)
             assert result.returncode == 0 and png.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"), result
+            assert "pre-round fit XY" in result.stdout and "display: rounded" in result.stdout, result
             png.unlink()
 
-    print("Windows viewer: 3 invalid reports rejected, 7 valid sides painted, including reviewed-source provenance.")
+    print("Windows viewer: 9 invalid reports rejected, 7 valid sides painted; source views explicitly identify pre-round errors and displayed rounded geometry.")
 
 
 if __name__ == "__main__":

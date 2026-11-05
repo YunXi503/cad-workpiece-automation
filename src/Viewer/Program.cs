@@ -27,6 +27,7 @@ static class Program
             form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, form.Size));
             bitmap.Save(png, System.Drawing.Imaging.ImageFormat.Png);
             int exitCode = form.PaintCount > 0 ? 0 : 1;
+            Console.WriteLine(form.GeometryDescription);
             form.Close();
             return exitCode;
         }
@@ -67,6 +68,7 @@ sealed class ReviewWindow : Form
     public void SelectSide(int index) => sides.SelectedIndex = index;
     public int SelectedCount => sides.Items.Count;
     public int PaintCount => plot.PaintCount;
+    public string GeometryDescription => plot.Description;
 
     public void OpenRunOrWarn(string path)
     {
@@ -89,6 +91,19 @@ sealed class ReviewWindow : Form
                 if ((side.Fit is null && string.IsNullOrWhiteSpace(side.Issue)) ||
                     (side.Rounded is RoundResult rounded && rounded.Curves.Any(curve => curve is null)))
                     throw new InvalidDataException($"Side '{side.Id}' has an incomplete geometry report.");
+                bool Finite(XY p) => double.IsFinite(p.X) && double.IsFinite(p.Y);
+                bool Valid(Curve? c) => c is not null && Finite(c.Start) && Finite(c.End)
+                    && (c.Center is not XY center || Finite(center))
+                    && double.IsFinite(c.Sweep) && double.IsFinite(c.Length) && c.Length > 0;
+                if (side.Fit is FitResult fit && (fit.Baseline.Length == 0 || fit.Curves.Length == 0
+                    || !fit.Baseline.All(Valid) || !fit.Curves.All(Valid) || !Finite(fit.WorstPoint)))
+                    throw new InvalidDataException($"Side '{side.Id}' needs nonempty finite fitting curves.");
+                if (side.Rounded is RoundResult cad && (side.Fit is null || cad.Curves.Length == 0 || !cad.Curves.All(Valid)))
+                    throw new InvalidDataException($"Side '{side.Id}' needs nonempty finite rounded curves.");
+                if (side.Stations.Any(s => s.Point is XY p && !Finite(p))
+                    || side.SourceSupports?.Any(a => a is null || !Finite(a.Point.Planar())) == true
+                    || side.SourceFrames?.Any(f => f is null || string.IsNullOrWhiteSpace(f.Id) || string.IsNullOrWhiteSpace(f.State)) == true)
+                    throw new InvalidDataException($"Side '{side.Id}' has invalid source or station records.");
             }
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException or ArgumentException
@@ -122,6 +137,9 @@ sealed class Plot : Control
     [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public SideResult? Side { get; set; }
     public int PaintCount { get; private set; }
+    public string Description => Side is not SideResult side ? "No report selected"
+        : (side.Issue ?? $"{side.Fit!.Baseline.Length} → {side.Fit.Curves.Length} primitives · max pre-round fit XY {Math.Max(side.Fit.OriginalError, side.Fit.UniformError):G4} mm")
+          + $" · display: {(side.Rounded is not null ? "rounded" : side.GeometryStage is not null && side.Fit is not null ? "unrounded draft" : "withheld")}";
 
     public Plot() { DoubleBuffered = true; BackColor = Color.White; }
 
@@ -138,16 +156,15 @@ sealed class Plot : Control
         }
 
         XY[] points = side.Stations.Where(s => s.Point.HasValue).Select(s => s.Point!.Value).ToArray();
-        e.Graphics.DrawString(side.SourceSupports is null?"Observed: blue   ·   Inferred: orange   ·   Worst XY: red ring   ·   Line: teal   ·   Arc: violet"
-            :"Source endpoints: blue (approximate anchors) · Derived draft: orange · Worst draft XY: red ring",
+        e.Graphics.DrawString(side.SourceSupports is null?"Observed: blue · Inferred: orange · Red ring: pre-round worst point · Line: teal · Arc: violet"
+            :"Source endpoints: blue (approximate) · Draft: orange · Red ring: pre-round worst draft point",
             Font, text, 26, 16);
-        e.Graphics.DrawString(side.Issue ?? $"{side.Fit!.Baseline.Length} → {side.Fit.Curves.Length} primitives  ·  max fit XY {Math.Max(side.Fit.OriginalError, side.Fit.UniformError):G4} mm",
-            Font, text, 26, 47);
+        e.Graphics.DrawString(Description, Font, text, new RectangleF(26, 47, Width-52, 48));
         if (points.Length == 0) return;
         XY[] bounds=points.Concat(side.SourceSupports?.Select(a=>a.Point.Planar())??[]).ToArray();
         double minX = bounds.Min(p => p.X), minY = bounds.Min(p => p.Y);
         double scale = Math.Min((Width - 94) / Math.Max(1, bounds.Max(p => p.X) - minX),
-            (Height - 165) / Math.Max(1, bounds.Max(p => p.Y) - minY));
+            (Height - 200) / Math.Max(1, bounds.Max(p => p.Y) - minY));
         PointF DrawPoint(XY p) => new((float)(45 + (p.X - minX) * scale), (float)(Height - 83 - (p.Y - minY) * scale));
         using var line = new Pen(Color.Teal, 4);
         using var arc = new Pen(Color.MediumPurple, 4);

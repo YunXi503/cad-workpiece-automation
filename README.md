@@ -77,4 +77,4 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment check-all
 - **English**: Developed a C# / WinForms scan-to-CAD workflow with source-triangle provenance, finite tangent line–arc fitting, verified reduction, and tolerance-checked dimension rounding.
 - **English**: Developed and debugged 3DEXPERIENCE CATIA C# / VSTA macros for editable constrained sketches, native readback, and fingerprint-bound surface extrusion.
 
-[驗收與限制](docs/verification.md) · [雙視角審查](docs/review-original-case.md) · [公開分界](docs/publication.md) · [實作實驗紀錄](EXPERIMENT_LOG.md) · [早期解析懸吊臂回歸案例](docs/suspension-arm.md)
+[驗收與限制](docs/verification.md) · **[原規劃查漏與未完成項目](docs/completeness-audit.md)** · [雙視角審查](docs/review-original-case.md) · [公開分界](docs/publication.md) · [實作實驗紀錄](EXPERIMENT_LOG.md) · [早期解析懸吊臂回歸案例](docs/suspension-arm.md)

@@ -23,7 +23,7 @@
 
 本次公開解析 fixture 與原件不同，兩者使用同一新程式。fixture有66框／3審查排除／126支持端點，每側13→11段，取整XY最大0.137150mm；它刻意保留不合格的原支持接觸，避免把測試件當實物驗收。
 
-Windows完整11步驟見[實測摘要](evidence/case-a-windows.json)。Debian跑的是實際Linux程式，不是Windows交叉發佈；它仍是QEMU虛擬機，未宣稱裸機測試。Windows與Linux的CAD計畫原始bytes／SHA不同，收據分別保留，不把Windows VSTA成功套到另一個SHA。兩側草稿點距、取整界及接觸樣點指標各自在原平台重算並通過對應判準。Debian額外的舊六懸吊臂回歸為釋放TCG資源而停止，未列為Debian成功；這六案已在Windows通過，並保留於Windows／Ubuntu CI。
+原件交付時 Windows 的11步驟見[當時實測摘要](evidence/case-a-windows.json)。本輪 Viewer 零警告建置、9個錯誤報告拒絕、7個正常側別實際繪圖通過，並開啟原件核對階段標籤；現行回歸以[CI](../.github/workflows/verify.yml)及[Viewer測試](../tests/viewer_open.py)為準，不改寫舊收據冒充新測試。Debian跑的是實際Linux程式，不是Windows交叉發佈；它仍是QEMU虛擬機，未宣稱裸機測試。Windows與Linux的CAD計畫原始bytes／SHA不同，收據分別保留，不把Windows VSTA成功套到另一個SHA。草稿點距、取整界及接觸樣點指標各自在原平台重算。Debian額外的舊六懸吊臂回歸為釋放TCG資源而停止，未列為Debian成功；這六案已在Windows通過，並保留於Windows／Ubuntu CI。
 
 ![原生 CATIA 三個有限延伸面，原生匯出且未編修的去識別視埠](../assets/case-a-native.jpg)
 
@@ -64,7 +64,7 @@ Windows完整11步驟見[實測摘要](evidence/case-a-windows.json)。Debian跑
 
 [去識別收據](evidence/vsta-editor.json) 取自既有公開合成件的 VSTA 實跑。保留宿主入口、每個草圖的元件數、有效約束與最大殘差，以及有限延伸面的讀回數量和範圍。`planSha256` 與兩份原生收據及執行記錄一致。可下載[同一份合成 CAD 計畫](evidence/vsta-synthetic-plan.json)，用 Windows `Get-FileHash` 或 Linux `sha256sum` 核對原始位元組。`workflowSha256` 取自去除 BOM、統一為 LF 並去除尾端空白的 Macro 原始碼。
 
-早期收據的 `workflowRevision` 指向當時的公開 Macro 版本。懸吊臂新增 [A 收據](evidence/arm-vsta-a.json)與 [B 收據](evidence/arm-vsta-b.json)，綁定目前 Macro 來源和各自的合成計畫。離線回歸核對計畫雜湊、曲線數、殘差與約束數；原生行為可循 VSTA 入口重跑。 [離線核對](../tests/acceptance.py) · [VSTA 手冊](macro.md#在-vsta-編輯器建置與執行)
+早期收據的 `workflowRevision` 指向當時的公開 Macro 版本。懸吊臂 [A 收據](evidence/arm-vsta-a.json)與 [B 收據](evidence/arm-vsta-b.json)綁定當時的 Macro 來源和各自的合成計畫，不能套到後來擴充原件容量的版本。現行 Case A 另有自己的計畫及 Macro SHA。離線回歸核對各版計畫雜湊、曲線數、殘差與約束數；原生行為可循 VSTA 入口重跑。[離線核對](../tests/acceptance.py) · [VSTA 手冊](macro.md#在-vsta-編輯器建置與執行)
 
 ## Debian Linux 執行
 
