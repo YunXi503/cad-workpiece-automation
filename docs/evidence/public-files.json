@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "bytes": 1024,
-      "sha256": "96e5ac865857289960a2df776aab7d084b09f11db50156c0802825cc89d06e1b"
+      "bytes": 1069,
+      "sha256": "ff3135ac9d52b88f9be4760eeb125399d7a14d540d25b805957d35d8f931d73b"
     },
     {
       "path": ".gitignore",
@@ -25,13 +25,13 @@
     },
     {
       "path": "EXPERIMENT_LOG.md",
-      "bytes": 10157,
-      "sha256": "4dc3af75fd2b621d362185e5a30c09d0d9c52b74d1502878fb27d1fa64958b32"
+      "bytes": 12531,
+      "sha256": "5e884a8413a9217fa336e4e5949e24a83f0e966dbc3df926288619e8576fc6d8"
     },
     {
       "path": "README.md",
-      "bytes": 7063,
-      "sha256": "8341798390911047bb153f494aa4c24140e84dbce7eb94d56794ea3e0ebb0df0"
+      "bytes": 8061,
+      "sha256": "c9dbc118049d65445ca01b7204bfcc96e8f675fa50e0c80837a680f87fad0e66"
     },
     {
       "path": "assets/arm-design.png",
@@ -52,6 +52,16 @@
       "path": "assets/arm-welds.png",
       "bytes": 63394,
       "sha256": "774795f02aa82af14f1eced79055f00b8329aa89c5aec5cce91fa95fe52ee6d9"
+    },
+    {
+      "path": "assets/case-a-contact-detail.png",
+      "bytes": 243100,
+      "sha256": "18f01a6a60a6eea77778008c5fcbbb59d7927932994ab2a93a7e4b64f3ecdb0a"
+    },
+    {
+      "path": "assets/case-a-contact-probes.png",
+      "bytes": 154661,
+      "sha256": "b3c1ffb21d9772daef93a557ce79575c7b8cb61124ebd254426b176651554cc3"
     },
     {
       "path": "assets/case-a-fitting.png",
@@ -77,6 +87,11 @@
       "path": "assets/case-a-sections.png",
       "bytes": 343669,
       "sha256": "0de8a4369778bb50782ce56542877022ab767fe90a6a544f6ad3f356f2120a51"
+    },
+    {
+      "path": "assets/case-a-surfaces.png",
+      "bytes": 481979,
+      "sha256": "e61e7ec2a4c734a1fb1e45ca38beccb71b92d575e9d2d281843abdbe8bcc75b1"
     },
     {
       "path": "assets/gap.svg",
@@ -147,6 +162,11 @@
       "path": "docs/evidence/case-a-native-controls.json",
       "bytes": 1301,
       "sha256": "4234af30214a76dd97011a34797749d878bdacb8f76cd6a6335862c140836c6a"
+    },
+    {
+      "path": "docs/evidence/case-a-surface-contact.json",
+      "bytes": 1951,
+      "sha256": "e08dc0ccc0f4f1d276436a5fc5cb168d9f9018fd1e3877390368b94df3eec572"
     },
     {
       "path": "docs/evidence/case-a-vsta.json",
@@ -310,8 +330,8 @@
     },
     {
       "path": "docs/original-case.md",
-      "bytes": 8887,
-      "sha256": "92d2570e76276e5d8458685473d84e6854797af68d308c91c02d5cc93013371f"
+      "bytes": 9141,
+      "sha256": "644934d4ffabfa9ca35da78a491947ef2094996927696c7731b66d60b01bcd3e"
     },
     {
       "path": "docs/project-history.md",
@@ -320,13 +340,13 @@
     },
     {
       "path": "docs/publication.md",
-      "bytes": 2291,
-      "sha256": "758ecd92606d5d0cc7db20ee4d4b95b256278b0807ff470bda95cc4f7648f840"
+      "bytes": 2577,
+      "sha256": "c866a8017162e9e1623f740b6f54d2e280a6df909466eb2bf1a17a13c9b31731"
     },
     {
       "path": "docs/review-original-case.md",
-      "bytes": 5093,
-      "sha256": "931dce0710590de4a67c6c6ee7ed8afd432345aed0bb001fe877f441ab1d7f5b"
+      "bytes": 7188,
+      "sha256": "1382cd3661f3801ce15f7d4505b418d735a3db304dccc0146822b566b3734950"
     },
     {
       "path": "docs/review.md",
@@ -344,6 +364,11 @@
       "sha256": "6ec241eeb49ad23eaa8e8ef010690b0027de8b25fa4c4830516d1ae68ebed1b3"
     },
     {
+      "path": "docs/surface-contact.md",
+      "bytes": 7245,
+      "sha256": "5b4014ff2efa23af735a809d9e0e39c91a2ce7a2161e14d74f0f6f04d5dfc7e6"
+    },
+    {
       "path": "docs/suspension-arm.md",
       "bytes": 10412,
       "sha256": "d7afdaad90e23cedea78780766c0714415895ece18bf228c64e43fb8eb176b2c"
@@ -355,8 +380,8 @@
     },
     {
       "path": "docs/verification.md",
-      "bytes": 9271,
-      "sha256": "2f7271c68a3e73544c09970d76f020d562941b98fe558159c47a24ddab9ea080"
+      "bytes": 9645,
+      "sha256": "054a5387fd5ef73fa9fbf49ba5c027d172824d28dbdd0893414fca1d65cb29f9"
     },
     {
       "path": "docs/workpiece-case.md",
@@ -539,6 +564,11 @@
       "sha256": "aef5bb874866698357df5329601cd3f8f5ac434ccf3d75d0ae24bcdeb0fa54c3"
     },
     {
+      "path": "tests/surface_display.py",
+      "bytes": 3592,
+      "sha256": "44118a9bdba4d85d03604cd1806c97f518b6662af6adea6e4e0a966dd726a020"
+    },
+    {
       "path": "tests/viewer_open.py",
       "bytes": 2358,
       "sha256": "b59b6f335d46675494137e300e4f2c493ff3a3b0c94c89b015e299023a986825"
@@ -547,6 +577,11 @@
       "path": "tools/audit_publication.py",
       "bytes": 3559,
       "sha256": "8af7e2e2774b83fbad4a905334a6f8cae7b8d1595be3456654bf0b7841cf460b"
+    },
+    {
+      "path": "tools/contact_geometry.py",
+      "bytes": 1956,
+      "sha256": "c6399d2313060e6cd37c8671a93fc8a1b0fdc1c3ce456aacdb5a55b6ec1b1b81"
     },
     {
       "path": "tools/import_reviewed_case.py",
@@ -564,6 +599,11 @@
       "sha256": "0be3b097a9789df78e25fad0f4a42dde46cb7d8fb096f5854477431ec5c9f919"
     },
     {
+      "path": "tools/render_surface_contact.py",
+      "bytes": 15531,
+      "sha256": "ebcae888f9698acbf55422dbeaa226e901e8dec73877afa2014ce3dfafebd83e"
+    },
+    {
       "path": "tools/render_workpiece.py",
       "bytes": 10188,
       "sha256": "abe8c1193024eff8407dece4bb59eb2defe8103c4d9d93177499442aa3a1f035"
@@ -575,8 +615,8 @@
     },
     {
       "path": "tools/verify.py",
-      "bytes": 2312,
-      "sha256": "aac87d8c968efc7e7d1adff93848b6be36bf0cf4985b35a26b1514382a94f569"
+      "bytes": 2331,
+      "sha256": "668f045b1e5fea787197cdeb22ae4af4a40c265ad65e2704384a9e08136861be"
     }
   ],
   "limitations": "Source-coordinate plans and raw native logs remain local. This inventory does not prove removal of pre-existing remote caches."

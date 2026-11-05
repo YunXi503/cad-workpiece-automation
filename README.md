@@ -1,15 +1,17 @@
-# 原始焊接鈑金的掃描幾何重建與 CATIA 自動化
+# 原始焊接鈑金的側線、貼面與 CATIA 自動化
 
 **C# 計算幾何** · **3DEXPERIENCE CATIA C#／VSTA Macro 開發、編輯與除錯**
 
-將含焊道起伏、孔洞、套筒及多重蓋壁的掃描，轉成工程師可以編輯的相切線弧草圖。本版採原始第一號工件 **Case A**：保留外形與全部 342,369 個三角面，重切 83 個原剖框、核對來源支持，再產生三側工程草稿。公司與產品名稱去識別；原始 STL／ASC、公司程式、原生 CAD 與完整日誌留在本機。
+從含焊道起伏、孔洞、套筒及多重蓋壁的掃描，推導三側工程側線，建立**可編輯相切線弧 → 沿側邊延伸的貼面草稿**，供工程師檢查與微調。本版採原始第一號工件 **Case A**：保留外形與全部 342,369 個三角面，重切 83 個原剖框並核對來源支持。公司與產品名稱去識別；原始 STL／ASC、公司程式、原生 CAD 與完整日誌留在本機。
 
-![未修改的原始 Case A：斜視呈現孔洞、板金與接合區，俯視疊上三側衍生 CAD 草稿](assets/case-a-overview.png)
+![原始 Case A 與三側有限貼面草稿同座標疊合：兩個斜視呈現面的位置、高度，以及合格和超差的支持樣點](assets/case-a-surfaces.png)
+
+彩面取自**同一份已在 VSTA 建立三個有限延伸特徵的 CAD 計畫**，在未修改的掃描上重繪疊合；不是 CATIA 截圖。它們沿 Z = -50～+50 mm 延伸，供側邊貼面建模使用。[貼面完整案例：用途、建面、局部距離與限制](docs/surface-contact.md)
 
 | 入口 | 可以核對的內容 |
 | --- | --- |
 | **重跑示範** | [快速開始](#快速開始)：不用私有資料，生成解析測試件，跑完整來源流程與獨立驗證。 |
-| **閱讀幾何與 Macro** | [原件演算與實測](docs/original-case.md) · [C# 幾何推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
+| **閱讀幾何與 Macro** | [貼面案例](docs/surface-contact.md) · [原件演算與實測](docs/original-case.md) · [C# 幾何推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
 | **查看歷史方案** | [25 個可執行反例與決策](docs/engineering-decisions.md) · [角色與時間線](docs/project-history.md)。 |
 
 ## 原件到底難在哪裡
@@ -22,6 +24,10 @@
 
 ## 可追溯的結果
 
+**建面成功與貼合精度分開驗證。** 下圖直接量原支持點 P 到有限面垂足 Q：上排是原件與面的局部，下排是同一位置的等尺度真實剖面；紅線是實距，沒有拉大縫隙。三側最差樣點為 F27／F63／F74。
+
+![三側貼面最差支持點：原工件與面局部、真實 STL 截線、垂足及 0.3 mm 判準尺](assets/case-a-contact-detail.png)
+
 | 原始 Case A | upper | lower | left |
 | --- | ---: | ---: | ---: |
 | 基準 → 減段後元件 | 83 → 59 | 63 → 41 | 81 → 65 |
@@ -33,7 +39,7 @@
 
 同一數值程式已在 **Windows 與 Debian Linux 客體**實際建置、跑原件與獨立驗證；段數一致，已比較數值最大差4.72e-14mm，原始計畫檔不宣稱逐位元一致。[跨平台證據](docs/evidence/case-a-linux.json)
 
-**製造貼合尚未通過。** 上表三維距離只量原支持錨點子集，後兩側超過 0.3 mm；不是完整 STL 的 Hausdorff 距離，也不是已確認實際接觸帶的驗收。CAD 建面與實物貼合分開列證。 [完整驗收狀態](docs/verification.md) · [機器可讀彙總](docs/evidence/case-a-geometry.json)
+**製造貼合尚未通過。** 上表三維距離只量 119 個原支持錨點，lower／left 各有 3 點超過 0.3 mm；不是完整 STL 的 Hausdorff 距離，也不是已確認實際接觸帶的驗收。這批點均在有限高度內，當前樣點超差來自橫向位置；不推論整片 STL 高度都已覆蓋。[全部樣點圖與貼面推導](docs/surface-contact.md#全部樣點與判準) · [完整驗收狀態](docs/verification.md) · [機器可讀彙總](docs/evidence/case-a-surface-contact.json)
 
 ## 快速開始
 

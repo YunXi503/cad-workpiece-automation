@@ -1,0 +1,61 @@
+{
+  "schema": "surface-contact-display/1",
+  "case": "case-a-original",
+  "cadPlanSha256": "8ba8142641ee2a5e2ec91a7d56b8d7c0df3bb9e4314e570413dd1227417bb638",
+  "meshSha256": "45b49c16e9d4615ef78ec4864a682d6f6776d3b256b7243378482fa7d8b4cb1b",
+  "originalTriangles": 342369,
+  "zMin": -50,
+  "zMax": 50,
+  "thresholdMm": 0.3,
+  "comparisonToleranceMm": 1e-07,
+  "measurement": "analytic finite curves, independent closest points; display tessellation is not measured",
+  "scope": "119 original approximate engineering-anchor endpoints only; not a physically established contact band or full-STL Hausdorff distance",
+  "imageKind": "redrawn from unchanged private mesh and exact native-verified CAD plan; not a native viewport",
+  "physicalContactAccepted": false,
+  "sides": [
+    {
+      "id": "upper",
+      "probes": 43,
+      "withinLimit": 43,
+      "overLimit": 0,
+      "maximumMm": 0.2792042704837781,
+      "maximumXYMm": 0.2792042704837781,
+      "maximumHeightGapMm": 0.0,
+      "worstFrame": "F27"
+    },
+    {
+      "id": "lower",
+      "probes": 28,
+      "withinLimit": 25,
+      "overLimit": 3,
+      "maximumMm": 0.6985335648314922,
+      "maximumXYMm": 0.6985335648314922,
+      "maximumHeightGapMm": 0.0,
+      "worstFrame": "F63"
+    },
+    {
+      "id": "left",
+      "probes": 48,
+      "withinLimit": 45,
+      "overLimit": 3,
+      "maximumMm": 1.7998572893174194,
+      "maximumXYMm": 1.7998572893174194,
+      "maximumHeightGapMm": 0.0,
+      "worstFrame": "F74"
+    }
+  ],
+  "figures": [
+    {
+      "path": "assets/case-a-surfaces.png",
+      "sha256": "e61e7ec2a4c734a1fb1e45ca38beccb71b92d575e9d2d281843abdbe8bcc75b1"
+    },
+    {
+      "path": "assets/case-a-contact-detail.png",
+      "sha256": "18f01a6a60a6eea77778008c5fcbbb59d7927932994ab2a93a7e4b64f3ecdb0a"
+    },
+    {
+      "path": "assets/case-a-contact-probes.png",
+      "sha256": "b3c1ffb21d9772daef93a557ce79575c7b8cb61124ebd254426b176651554cc3"
+    }
+  ]
+}
