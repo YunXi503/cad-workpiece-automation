@@ -1,4 +1,4 @@
-name: Synthetic portfolio verification
+name: Portfolio verification
 on:
   push:
   pull_request:
@@ -19,10 +19,14 @@ jobs:
         with:
           python-version: '3.12'
       - run: dotnet build src/Cli -c Release
+      - run: dotnet run --project tests/GeometryChecks -c Release
       - run: python tests/stl_input_acceptance.py
+      - run: python tests/source_acceptance.py
+      - run: python tests/case_a_evidence.py
       - run: python tests/acceptance.py
       - run: python tests/arm_acceptance.py
       - run: python tests/check_docs.py
+      - run: python tools/audit_publication.py --check-inventory
       - if: runner.os == 'Windows'
         run: dotnet build src/Viewer -c Release
       - if: runner.os == 'Windows'

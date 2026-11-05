@@ -30,6 +30,7 @@ def main():
         root = Path(temp)
         results = {}
         for case in ("arm", "arm-b", "arm-gap", "arm-height", "arm-switch", "arm-reversed"):
+            print("Checking analytic regression: " + case, flush=True)
             source, output = root / (case + " input"), root / (case + " output")
             command("generate", case, source)
             design = read(source / "design.json")

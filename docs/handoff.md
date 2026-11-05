@@ -1,6 +1,10 @@
 # 接手工程師的五分鐘檢查
 
-接手時先核對原始輸入與輸出，再追到出問題的站位或 CAD 曲線。用 [快速開始](../README.md#快速開始) 產生懸吊臂，確認命令顯示 `Checked 3/3 CAD sides`，再執行 `verify`。`section ... arm-1 68` 保留原始套筒干擾，`run.json` 的該站則是另標的工程推估。 [懸吊臂案例](suspension-arm.md)
+接手先照 [快速開始](../README.md#快速開始)跑 `source generate/run/verify`，預期 3/3 工程草稿側線。原件持有人使用同一流程讀本機私有 manifest，見 [Case A](original-case.md#重跑與本機私有資料)。原始支持在 `source-run.json → source.anchors`，衍生草稿在 `draft.sides`，原框未定與排除在 `source.frames`，減段嘗試在 `fitting[].geometry.trials`。全部衍生站都不能冒稱原始觀測。
+
+以下 `job.json`／`section` 欄位仍適用於早期解析基準，與新 reviewed-source schema 分開。 [舊懸吊臂回歸](suspension-arm.md)
+
+Viewer與`overlay.svg`的`max fit XY`及紅圈指**取整前擬合**，彩線在取整通過時顯示取整結果；不要將該fit數字當取整後驗收。取整後兩組點距見`source verify`的`cadXYMaximum`與[獨立重算的PNG疊圖](../assets/case-a-fitting.png)，兩個階段各有資料。
 
 ## 哪份檔案回答哪個問題
 

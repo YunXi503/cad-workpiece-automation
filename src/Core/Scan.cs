@@ -13,7 +13,11 @@ public sealed record Edge(XYZ A, XYZ B, int Triangle);
 public sealed record Station(int Index, string State, XY? Point, int[] Triangles, string? Cover,
     [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] double? Height = null,
     [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? SourceState = null);
-public sealed record SideResult(string Id, Station[] Stations, FitResult? Fit, RoundResult? Rounded, string? Issue);
+public sealed record SourceFrameState(string Id,string State);
+public sealed record SideResult(string Id, Station[] Stations, FitResult? Fit, RoundResult? Rounded, string? Issue,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] SourceAnchor[]? SourceSupports = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? GeometryStage = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] SourceFrameState[]? SourceFrames = null);
 public sealed record RunResult(string Schema, string Case, string InputFingerprint, SideResult[] Sides);
 public sealed record CadSide(string Id, Curve[] Curves);
 public sealed record CadPlan(string Schema, string Units, string Source, double PlaneZ,

@@ -1,5 +1,9 @@
 # 系統、執行與輸出
 
+目前主要入口是 `source generate/run/verify`，包含顯式審查支持域、原面重切及一般多彎擬合。原件私有輸入、解析 fixture 與各輸出欄位見[Case A 重跑](original-case.md#重跑與本機私有資料)。下方 `generate/run/verify` 是保留的早期解析路徑，不是原件的自動物理分類器。
+
+`run.json`的`fit`／最差點與Viewer／SVG的`max fit XY`屬取整前；實際CAD取整曲線的最終XY驗收是`source verify → sides[].cadXYMaximum`。主要[原件PNG疊圖](../assets/case-a-fitting.png)已獨立重算並標示取整後數值與最差原草稿點。
+
 ## 資料流
 
 ```mermaid

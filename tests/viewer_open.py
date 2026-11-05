@@ -37,7 +37,15 @@ def main():
             assert result.returncode == 0 and png.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"), result
             png.unlink()
 
-    print("Windows viewer: 3 invalid reports rejected, 4 valid reports painted.")
+        source, output = root / "reviewed input", root / "reviewed output"
+        command("source", "generate", source)
+        command("source", "run", source / "case.json", output)
+        for index in range(3):
+            result = open_report(output / "run.json", index)
+            assert result.returncode == 0 and png.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"), result
+            png.unlink()
+
+    print("Windows viewer: 3 invalid reports rejected, 7 valid sides painted, including reviewed-source provenance.")
 
 
 if __name__ == "__main__":
