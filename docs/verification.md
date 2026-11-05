@@ -2,6 +2,10 @@
 
 首頁主案例已改為未修改的原始 **Case A**。原始檔留本機，公開彙總見 [case-a-geometry.json](evidence/case-a-geometry.json)，完整判準與取樣域見[原件報告](original-case.md)。
 
+![原始工件與三側有限面同座標疊合，包含超差支持樣點](../assets/case-a-surfaces.png)
+
+貼面位置、三側最差點的真實法向剖面與全部 119 點距離見[貼面案例](surface-contact.md)。這是同一已驗證計畫的重繪疊合；下方原生視埠另列，兩種影像來源不混用。本輪補圖未改任何幾何或貼合狀態。
+
 ## 原始 Case A 本次驗收
 
 | 層次 | 判準 → 實測 → 適用範圍 |
