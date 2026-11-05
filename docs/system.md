@@ -20,13 +20,15 @@ CLI 與 WinForms 共享純 C# 幾何核心。Macro 經 JSON 邊界接收毫米�
 
 | 檔案 | 用途 |
 | --- | --- |
-| `job.json` / `guide.asc` / `scan.stl` | 合成工作設定、順序導引點列、ASCII STL 三角面。 |
+| `job.json` / `guide.asc` / `scan.stl` | 合成工作設定、順序導引點列、ASCII 或 binary STL 三角面。 |
 | `run.json` | 每站狀態、來源三角面編號、蓋面標籤、基準與精簡線弧、取整結果、拒絕原因。 |
 | `overlay.svg` | 藍色原始支持、橘色推估、紅圈最大 XY 誤差點。青綠是線、紫色是弧。 |
 | `verification.json` | 原始與等分點最大 XY 偏差、取整位移上界、端點／接點／G1 殘差、取樣三維距離。 |
 | `cad-plan.json` | 版本、毫米單位、來源指紋、草圖平面、有限 Z 範圍及通過的曲線。曲線由首尾、可空圓心及帶符號掃掠角表示。 |
 
 `arm` 與 `arm-b` 是兩種懸吊臂外形。`arm-gap` 加入漏掃，`arm-switch` 改變局部蓋寬，`arm-reversed` 反轉導引，`arm-height` 只改有限面高度。設定的 `profile=formed-shell` 啟用來源蓋壁判讀，支持點另有 `height`，工程推估另有 `sourceState`。`section` 重切指定剖框並列出候選蓋與壁的原交線。 [主案例](suspension-arm.md)
+
+STL 讀取採逐行 ASCII 解析或依精確長度識別 binary；格式、單位約定與拒絕控制見 [STL 讀取與格式檢查](stl-input.md)。讀檔與幾何支持驗收分開判定。
 
 `normal`、`reversed`、`gap`、`height`、`competing` 是小型基準。`workpiece` 與 `workpiece-height` 保留早期整件開口板金示範。各案例用相同 `generate`、`run`、`verify` 入口，並選新目錄。 [早期案例](workpiece-case.md)
 
