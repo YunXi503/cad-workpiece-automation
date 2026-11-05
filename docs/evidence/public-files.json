@@ -1,0 +1,583 @@
+{
+  "schema": "portfolio-public-inventory/1",
+  "scope": "exact staged Git blobs; inventory excludes itself; checkout newline conversion does not change these hashes",
+  "originalFilesIncluded": false,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 190,
+      "sha256": "73a82479be15fba1cce74ba5028cd915e257a5e66f547deb399e182fa8cd252b"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 1024,
+      "sha256": "96e5ac865857289960a2df776aab7d084b09f11db50156c0802825cc89d06e1b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 52,
+      "sha256": "e8d76084f54761c00f36b712e6a0c3a18ce991b4c96c61e96e3d7775cdc12aef"
+    },
+    {
+      "path": "Directory.Build.props",
+      "bytes": 293,
+      "sha256": "385480aa16dc590902fa19647e85cf79e1f9ca73cadae7700e51198ac1f8f9d7"
+    },
+    {
+      "path": "EXPERIMENT_LOG.md",
+      "bytes": 10157,
+      "sha256": "4dc3af75fd2b621d362185e5a30c09d0d9c52b74d1502878fb27d1fa64958b32"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7063,
+      "sha256": "8341798390911047bb153f494aa4c24140e84dbce7eb94d56794ea3e0ebb0df0"
+    },
+    {
+      "path": "assets/arm-design.png",
+      "bytes": 476074,
+      "sha256": "5645aaf28be34c23b69287c2706238c014b1e2bae609afa50c6f555cebd3cdd4"
+    },
+    {
+      "path": "assets/arm-native.jpg",
+      "bytes": 53410,
+      "sha256": "40cf32fca884a7c2ee6a6977d9e5de1f81e6d9adb61c7e05ac2e7616d7eb0ed8"
+    },
+    {
+      "path": "assets/arm-sections.png",
+      "bytes": 77621,
+      "sha256": "3c3e971eed5507a99a755b313c07408a0e37e39fdb690a024a7be6d5a89410d6"
+    },
+    {
+      "path": "assets/arm-welds.png",
+      "bytes": 63394,
+      "sha256": "774795f02aa82af14f1eced79055f00b8329aa89c5aec5cce91fa95fe52ee6d9"
+    },
+    {
+      "path": "assets/case-a-fitting.png",
+      "bytes": 260305,
+      "sha256": "97e213b9847e869ab1dfea6fd5cfced571242c943b0abb8e53a85203f7b2cb03"
+    },
+    {
+      "path": "assets/case-a-joints.png",
+      "bytes": 662830,
+      "sha256": "4c424541a2ecf79ecf7e7773f48691d39d157277283cc2fbaaf702ff66ee9771"
+    },
+    {
+      "path": "assets/case-a-native.jpg",
+      "bytes": 35586,
+      "sha256": "8520a70bdb18a3b2f3a5c2bd4ca89bb4f97c395f9f4290225a27b1ad6c2a65e6"
+    },
+    {
+      "path": "assets/case-a-overview.png",
+      "bytes": 433991,
+      "sha256": "b36de0b6ca628c9bc8d2f0009325966062388a723af8d1a2356aa0743df248ea"
+    },
+    {
+      "path": "assets/case-a-sections.png",
+      "bytes": 343669,
+      "sha256": "0de8a4369778bb50782ce56542877022ab767fe90a6a544f6ad3f356f2120a51"
+    },
+    {
+      "path": "assets/gap.svg",
+      "bytes": 16891,
+      "sha256": "adce1eec7aae7b543970a408dc907ad4697e7fe9d3671acd4e3e916750bc41b6"
+    },
+    {
+      "path": "assets/mixed-cover.svg",
+      "bytes": 1118,
+      "sha256": "056ebe4054cb2e19f9400b4c00b4d07fddc077b997f7abb9367ce82ad75572ad"
+    },
+    {
+      "path": "assets/normal.svg",
+      "bytes": 18609,
+      "sha256": "1c29619f1b26ca9c900562f5c9b09f1d7acb956ba6caea4cbf76510b661e43e0"
+    },
+    {
+      "path": "assets/workpiece.svg",
+      "bytes": 361288,
+      "sha256": "fac9997e6181ee247acc8d5e64f1a96890fd7444eb2bf498e8eb0242c3372839"
+    },
+    {
+      "path": "docs/arm-development.md",
+      "bytes": 3417,
+      "sha256": "10b9fe3b8133cc6c4ec0eef450ad40392775678610fa832d0d6697518e65a8db"
+    },
+    {
+      "path": "docs/engineering-decisions.md",
+      "bytes": 5690,
+      "sha256": "b7be5123c1fe35159fe12af8e58bf38b47e894d4bee24d949a6103147cedb3ae"
+    },
+    {
+      "path": "docs/evidence/arm-offline.json",
+      "bytes": 4875,
+      "sha256": "ab994eb4c82bbc91c7f2dff2fc6a79fb859fc9d9fb24346d472bede615106241"
+    },
+    {
+      "path": "docs/evidence/arm-plan-a.json",
+      "bytes": 5489,
+      "sha256": "6b60c3a734093da0f4de1e5b1718ffe0b8ff7555300e05538a26b87228411f60"
+    },
+    {
+      "path": "docs/evidence/arm-plan-b.json",
+      "bytes": 5485,
+      "sha256": "90b46e84dd380587a3e3b1dcf958e034baf51c82b1b87fa5df839e5a80696504"
+    },
+    {
+      "path": "docs/evidence/arm-vsta-a.json",
+      "bytes": 1111,
+      "sha256": "fd21e396fa1008787fb43e55fe194501271f15ecb40c95114764fd70ff34cb09"
+    },
+    {
+      "path": "docs/evidence/arm-vsta-b.json",
+      "bytes": 1113,
+      "sha256": "6c86b8a2fabed0fff84ed9fafa714041d869fb21b4a8b7079e78e7a96361b3b3"
+    },
+    {
+      "path": "docs/evidence/case-a-geometry.json",
+      "bytes": 3150,
+      "sha256": "98ffef45b2c4f65a5a40b70a4583dae536f060633e4c1bd9dae7fad2c65c796d"
+    },
+    {
+      "path": "docs/evidence/case-a-linux.json",
+      "bytes": 6990,
+      "sha256": "b0327b4a176864892b933beb0eb579e66ecc31dddeeaf1a044e02d4044e4f957"
+    },
+    {
+      "path": "docs/evidence/case-a-native-controls.json",
+      "bytes": 1301,
+      "sha256": "4234af30214a76dd97011a34797749d878bdacb8f76cd6a6335862c140836c6a"
+    },
+    {
+      "path": "docs/evidence/case-a-vsta.json",
+      "bytes": 2237,
+      "sha256": "1e09e06077fe5fa474c82b230d9d851742c6a05e06df3f05534d7b2839a78be3"
+    },
+    {
+      "path": "docs/evidence/case-a-windows.json",
+      "bytes": 3313,
+      "sha256": "0f62c0a3daecc3e1dea7f1e0890ab32128c4043d9b575206caa009212560b430"
+    },
+    {
+      "path": "docs/evidence/vsta-editor.json",
+      "bytes": 1030,
+      "sha256": "c6291c43ba96fc86026bbe8d90fb983270257471e3649fce86e55500923799cc"
+    },
+    {
+      "path": "docs/evidence/vsta-synthetic-plan.json",
+      "bytes": 3349,
+      "sha256": "ac1138420a5ba036fe6e15a5e5de0097e54d4990a7c3908db4b588e93e026343"
+    },
+    {
+      "path": "docs/geometry.md",
+      "bytes": 3186,
+      "sha256": "ffbe20a0740a813c4915fddf847ce25ceac88f3dc32e236b47772bbaac5e905a"
+    },
+    {
+      "path": "docs/handoff.md",
+      "bytes": 3203,
+      "sha256": "f375a8f426ce55fabef556c84e562d5709c68a62ec45414cbd30a2a2849702db"
+    },
+    {
+      "path": "docs/history/adaptive-tolerance.md",
+      "bytes": 1265,
+      "sha256": "81507bc1a74e278ce1ab172cc7ef2e4d239041824bc8914d7645a372beb81ac5"
+    },
+    {
+      "path": "docs/history/angle-sort.md",
+      "bytes": 1292,
+      "sha256": "da6e8e129f5ff7bb4eba8e0feb19d0e9fe2b8ebcf228fa17853868ccbb8a882d"
+    },
+    {
+      "path": "docs/history/arc-families.md",
+      "bytes": 1577,
+      "sha256": "25728a99269b5f4fce4a5f3319947cf56f4eb05d6665ccc98bf1e98b39d6bd06"
+    },
+    {
+      "path": "docs/history/arc-length.md",
+      "bytes": 1215,
+      "sha256": "a86f5541ed0fed9d41a5f2027a172814c127cc8cc88c64a538fa815b3411aeaa"
+    },
+    {
+      "path": "docs/history/arc-ordering.md",
+      "bytes": 1412,
+      "sha256": "a65d88b6be7f70d876f011c43391386ec0cb0ee2ba2aebfaeccddbcf8efdf39d"
+    },
+    {
+      "path": "docs/history/axis-bins.md",
+      "bytes": 1222,
+      "sha256": "020cf9d7af3794beb2aa22afc6fa3c9d8a2dc2259d68ff8c358f94edc1407dd8"
+    },
+    {
+      "path": "docs/history/bend-density.md",
+      "bytes": 1264,
+      "sha256": "117212ba7b3269ac10c16d169f4052bbaccaee520dd900c24d5876b29811263f"
+    },
+    {
+      "path": "docs/history/branch-stop.md",
+      "bytes": 1303,
+      "sha256": "3e4d87968c1465807f2c0eac57960c020c35c4255b5b1926c1be47a696217e8f"
+    },
+    {
+      "path": "docs/history/closed-route.md",
+      "bytes": 1294,
+      "sha256": "d19196468f7a39134533636df81b45d385242c5cea64c467ea3dd3042fd06e30"
+    },
+    {
+      "path": "docs/history/cloud-raster.md",
+      "bytes": 1356,
+      "sha256": "d476a809f2d7b28198e9bd973b5d80ae06a63bf25140dcab90c24f2ab4aad9d5"
+    },
+    {
+      "path": "docs/history/finite-surface.md",
+      "bytes": 1228,
+      "sha256": "e7c1d68ca99d203f07c83835adc2486e52fcf7e2d940d3440f971c43b5e955c2"
+    },
+    {
+      "path": "docs/history/fit-reduction.md",
+      "bytes": 1998,
+      "sha256": "89b9adb4dc39c630b092fbfef1d89807c11b0f06f1d123919482f5b252fcb1fd"
+    },
+    {
+      "path": "docs/history/free-circle.md",
+      "bytes": 1341,
+      "sha256": "986b099e69bbf3425fdb0fe8402482941d861240569f31b7f3b810f6603a230d"
+    },
+    {
+      "path": "docs/history/longest-chain.md",
+      "bytes": 1268,
+      "sha256": "649ffb35f8cc7f79b4f1c10d94bc4a8bfb2addd0389be45db243262582463f50"
+    },
+    {
+      "path": "docs/history/mixed-cover.md",
+      "bytes": 2049,
+      "sha256": "c4a7f7de25c20181a9829112927803314d511218cc817aaf5dce83096785ffbe"
+    },
+    {
+      "path": "docs/history/necessary-bound.md",
+      "bytes": 1321,
+      "sha256": "98b8398a68949710d9fa992f3c9b985d8eb4ed403a2ef0788b647af15d4d7b38"
+    },
+    {
+      "path": "docs/history/neighbor-interpolation.md",
+      "bytes": 1305,
+      "sha256": "8689b794aeb42ba68421f89ce5a171ecaab062187b2d21704cf65b505878d010"
+    },
+    {
+      "path": "docs/history/outer-extension.md",
+      "bytes": 1280,
+      "sha256": "80c50f9b5369dceb4e81edf986a322ddad5baf8925620fbcde89df147ef4dbeb"
+    },
+    {
+      "path": "docs/history/paired-center.md",
+      "bytes": 1250,
+      "sha256": "32e7e2623fa3fef74087b283ea9ac92c50a5d6babee7bb33a4d9e6b26921bea9"
+    },
+    {
+      "path": "docs/history/per-side.md",
+      "bytes": 1249,
+      "sha256": "4db7a7fa6fecbfc028f92e5c5dac107078c865e974ee4c6b5001fe14d43ad8ff"
+    },
+    {
+      "path": "docs/history/projection.md",
+      "bytes": 1242,
+      "sha256": "40e3c5b762b0f28c20116b78b97f656f81bb0c0a0a7c80b3923945a9283fbaea"
+    },
+    {
+      "path": "docs/history/resume-integrity.md",
+      "bytes": 1394,
+      "sha256": "7f698003e48c1c1fc384c9662fdf57a7f2c28bc8d67f592fb6ae3b4c69ceebe8"
+    },
+    {
+      "path": "docs/history/short-window.md",
+      "bytes": 1336,
+      "sha256": "8d29e12aa759972cc9544c622f1b89845c2ed84826bbfffde992f8e78c5e8a85"
+    },
+    {
+      "path": "docs/history/weld-apex.md",
+      "bytes": 1283,
+      "sha256": "46697f830272a66a902d95d5793a5853c7c23af20fe81043f466e558db7951ed"
+    },
+    {
+      "path": "docs/history/wide-cover.md",
+      "bytes": 1271,
+      "sha256": "787bc62509fef31a4145fbab16e90fe8265c8224356190704b06a6c3383d87fa"
+    },
+    {
+      "path": "docs/macro.md",
+      "bytes": 8222,
+      "sha256": "b759ffe7177728dadce37b11ed96dabfeebcd10cad06381d1be8f3a200ea610c"
+    },
+    {
+      "path": "docs/original-case.md",
+      "bytes": 8887,
+      "sha256": "92d2570e76276e5d8458685473d84e6854797af68d308c91c02d5cc93013371f"
+    },
+    {
+      "path": "docs/project-history.md",
+      "bytes": 3682,
+      "sha256": "c25d11605b251fdf4adabfa491d0ff5fa83b4563e947b256df90efb5e4bcbd0c"
+    },
+    {
+      "path": "docs/publication.md",
+      "bytes": 2291,
+      "sha256": "758ecd92606d5d0cc7db20ee4d4b95b256278b0807ff470bda95cc4f7648f840"
+    },
+    {
+      "path": "docs/review-original-case.md",
+      "bytes": 5093,
+      "sha256": "931dce0710590de4a67c6c6ee7ed8afd432345aed0bb001fe877f441ab1d7f5b"
+    },
+    {
+      "path": "docs/review.md",
+      "bytes": 6120,
+      "sha256": "5d9402c397ad86376d259987bb662a6029036a258adbe5dc773b26c47c6359de"
+    },
+    {
+      "path": "docs/source-geometry.md",
+      "bytes": 4874,
+      "sha256": "51559b037708a248023f505931e50578bf8b3825ca3aec59f5436eb8cde3fef3"
+    },
+    {
+      "path": "docs/stl-input.md",
+      "bytes": 1655,
+      "sha256": "6ec241eeb49ad23eaa8e8ef010690b0027de8b25fa4c4830516d1ae68ebed1b3"
+    },
+    {
+      "path": "docs/suspension-arm.md",
+      "bytes": 10412,
+      "sha256": "d7afdaad90e23cedea78780766c0714415895ece18bf228c64e43fb8eb176b2c"
+    },
+    {
+      "path": "docs/system.md",
+      "bytes": 3796,
+      "sha256": "e7f467ba324fe6012696cca8a2806961c0fbec3998de686f30abacae5dad9596"
+    },
+    {
+      "path": "docs/verification.md",
+      "bytes": 9271,
+      "sha256": "2f7271c68a3e73544c09970d76f020d562941b98fe558159c47a24ddab9ea080"
+    },
+    {
+      "path": "docs/workpiece-case.md",
+      "bytes": 6520,
+      "sha256": "60dff4d24b1acf468e37d7da17c4d4c064fec18c9f796eaaad30690c1a6c33ab"
+    },
+    {
+      "path": "macro/MacroWorkflow.cs",
+      "bytes": 20051,
+      "sha256": "5a66bcb055ce619aedd3d305f48de7d58da9b522cb120cd6e8c1230b806754b4"
+    },
+    {
+      "path": "macro/PortfolioMacro.csproj",
+      "bytes": 1743,
+      "sha256": "8220f973576d6d128e4637876a563558e955cef9a882aab752ddfd71d58b61a7"
+    },
+    {
+      "path": "macro/StaRunner.cs",
+      "bytes": 3361,
+      "sha256": "ec3e6b8e140ccf5b18f9438b3bfbe95dc380435219ad82ac974ab519a3b4ecd2"
+    },
+    {
+      "path": "macro/prepare_vsta_sample.py",
+      "bytes": 3948,
+      "sha256": "40e3d81dd0fa28a84d0f62de9f0f535c1fb44a8d7a03696c300f93795544501a"
+    },
+    {
+      "path": "src/Cli/Cli.csproj",
+      "bytes": 183,
+      "sha256": "0672f5ffb2b21254d5748c35c6e9af1d73bf569e8cb118fa5a589e5e6f5588a4"
+    },
+    {
+      "path": "src/Cli/Program.cs",
+      "bytes": 7991,
+      "sha256": "05cb5f2bc32616759c851c31991da73621bafa4a0a993f07934191e555d622e3"
+    },
+    {
+      "path": "src/Core/Core.csproj",
+      "bytes": 36,
+      "sha256": "8d654c44b7bebb6b31a9f2f606927f45b5072193adc4eef8cce3f3cf3b278df3"
+    },
+    {
+      "path": "src/Core/Drawing.cs",
+      "bytes": 4444,
+      "sha256": "b5d03378778c34794ed187acc5923dc939e8731c31caa660017efdbc4d460703"
+    },
+    {
+      "path": "src/Core/EngineeringDraft.cs",
+      "bytes": 3606,
+      "sha256": "f1b746dfa9db48ef3b56b4879feb9402ce14053e1e12eb21e62672edb73f8705"
+    },
+    {
+      "path": "src/Core/Experiments.cs",
+      "bytes": 19726,
+      "sha256": "9f4fb767468919ffedbac7a90ade0d6caa5c29ca4ab6833e91075737fc94c106"
+    },
+    {
+      "path": "src/Core/GeneralFitting.cs",
+      "bytes": 6264,
+      "sha256": "bf8a84ac458309acc8e784b18d96303ffda7f2b6f6a972ec3870c4348cc1fac6"
+    },
+    {
+      "path": "src/Core/Geometry.cs",
+      "bytes": 11529,
+      "sha256": "bd3e789b258674de09ce62ef244a2697ebfde6b1967d461dcd629f62ef018697"
+    },
+    {
+      "path": "src/Core/MultiBendFitting.cs",
+      "bytes": 5451,
+      "sha256": "d3c816f077665edf320abe8dd1b3aff7679917da1b499fc956469600d3b0e588"
+    },
+    {
+      "path": "src/Core/ReferenceGeometry.cs",
+      "bytes": 4781,
+      "sha256": "41b044b08ba8e8c2e7d74737bf04b15647c4ac8d06330d82d3af93dd76fcaaed"
+    },
+    {
+      "path": "src/Core/ReviewedFixture.cs",
+      "bytes": 4695,
+      "sha256": "9dc3ec8826808b74e6aa5b2d18ad8ab53425877194f831896d4db518fd155b2c"
+    },
+    {
+      "path": "src/Core/Scan.cs",
+      "bytes": 21581,
+      "sha256": "513e05730f5ec3d2603e7b18d0292dfcf1879ad0849476d1af4eb93843dd963d"
+    },
+    {
+      "path": "src/Core/ShellSections.cs",
+      "bytes": 5818,
+      "sha256": "257ff6b70f83d180fd2a9dbf5a15e1bca63485ab56869e66ab166f372291bf42"
+    },
+    {
+      "path": "src/Core/SourceEvidence.cs",
+      "bytes": 12348,
+      "sha256": "e2d4b0c230e9c108f434b473dd0d07a3e984eda80599a7e633dfdcc64d9934cc"
+    },
+    {
+      "path": "src/Core/SourcePipeline.cs",
+      "bytes": 2781,
+      "sha256": "dd83982a8931ac24e0872524c4160834a3a52c9e2cadc4b6b8f90596bca31cc8"
+    },
+    {
+      "path": "src/Core/SourceVerification.cs",
+      "bytes": 8693,
+      "sha256": "c8633db9509f9397eaea4fafb9b1ab035345410d14fe4af20d2b09ce36b920b6"
+    },
+    {
+      "path": "src/Core/SupportGeometry.cs",
+      "bytes": 4487,
+      "sha256": "0d32a5f446c515474d3638c96dce3b9f5220339b8194c2e59092da0fd6a734ba"
+    },
+    {
+      "path": "src/Core/SuspensionArmFixture.cs",
+      "bytes": 7293,
+      "sha256": "b8b89e5be1cd4993b5c34798ddfe08b1e7b6d0c08a30a3f96562f6d9079c4748"
+    },
+    {
+      "path": "src/Core/Verification.cs",
+      "bytes": 14189,
+      "sha256": "b81513e6c09f87e61e1aab2f7250e9c33e1cadbc9cb52557edd81d3698448a1e"
+    },
+    {
+      "path": "src/Core/WorkpieceFixture.cs",
+      "bytes": 3504,
+      "sha256": "4fa45ea1efa68838c4a9708b7b03a44e8fbca2359b8d202decdcd78b8225c4a6"
+    },
+    {
+      "path": "src/Viewer/Program.cs",
+      "bytes": 9090,
+      "sha256": "3868f8b45daeb4c892ea71c88b24928f47d5438c2243068dcc3bafc348efeedb"
+    },
+    {
+      "path": "src/Viewer/Viewer.csproj",
+      "bytes": 293,
+      "sha256": "36f1f2fb9d22c0c128715882f00c56aba93cb3d25650be68e663d9ebf0e3c4e2"
+    },
+    {
+      "path": "tests/GeometryChecks/GeometryChecks.csproj",
+      "bytes": 190,
+      "sha256": "4dafdca68728770917e8b74933c5984ed1c0071b024be400ffc29c8a3acb9094"
+    },
+    {
+      "path": "tests/GeometryChecks/Program.cs",
+      "bytes": 2091,
+      "sha256": "8a9ce51356973a58a6bed5b43ff3fc8520abef1ea539e14e64fc428b1089699b"
+    },
+    {
+      "path": "tests/acceptance.py",
+      "bytes": 12017,
+      "sha256": "59f276e908dfe5e3b369bdead7153215cca999f570621b1236afe92c895b59b7"
+    },
+    {
+      "path": "tests/arm_acceptance.py",
+      "bytes": 5076,
+      "sha256": "1eb0d49db03517a86e55ee86c0ca3b15adc2b05acb2a63a098e366539139e27b"
+    },
+    {
+      "path": "tests/case_a_evidence.py",
+      "bytes": 3593,
+      "sha256": "1ace507d0583fa80bb00fbdcd3c5c1ec920b8b70d9f2a0a770edd64adcb32b26"
+    },
+    {
+      "path": "tests/check_docs.py",
+      "bytes": 1915,
+      "sha256": "c99ad7a6987ff333fac31a2a71f05bd33279c7f6442821a30c30145ced4e5959"
+    },
+    {
+      "path": "tests/native_controls.py",
+      "bytes": 3846,
+      "sha256": "d67c0d6bcc4455f80bf9d2a47c997eceb2f36eaf09f758be416c0b7f69523422"
+    },
+    {
+      "path": "tests/source_acceptance.py",
+      "bytes": 4752,
+      "sha256": "b3555daa6ab1e28480ec90ada0857d6ecbc384b13ccfc4cf97b5f3c2b7752889"
+    },
+    {
+      "path": "tests/stl_input_acceptance.py",
+      "bytes": 3022,
+      "sha256": "aef5bb874866698357df5329601cd3f8f5ac434ccf3d75d0ae24bcdeb0fa54c3"
+    },
+    {
+      "path": "tests/viewer_open.py",
+      "bytes": 2358,
+      "sha256": "b59b6f335d46675494137e300e4f2c493ff3a3b0c94c89b015e299023a986825"
+    },
+    {
+      "path": "tools/audit_publication.py",
+      "bytes": 3559,
+      "sha256": "8af7e2e2774b83fbad4a905334a6f8cae7b8d1595be3456654bf0b7841cf460b"
+    },
+    {
+      "path": "tools/import_reviewed_case.py",
+      "bytes": 5521,
+      "sha256": "63d5dfc1e494abae3546d7acc8699e5e62104824eb8f2d168f0407468e41bd25"
+    },
+    {
+      "path": "tools/render_arm.py",
+      "bytes": 7485,
+      "sha256": "aeb31c624378c215b90cc5e4920ef6f03901e9ae81c6825959738eca6dbe7f7e"
+    },
+    {
+      "path": "tools/render_source_case.py",
+      "bytes": 12431,
+      "sha256": "0be3b097a9789df78e25fad0f4a42dde46cb7d8fb096f5854477431ec5c9f919"
+    },
+    {
+      "path": "tools/render_workpiece.py",
+      "bytes": 10188,
+      "sha256": "abe8c1193024eff8407dece4bb59eb2defe8103c4d9d93177499442aa3a1f035"
+    },
+    {
+      "path": "tools/requirements-render.txt",
+      "bytes": 113,
+      "sha256": "d4b8a21e3be4fb488f112fe3c5d2bc14920ef6a5f55f0026e6506acbd369aff7"
+    },
+    {
+      "path": "tools/verify.py",
+      "bytes": 2312,
+      "sha256": "aac87d8c968efc7e7d1adff93848b6be36bf0cf4985b35a26b1514382a94f569"
+    }
+  ],
+  "limitations": "Source-coordinate plans and raw native logs remain local. This inventory does not prove removal of pre-existing remote caches."
+}

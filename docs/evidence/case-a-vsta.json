@@ -1,0 +1,70 @@
+{
+  "schema": "portfolio-vsta-evidence/1",
+  "scope": "unchanged original Case A; independently rewritten public macro; private plan retained locally",
+  "measuredDate": "2026-11-05",
+  "host": {
+    "release": "CATIA R2022x",
+    "editor": "Visual Studio 2017 / VSTA",
+    "process": "DSYVstaDebugHost",
+    "entry": "CATMain",
+    "invocation": "Editor Build followed by Debug.Start (F5)",
+    "apartment": "MTA"
+  },
+  "planSha256": "8ba8142641ee2a5e2ec91a7d56b8d7c0df3bb9e4314e570413dd1227417bb638",
+  "workflowSha256": "1d3607a1a02d48b4f686fe034ebfcc6099352aa02654f9490b9ff3aa463569ee",
+  "editorSourceSha256": "8c29f27ede4cae3666aba48b9843858b5183a145b6194ae25a88d43c7a454ecc",
+  "readbackLimitMm": 1e-07,
+  "sketchReadbacks": [
+    {
+      "side": "upper",
+      "curves": 59,
+      "lines": 30,
+      "arcs": 29,
+      "positiveSweepArcs": 24,
+      "negativeSweepArcs": 5,
+      "activeConstraints": 145,
+      "maxResidual": 3.232969447708456e-13
+    },
+    {
+      "side": "lower",
+      "curves": 41,
+      "lines": 21,
+      "arcs": 20,
+      "positiveSweepArcs": 10,
+      "negativeSweepArcs": 10,
+      "activeConstraints": 100,
+      "maxResidual": 6.029155041345696e-13
+    },
+    {
+      "side": "left",
+      "curves": 65,
+      "lines": 33,
+      "arcs": 32,
+      "positiveSweepArcs": 10,
+      "negativeSweepArcs": 22,
+      "activeConstraints": 160,
+      "maxResidual": 8.952838470577262e-13
+    }
+  ],
+  "surfaces": {
+    "sketchCount": 3,
+    "surfaceCount": 3,
+    "positiveOffset": 50,
+    "negativeOffset": 50,
+    "zMin": -50,
+    "zMax": 50
+  },
+  "nativeViewport": {
+    "path": "assets/case-a-native.jpg",
+    "sha256": "8520a70bdb18a3b2f3a5c2bd4ca89bb4f97c395f9f4290225a27b1ad6c2a65e6",
+    "method": "native Viewer.CaptureToFile; tree hidden in CATIA; unedited viewport export"
+  },
+  "originalFilesPublished": false,
+  "plmSaveConfirmed": false,
+  "physicalContactAccepted": false,
+  "limitations": [
+    "Valid active constraints do not imply all sketch degrees of freedom are fixed.",
+    "Source/support engineering draft and finite native geometry are verified separately from manufacturing contact.",
+    "Original STL was not imported or geometrically edited in the new native demo Part."
+  ]
+}

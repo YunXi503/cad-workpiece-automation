@@ -1,0 +1,39 @@
+{
+  "schema": "native-rejection-controls/1",
+  "invocation": "external STA diagnostic; not editor F5",
+  "planSha256": "8ba8142641ee2a5e2ec91a7d56b8d7c0df3bb9e4314e570413dd1227417bb638",
+  "workflowSha256": "1d3607a1a02d48b4f686fe034ebfcc6099352aa02654f9490b9ff3aa463569ee",
+  "controls": [
+    {
+      "control": "signed-arc",
+      "exitCode": 1,
+      "expectedMessageObserved": "Invalid signed arc",
+      "successReceiptCreated": false
+    },
+    {
+      "control": "fingerprint",
+      "exitCode": 1,
+      "expectedMessageObserved": "Sketch receipt and CAD plan do not match",
+      "successReceiptCreated": false
+    },
+    {
+      "control": "owning-sketch",
+      "exitCode": 1,
+      "expectedMessageObserved": "does not own the validated sketch marker",
+      "successReceiptCreated": false
+    },
+    {
+      "control": "duplicate-surfaces",
+      "exitCode": 1,
+      "expectedMessageObserved": "already contains an extension attempt",
+      "successReceiptCreated": false
+    },
+    {
+      "control": "curve-capacity",
+      "exitCode": 1,
+      "expectedMessageObserved": "Invalid curve list (maximum 256 per side)",
+      "successReceiptCreated": false
+    }
+  ],
+  "scope": "pre-mutation rejection paths on the already verified current demo; private inputs/logs retained locally"
+}

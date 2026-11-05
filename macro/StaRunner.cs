@@ -30,12 +30,21 @@ namespace CadPortfolio.Vsta
             {
                 if (args.Length == 0)
                 {
-                    Console.WriteLine("probe | reference | sketches <plan> <receipt> | surfaces <plan> <receipt> <report>");
+                    Console.WriteLine("probe | reference | capture <new-jpg> | sketches <plan> <receipt> | surfaces <plan> <receipt> <report>");
                     return 0;
                 }
                 var app = (Application)Marshal.GetActiveObject("CATIA.Application");
                 if (args.Length == 1 && args[0] == "probe")
                     Console.WriteLine(MacroWorkflow.ActivePart(app) == null ? "COM reachable; no active Part." : "COM reachable; active Part available.");
+                else if (args.Length == 2 && args[0] == "capture")
+                {
+                    string destination = Path.GetFullPath(args[1]);
+                    if (File.Exists(destination)) throw new InvalidOperationException("Choose a new viewport capture.");
+                    var viewer = app.ActiveWindow.ActiveViewer;
+                    viewer.Reframe();
+                    viewer.CaptureToFile(CatCaptureFormat.catCaptureFormatJPEG, ref destination);
+                    Console.WriteLine("Exported active native viewport; inspect before publication.");
+                }
                 else if (args.Length == 1 && args[0] == "reference")
                 {
                     if (MacroWorkflow.ActivePart(app) != null)

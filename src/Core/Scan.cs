@@ -13,7 +13,11 @@ public sealed record Edge(XYZ A, XYZ B, int Triangle);
 public sealed record Station(int Index, string State, XY? Point, int[] Triangles, string? Cover,
     [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] double? Height = null,
     [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? SourceState = null);
-public sealed record SideResult(string Id, Station[] Stations, FitResult? Fit, RoundResult? Rounded, string? Issue);
+public sealed record SourceFrameState(string Id,string State);
+public sealed record SideResult(string Id, Station[] Stations, FitResult? Fit, RoundResult? Rounded, string? Issue,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] SourceAnchor[]? SourceSupports = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] string? GeometryStage = null,
+    [property: System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)] SourceFrameState[]? SourceFrames = null);
 public sealed record RunResult(string Schema, string Case, string InputFingerprint, SideResult[] Sides);
 public sealed record CadSide(string Id, Curve[] Curves);
 public sealed record CadPlan(string Schema, string Units, string Source, double PlaneZ,
@@ -58,23 +62,69 @@ public static class Data
 
     public static Triangle[] LoadStl(string path)
     {
-        string[] lines = File.ReadLines(path).Select(line => line.Trim())
-            .Where(line => line.Length > 0).ToArray();
-        if (lines.Length < 9 || !lines[0].StartsWith("solid ", StringComparison.Ordinal)
-            || !lines[^1].StartsWith("endsolid", StringComparison.Ordinal)
-            || (lines.Length - 2) % 7 != 0)
-            throw new InvalidDataException("Expected an ASCII STL solid with seven lines per facet.");
-        var triangles = new List<Triangle>();
-        for (int i = 1; i < lines.Length - 1; i += 7)
+        using var stream = File.OpenRead(path);
+        if (stream.Length >= 84)
         {
-            if (!lines[i].StartsWith("facet normal ", StringComparison.Ordinal) || lines[i + 1] != "outer loop"
-                || lines[i + 5] != "endloop" || lines[i + 6] != "endfacet")
-                throw new InvalidDataException("Malformed ASCII STL facet.");
-            XYZ Vertex(int offset) => lines[i + offset].StartsWith("vertex ", StringComparison.Ordinal)
-                ? Point(lines[i + offset][7..]) : throw new InvalidDataException("Missing STL vertex.");
-            triangles.Add(new(Vertex(2), Vertex(3), Vertex(4)));
+            using var binary = new BinaryReader(stream, System.Text.Encoding.ASCII, leaveOpen: true);
+            stream.Position = 80;
+            uint count = binary.ReadUInt32();
+            // Binary STL headers may begin with "solid"; the exact record length distinguishes them.
+            if (84L + 50L * count == stream.Length)
+            {
+                if (count == 0 || count > int.MaxValue) throw new InvalidDataException("Invalid binary STL facet count.");
+                var result = new Triangle[(int)count];
+                XYZ Vertex()
+                {
+                    var p = new XYZ(binary.ReadSingle(), binary.ReadSingle(), binary.ReadSingle());
+                    static bool Valid(double x) => double.IsFinite(x) && Math.Abs(x) <= 100_000;
+                    if (!Valid(p.X) || !Valid(p.Y) || !Valid(p.Z))
+                        throw new InvalidDataException("Nonfinite or out-of-range STL vertex.");
+                    return p;
+                }
+                for (int i = 0; i < result.Length; i++)
+                {
+                    // Stored facet normals are advisory, not geometry.
+                    binary.ReadSingle();
+                    binary.ReadSingle();
+                    binary.ReadSingle();
+                    result[i] = new(Vertex(), Vertex(), Vertex());
+                    binary.ReadUInt16();
+                }
+                return result;
+            }
         }
-        return [.. triangles];
+        stream.Position = 0;
+        using var reader = new StreamReader(stream);
+        string? Next()
+        {
+            string? line;
+            while ((line = reader.ReadLine()) is not null)
+            {
+                string text = line.Trim();
+                if (text.Length > 0) return text;
+            }
+            return null;
+        }
+        if (Next() is not string header || !header.StartsWith("solid ", StringComparison.Ordinal))
+            throw new InvalidDataException("Expected an ASCII or binary STL solid.");
+        var triangles = new List<Triangle>();
+        while (true)
+        {
+            string line = Next() ?? throw new InvalidDataException("Truncated ASCII STL.");
+            if (line.StartsWith("endsolid", StringComparison.Ordinal))
+            {
+                if (triangles.Count == 0 || Next() is not null)
+                    throw new InvalidDataException("Empty STL or trailing data after endsolid.");
+                return [.. triangles];
+            }
+            if (!line.StartsWith("facet normal ", StringComparison.Ordinal) || Next() != "outer loop")
+                throw new InvalidDataException("Malformed ASCII STL facet.");
+            XYZ Vertex() => Next() is string vertex && vertex.StartsWith("vertex ", StringComparison.Ordinal)
+                ? Point(vertex[7..]) : throw new InvalidDataException("Missing STL vertex.");
+            triangles.Add(new(Vertex(), Vertex(), Vertex()));
+            if (Next() != "endloop" || Next() != "endfacet")
+                throw new InvalidDataException("Malformed ASCII STL facet ending.");
+        }
     }
 
     public static void WriteStl(string path, IEnumerable<Triangle> triangles)

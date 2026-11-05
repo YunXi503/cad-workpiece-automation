@@ -45,7 +45,9 @@ def check_vsta_evidence():
         plan_path = evidence_dir / f"arm-plan-{key}.json"
         plan = read(plan_path)
         assert receipt["planSha256"] == sha(plan_path)
-        assert receipt["workflowSha256"] == hashlib.sha256(workflow.encode()).hexdigest()
+        # These are historical receipts for the pre-Case-A capacity revision.
+        # Never relabel an old native run as proof of the current workflow.
+        assert receipt["workflowSha256"] == "2e543d0d8ed6bca37fee4809dbc7ca9250ab07305c2e00dbc728116dd1d299e6"
         assert receipt["host"]["entry"] == "CATMain" and receipt["host"]["process"] == "DSYVstaDebugHost"
         rows = receipt["sketchReadbacks"]
         assert [row["side"] for row in rows] == [side["id"] for side in plan["sides"]]

@@ -1,0 +1,88 @@
+{
+  "schema": "public-acceptance-run/1",
+  "measuredUtc": "2026-11-05T13:54:25.140199+00:00",
+  "os": "Windows",
+  "python": "3.14.2",
+  "steps": [
+    {
+      "step": "cli-build",
+      "exitCode": 0,
+      "elapsedSeconds": 1.856
+    },
+    {
+      "step": "geometry-math",
+      "exitCode": 0,
+      "elapsedSeconds": 2.616
+    },
+    {
+      "step": "stl_input_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 3.407
+    },
+    {
+      "step": "source_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 9.364
+    },
+    {
+      "step": "case_a_evidence",
+      "exitCode": 0,
+      "elapsedSeconds": 0.165
+    },
+    {
+      "step": "acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 21.453
+    },
+    {
+      "step": "arm_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 120.904
+    },
+    {
+      "step": "check_docs",
+      "exitCode": 0,
+      "elapsedSeconds": 0.178
+    },
+    {
+      "step": "public-tree",
+      "exitCode": 0,
+      "elapsedSeconds": 0.305
+    },
+    {
+      "step": "viewer-build",
+      "exitCode": 0,
+      "elapsedSeconds": 1.937
+    },
+    {
+      "step": "viewer-open",
+      "exitCode": 0,
+      "elapsedSeconds": 23.939
+    }
+  ],
+  "complete": true,
+  "passed": true,
+  "scope": "public fixtures, aggregate receipt consistency and file audit; no native host or manufacturing claims",
+  "dotnetSdk": "10.0.403",
+  "sourceKernelSha256": {
+    "src/Core/Drawing.cs": "b5d03378778c34794ed187acc5923dc939e8731c31caa660017efdbc4d460703",
+    "src/Core/EngineeringDraft.cs": "f1b746dfa9db48ef3b56b4879feb9402ce14053e1e12eb21e62672edb73f8705",
+    "src/Core/Experiments.cs": "9f4fb767468919ffedbac7a90ade0d6caa5c29ca4ab6833e91075737fc94c106",
+    "src/Core/GeneralFitting.cs": "bf8a84ac458309acc8e784b18d96303ffda7f2b6f6a972ec3870c4348cc1fac6",
+    "src/Core/Geometry.cs": "bd3e789b258674de09ce62ef244a2697ebfde6b1967d461dcd629f62ef018697",
+    "src/Core/MultiBendFitting.cs": "d3c816f077665edf320abe8dd1b3aff7679917da1b499fc956469600d3b0e588",
+    "src/Core/ReferenceGeometry.cs": "41b044b08ba8e8c2e7d74737bf04b15647c4ac8d06330d82d3af93dd76fcaaed",
+    "src/Core/ReviewedFixture.cs": "9dc3ec8826808b74e6aa5b2d18ad8ab53425877194f831896d4db518fd155b2c",
+    "src/Core/Scan.cs": "513e05730f5ec3d2603e7b18d0292dfcf1879ad0849476d1af4eb93843dd963d",
+    "src/Core/ShellSections.cs": "257ff6b70f83d180fd2a9dbf5a15e1bca63485ab56869e66ab166f372291bf42",
+    "src/Core/SourceEvidence.cs": "e2d4b0c230e9c108f434b473dd0d07a3e984eda80599a7e633dfdcc64d9934cc",
+    "src/Core/SourcePipeline.cs": "dd83982a8931ac24e0872524c4160834a3a52c9e2cadc4b6b8f90596bca31cc8",
+    "src/Core/SourceVerification.cs": "c8633db9509f9397eaea4fafb9b1ab035345410d14fe4af20d2b09ce36b920b6",
+    "src/Core/SupportGeometry.cs": "0d32a5f446c515474d3638c96dce3b9f5220339b8194c2e59092da0fd6a734ba",
+    "src/Core/SuspensionArmFixture.cs": "b8b89e5be1cd4993b5c34798ddfe08b1e7b6d0c08a30a3f96562f6d9079c4748",
+    "src/Core/Verification.cs": "b81513e6c09f87e61e1aab2f7250e9c33e1cadbc9cb52557edd81d3698448a1e",
+    "src/Core/WorkpieceFixture.cs": "4fa45ea1efa68838c4a9708b7b03a44e8fbca2359b8d202decdcd78b8225c4a6",
+    "src/Cli/Program.cs": "05cb5f2bc32616759c851c31991da73621bafa4a0a993f07934191e555d622e3"
+  },
+  "kernelHashConvention": "UTF-8 text normalized to LF; excludes build outputs"
+}

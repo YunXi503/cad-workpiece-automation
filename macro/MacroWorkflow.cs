@@ -296,14 +296,14 @@ namespace CadPortfolio.Vsta
             Need(plan != null && plan.schema == "portfolio-cad/1" && plan.units == "mm"
                 && !string.IsNullOrWhiteSpace(plan.source) && plan.sides != null && plan.sides.Length > 0 && plan.sides.Length <= 3
                 && new[] { plan.planeZ, plan.zMin, plan.zMax }.All(Finite) && plan.zMin < plan.zMax,
-                "Invalid synthetic CAD plan.");
+                "Invalid CAD plan.");
             Need(plan.sides.All(s => s != null) && plan.sides.Select(s => s.id).Distinct().Count() == plan.sides.Length,
                 "Missing side or duplicate side ID.");
             foreach (Side side in plan.sides)
             {
                 Need(!string.IsNullOrWhiteSpace(side.id) && side.id.Length <= 64
                     && side.id.All(c => char.IsLetterOrDigit(c) || c == '-' || c == '_'), "Invalid sketch side ID.");
-                Need(side.curves != null && side.curves.Length > 0 && side.curves.Length <= 24, "Invalid curve list.");
+                Need(side.curves != null && side.curves.Length > 0 && side.curves.Length <= 256, "Invalid curve list (maximum 256 per side).");
                 for (int i = 0; i < side.curves.Length; i++)
                 {
                     Primitive p = side.curves[i];
