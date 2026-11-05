@@ -15,6 +15,8 @@ public sealed record RunResult(string Schema, string Case, string InputFingerpri
 public sealed record CadSide(string Id, Curve[] Curves);
 public sealed record CadPlan(string Schema, string Units, string Source, double PlaneZ,
     double ZMin, double ZMax, CadSide[] Sides);
+public sealed record SectionEvidence(string Side, int Index, XY Origin, XY Normal, double ProbeZ,
+    Edge[][] Components, Station RawSupport);
 
 public static class Data
 {
@@ -87,7 +89,7 @@ public static class Data
 
 public static class Fixtures
 {
-    public static readonly string[] Cases = ["normal", "gap", "height", "reversed", "competing"];
+    public static readonly string[] Cases = ["normal", "gap", "height", "reversed", "competing", "workpiece", "workpiece-height"];
 
     public static void Generate(string folder, string caseId)
     {
@@ -96,6 +98,12 @@ public static class Fixtures
         var points = new List<XYZ>();
         var mesh = new List<Triangle>();
         var guides = new List<Guide>();
+        if (caseId is "workpiece" or "workpiece-height")
+        {
+            WorkpieceFixture.Create(points, mesh, guides);
+            Write(folder, caseId, points, mesh, guides);
+            return;
+        }
         for (int side = 0; side < 3; side++)
         {
             double theta = (side == 1 ? -1 : 1) * (.9 + .13 * side);
@@ -150,10 +158,15 @@ public static class Fixtures
             }
         }
 
+        Write(folder, caseId, points, mesh, guides);
+    }
+
+    private static void Write(string folder, string caseId, List<XYZ> points, List<Triangle> mesh, List<Guide> guides)
+    {
         File.WriteAllText(Path.Combine(folder, "guide.asc"), string.Join('\n', points.Select(Data.Coordinates)) + "\n");
         Data.WriteStl(Path.Combine(folder, "scan.stl"), mesh);
         Data.Write(Path.Combine(folder, "job.json"),
-            new Job("synthetic-job/1", caseId, [.. guides], 2, 2, caseId == "height" ? 2.7 : 0, 5));
+            new Job("synthetic-job/1", caseId, [.. guides], 2, 2, caseId is "height" or "workpiece-height" ? 2.7 : 0, 5));
     }
 }
 
@@ -263,13 +276,17 @@ public static class Slicing
         var rows = new Station[side.Count];
         for (int i = 0; i < rows.Length; i++)
         {
-            XY station = guide[side.Start + i].Planar();
-            XY left = guide[side.Start + Math.Max(0, i - 1)].Planar();
-            XY right = guide[side.Start + Math.Min(side.Count - 1, i + 1)].Planar();
-            var edges = Intersect(mesh, station, (right - left).Unit(), 2.5);
-            rows[i] = Observe(i, Components(edges), probeZ, side.Cover);
+            var (origin, normal) = Frame(guide, side, i);
+            rows[i] = Observe(i, Components(Intersect(mesh, origin, normal, 2.5)), probeZ, side.Cover);
         }
         return InferSingleGap(rows);
+    }
+
+    internal static (XY Origin, XY Normal) Frame(XYZ[] guide, Guide side, int index)
+    {
+        XY left = guide[side.Start + Math.Max(0, index - 1)].Planar();
+        XY right = guide[side.Start + Math.Min(side.Count - 1, index + 1)].Planar();
+        return (guide[side.Start + index].Planar(), (right - left).Unit());
     }
 
     public static Station[] InferSingleGap(Station[] rows)
@@ -298,6 +315,21 @@ public static class Pipeline
         SideResult[] results = job.Guides.Select(side =>
             FitSide(side.Id, Slicing.Trace(mesh, guide, side, job.ProbeZ))).ToArray();
         return (job, new("portfolio-run/1", job.Case, Data.Sha(config) + ":" + Data.Sha(asc) + ":" + Data.Sha(stl), results));
+    }
+
+    public static SectionEvidence InspectSection(string folder, string id, int index)
+    {
+        Job job = ReadJob(Path.Combine(folder, "job.json"));
+        Guide side = job.Guides.SingleOrDefault(g => g.Id == id)
+            ?? throw new InvalidDataException("Unknown guide side: " + id);
+        XYZ[] guide = File.ReadLines(Path.Combine(folder, "guide.asc")).Where(l => !string.IsNullOrWhiteSpace(l))
+            .Select(Data.Point).ToArray();
+        if (index < 0 || index >= side.Count || side.Start < 0 || side.Count < 5 || side.Count > guide.Length - side.Start)
+            throw new InvalidDataException("Invalid guide interval or section index.");
+        var (origin, normal) = Slicing.Frame(guide, side, index);
+        var mesh = Data.LoadStl(Path.Combine(folder, "scan.stl"));
+        var components = Slicing.Components(Slicing.Intersect(mesh, origin, normal, 2.5));
+        return new(id, index, origin, normal, job.ProbeZ, components, Slicing.Observe(index, components, job.ProbeZ, side.Cover));
     }
 
     internal static Job ReadJob(string file)

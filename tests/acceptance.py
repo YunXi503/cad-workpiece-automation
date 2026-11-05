@@ -4,7 +4,9 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 DOTNET = os.environ.get("PORTFOLIO_DOTNET", "dotnet")
@@ -43,7 +45,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix="portfolio cold run ") as temp:
         root = Path(temp)
         all_cases = {}
-        for case in ("normal", "gap", "height", "reversed", "competing"):
+        for case in ("normal", "gap", "height", "reversed", "competing", "workpiece", "workpiece-height"):
             source, first, second = [root / f"{case} {step}" for step in ("input", "first", "replay")]
             command("generate", case, source)
             command("run", source, first)
@@ -61,6 +63,42 @@ def main():
         assert sum(s["status"] == "checked" for s in all_cases["gap"]) == 2
         assert all(s["roundedXYError"] <= .3 and s["contactSampleMaximum"] >= .7
                    and s["contactState"] == "exceeds-sampled-limit" for s in all_cases["height"])
+
+        workpiece, shortened = root / "workpiece input", root / "workpiece-height input"
+        for file in ("guide.asc", "scan.stl"):
+            assert sha(workpiece / file) == sha(shortened / file)
+        workpiece_job, shortened_job = read(workpiece / "job.json"), read(shortened / "job.json")
+        assert shortened_job == dict(workpiece_job, case="workpiece-height", zMin=2.7)
+        original_cad = read(root / "workpiece first" / "cad-plan.json")
+        shortened_cad = read(root / "workpiece-height first" / "cad-plan.json")
+        assert shortened_cad["sides"] == original_cad["sides"]
+        assert [side["id"] for side in original_cad["sides"]] == ["edge-a", "edge-c"]
+        a, b, c = all_cases["workpiece"]
+        assert (a["observed"], b["observed"], c["observed"]) == (104, 57, 66)
+        assert b["unresolved"] == 13 and b["status"] == "withheld" and c["inferred"] == 1
+        assert all(row["roundedXYError"] <= .3 and row["contactState"] == "within-sampled-limit" for row in (a, c))
+        assert all_cases["workpiece-height"][1]["status"] == "withheld"
+        for index in (0, 2):
+            row = all_cases["workpiece-height"][index]
+            assert row["contactSampleMaximum"] >= .7 and row["contactState"] == "exceeds-sampled-limit"
+        stations = read(root / "workpiece first" / "run.json")["sides"]
+        assert sum(s["state"] == "gap" for s in stations[1]["stations"]) == 4
+        assert sum(s["state"] == "ambiguous" for s in stations[1]["stations"]) == 9
+        section_text = command("section", workpiece, "edge-b", 29)[0]
+        section = json.loads(section_text)
+        assert len(section["components"]) == 2 and len(section["rawSupport"]["triangles"]) == 4
+        assert section["rawSupport"] == stations[1]["stations"][29]
+        section = json.loads(command("section", workpiece, "edge-c", 9)[0])
+        assert section["rawSupport"]["state"] == "gap" and stations[2]["stations"][9]["state"] == "inferred"
+        _, reason = command("section", workpiece, "edge-b", 70, code=1)
+        assert "section index" in reason
+        section_file, rendered = root / "b29.json", root / "workpiece.svg"
+        section_file.write_text(section_text, encoding="utf-8")
+        subprocess.run([sys.executable, str(ROOT / "tools/render_workpiece.py"), str(workpiece),
+                        str(root / "workpiece first"), str(root / "workpiece-height first"),
+                        str(section_file), str(rendered)], check=True)
+        labels = " ".join(ElementTree.parse(rendered).getroot().itertext())
+        assert "2,914 STL triangles" in labels and "241 section stations" in labels and "0.7001 mm" in labels
         source, output = root / "normal input", root / "normal first"
         receipt = output / "cad-plan.json"
         cad = read(receipt)
@@ -146,7 +184,7 @@ def main():
         for result in results:
             individual = json.loads(command("experiment", "run", result["id"])[0])
             assert individual == result
-        print(f"5 input cases, 5 deterministic replays, 10 negative controls, {len(results)} experiments passed.")
+        print(f"{len(all_cases)} input cases and deterministic replays, 11 negative controls, {len(results)} experiments passed.")
 
 if __name__ == "__main__":
     main()

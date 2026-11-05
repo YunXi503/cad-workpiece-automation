@@ -38,6 +38,10 @@ try
             Console.WriteLine(JsonSerializer.Serialize(recomputed, Data.Json));
             return 0;
         }
+        case ["section", var folder, var side, var index]:
+            if (!int.TryParse(index, out int station)) throw new InvalidDataException("Section index must be an integer.");
+            Console.WriteLine(JsonSerializer.Serialize(Pipeline.InspectSection(folder, side, station), Data.Json));
+            return 0;
         case ["experiment", "list"]:
             foreach (Experiment experiment in Experiments.All) Console.WriteLine($"{experiment.Id}\t{experiment.Title}");
             return 0;
@@ -56,9 +60,10 @@ try
         case []:
         case ["--help"]:
             Console.WriteLine("CAD workpiece portfolio\n"
-                + "  generate <normal|gap|height|reversed|competing> <new-input-directory>\n"
+                + "  generate <normal|gap|height|reversed|competing|workpiece|workpiece-height> <new-input-directory>\n"
                 + "  run <input-directory> <new-output-directory>\n"
                 + "  verify <input-directory> <output-directory>\n"
+                + "  section <input-directory> <side-id> <zero-based-index>\n"
                 + "  experiment <list|check-all>\n  experiment run <id>");
             return 0;
         default:

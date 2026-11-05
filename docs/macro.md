@@ -4,7 +4,7 @@
 
 ## 在 VSTA 編輯器建置與執行
 
-1. 依 [快速開始](../README.md#快速開始) 生成正常合成件的 `cad-plan.json`。在 CATIA 開啟可用於測試的 3D Shape 參考 Part。
+1. 依 [最小範例與 VSTA](../README.md#最小範例與-vsta) 生成正常合成件的 `cad-plan.json`。在 CATIA 開啟可用於測試的 3D Shape 參考 Part。
 2. 在 CATIA 開啟 **Macros → Macro libraries → PLM VSTA projects**，建立獨立的 C# 測試庫，選它並按 **Edit**。本次安裝的 `MacroEdit` 原生命令也可開啟 Macros 視窗。
 3. 把新庫原本的 `namespace` 複製到下列命令。產生器把同一份公開 `MacroWorkflow.cs` 和合成計畫編進來源，並保留宿主提供的 `ThisApplication` 類別介面。需要 Python 3.10 以上。
 

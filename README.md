@@ -4,7 +4,9 @@
 
 把掃描得到的板金邊緣，轉成工程師能在 CATIA 逐段編輯的直線與圓弧。我的工作包括追查哪些剖切點真的來自目標側壁、控制線弧的擬合誤差，以及用 C# Macro 建立草圖並讀回 CATIA 的結果。公開版用獨立撰寫的程式和合成工件重現這條路徑，也保留早期方案和淘汰原因。
 
-![三組合成側線從剖切支持到取整 CAD 線弧](assets/normal.svg)
+![一件合成板金的三角網格與三側覆蓋，標出剖框 B29 競爭壁、B10 缺口、C09 推估、排除套筒與有限延伸面距離](assets/workpiece.svg)
+
+圖由 **2,914 個 STL 三角面、241 個剖框和實際驗證輸出**繪製。A、C 側輸出可編輯線弧。B 側的缺口和競爭支持保留，讀者可以重跑圖中 B29 並查到來源三角面。 [完整工程案例](docs/workpiece-case.md) · [放大圖面](assets/workpiece.svg)
 
 | 你想看什麼 | 從這裡開始 |
 | --- | --- |
@@ -15,7 +17,7 @@
 
 ## 兩個技術案例
 
-- **幾何演算**。蓋面來源重複會讓程式把同一支持誤配到兩層，形成凹折。我從剖切邊身分定位錯誤錨點，用單變數對照檢查凹折，再以有限曲線點距和 G1（接點兩側切向一致）驗證減段。公開示範將合成輪廓預先分割為每側 6 段，通過公差檢查後合併為 3 段。 [混蓋診斷](docs/history/mixed-cover.md) · [擬合、減段與取整](docs/geometry.md#相切線弧與減段)
+- **幾何演算**。原專案先追查凹折出現在剖切、工程錨點還是擬合，再用來源邊身分定位誤配。新合成件重現整件掃描中的套筒排除、連續缺口、兩壁競爭、單站推估，以及同一 XY 草圖因延伸高度不足而三維超差的決策。 [整件案例與逐站追查](docs/workpiece-case.md) · [歷史混蓋診斷](docs/history/mixed-cover.md)
 - **3DEX Macro**。在 VSTA 編輯及建置 C# Macro，從 IDE 的 F5 實跑 `CATMain`。將帶正負掃掠的線弧轉為 Sketcher 實體、端點接合、相切與半徑驅動約束，讓 CATIA 更新後再讀回。草圖身分與輸入指紋核對後才進延伸面。合成件實測完成 3 個可編輯草圖、15 個有效約束與 3 個延伸面。 [Macro 原始碼](macro/MacroWorkflow.cs) · [去識別驗收證據](docs/verification.md#核對-vsta-驗收證據)
 
 ## 快速開始
@@ -24,13 +26,26 @@
 
 ```shell
 dotnet build src/Cli -c Release
+dotnet src/Cli/bin/Release/net10.0/Cli.dll generate workpiece artifacts/workpiece-input
+dotnet src/Cli/bin/Release/net10.0/Cli.dll run artifacts/workpiece-input artifacts/workpiece-output
+dotnet src/Cli/bin/Release/net10.0/Cli.dll verify artifacts/workpiece-input artifacts/workpiece-output
+dotnet src/Cli/bin/Release/net10.0/Cli.dll section artifacts/workpiece-input edge-b 29
+```
+
+預期印出 `Checked 2/3 CAD sides`。B 側保留 13 個未定站，A、C 側各交付 2 線 1 弧。`section` 列出 B29 的兩個連通分量與 4 個支持三角面 ID。Windows 可用 `dotnet run --project src/Viewer -- artifacts/workpiece-output/run.json` 切換各側。 [逐站輸出與高度對照](docs/workpiece-case.md)
+
+### 最小範例與 VSTA
+
+以下命令重跑已完成 VSTA 原生驗收的三側合成基準，並執行獨立的混蓋反例。
+
+```shell
 dotnet src/Cli/bin/Release/net10.0/Cli.dll generate normal artifacts/demo-input
 dotnet src/Cli/bin/Release/net10.0/Cli.dll run artifacts/demo-input artifacts/demo-output
 dotnet src/Cli/bin/Release/net10.0/Cli.dll verify artifacts/demo-input artifacts/demo-output
 dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run mixed-cover
 ```
 
-正常示範會印出 `Checked 3/3 CAD sides`。先開啟 `artifacts/demo-output/overlay.svg`。藍點是從三角面剖切得到的側壁支持，青綠線及紫色圓弧是取整後的 CAD 輪廓。數字在 `verification.json`，Macro 輸入在 `cad-plan.json`。Windows 可用 `dotnet run --project src/Viewer -- artifacts/demo-output/run.json` 檢視各側。 [驗收報告](docs/verification.md)
+預期印出 `Checked 3/3 CAD sides`。Macro 輸入為 `cad-plan.json`。 [VSTA 操作與原生讀回](docs/macro.md) · [最小範例的線弧疊圖](assets/normal.svg)
 
 ## 履歷摘要
 
