@@ -31,3 +31,7 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run mixed-cover
 ![混蓋來源衝突前後的合成錨點](../../assets/mixed-cover.svg)
 
 [回方案索引](../engineering-decisions.md)
+
+## 現行工程草稿中的角色
+
+先修來源矛盾能避免擬合把凹折保存到 CAD。這比單純加密或壓低數字更接近少返工的目的；局部修復的實證不擴大成全件焊道或工時驗收。 [現行交付判準](../engineering-acceptance.md)。

@@ -47,6 +47,17 @@ def main():
         for field in ("cadXYMaximum", "draftXYMaximum", "uniformXYMaximum", "roundingMovementBoundMm", "sourceAnchorFiniteSurfaceMaximumMm"):
             assert abs(g[field] - l[field]) <= 1e-7
     print("Case A aggregate evidence: geometry, current macro, native counts and viewport hashes agree; contact remains unaccepted.")
+    # Historical private-log transcription, not a new geometry/native validation.
+    history = read("historical-rounding.json")
+    assert history["totalSides"] == 9 and history["totalPrimitives"] == 217
+    assert not history["nativeExecutionInThisUpdate"] and not history["nativeRoundedRevisionVerified"]
+    assert history["historicalNativeAttempt"]["status"] == "blocked-before-geometry"
+    rows = [row for case in history["cases"] for row in case["sides"]]
+    assert len(rows) == 9 and sum(r["lines"] + r["arcs"] for r in rows) == 217
+    assert max(r["movementBoundMmRecorded"] for r in rows) <= .05
+    for r in rows:
+        assert max(r[k] for k in ("dimensionResidualMmRecorded", "endpointResidualMmRecorded", "jointResidualMmRecorded", "unitTangentDifferenceRecorded", "radialResidualMmRecorded")) <= 1e-7
+    print("Historical rounding aggregate: 3 cases / 9 sides / 217 elements; saved-log checks only, no new native claim.")
 
 
 if __name__ == "__main__": main()

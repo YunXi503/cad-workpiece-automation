@@ -22,6 +22,8 @@ flowchart LR
 
 CLI 與 WinForms 共享純 C# 幾何核心。Macro 經 JSON 邊界接收毫米幾何，編譯目標跟隨宿主。整段離線流程可跨平台重播。原專案歷史使用 VS2017、C# 7、.NET Framework 與 WinForms。
 
+WinForms 的 `Create demo`／`Build reviewed case` 透過 [DraftWorkflow](../src/Viewer/DraftWorkflow.cs)呼叫同一核心，背景執行後自動開啟結果。四個核心檔與CLI一致；桌面另外保存 `source-verification.json` 與 `workflow-run.json`。後者分列執行狀態、數值核對、未取整側數及自動耗時，不代表工程師接受或原生CAD成功。[完整操作](operator-guide.md)
+
 ## 輸出與來源
 
 | 現行 `source` 路徑 | 用途 |
@@ -53,5 +55,5 @@ STL 讀取採逐行 ASCII 解析或依精確長度識別 binary；格式、單�
 ## 建置與除錯
 
 - Windows 或 Linux 以 `dotnet build src/Cli -c Release` 建置。獨立回歸工具需要 Python 3.10 以上，Windows 可用 `py tests/acceptance.py`，Linux 可用 `python3 tests/acceptance.py`。
-- WinForms 用 `dotnet build src/Viewer -c Release`。開啟 `run.json` 後用選單切側。找不到輸出時，先看 CLI 的結束碼與錯誤訊息。已存在的非空輸入／輸出目錄會被拒絕，以保留前一次結果。
+- WinForms 用 `dotnet build src/Viewer -c Release`，可開啟報告或直接建立離線草稿。`case.json` 必須含已審查支持域；輸出選在輸入資料夾以外，非空舊結果不被覆寫。數值核對失敗保留診斷與草稿，不改標通過。
 - Macro 的參考組件、宿主編輯與故障排查見 [VSTA 指南](macro.md)。

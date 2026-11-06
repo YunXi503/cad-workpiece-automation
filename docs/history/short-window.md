@@ -25,3 +25,7 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run short-window
 原專案固定方向後仍有窗落在圓角內。直度與帶寬保留作診斷，物理首點仍需來源位置證據。
 
 [回方案索引](../engineering-decisions.md)
+
+## 現行工程草稿中的角色
+
+直度可提示候選，不必等精確圓角首點證明才提供近似草稿。仍要看位置是否正確，避免把短而直但錯位的片段交給工程師整段修回。 [現行交付判準](../engineering-acceptance.md)。

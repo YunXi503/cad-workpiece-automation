@@ -27,3 +27,7 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-ordering
 歷史回放也發現可行模型落在早期排序之外。當時不能把搜索沒找到當成幾何無解。後續以正例回放與剪枝界分開記錄。
 
 [回方案索引](../engineering-decisions.md)
+
+## 現行工程草稿中的角色
+
+有限預算有助讓流程在可用時間內交出結果。漏選與未定要保存，不能將未找到稱成無解；工程候選可供審看，不能隱藏原搜索限制。 [現行交付判準](../engineering-acceptance.md)。

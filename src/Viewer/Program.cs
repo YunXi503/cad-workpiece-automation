@@ -6,6 +6,30 @@ static class Program
     public static int Main(string[] args)
     {
         ApplicationConfiguration.Initialize();
+        if (args is [var workflowMode, var manifest, var output, var capture]
+            && (workflowMode == "--build-smoke" || workflowMode == "--demo-smoke"))
+        {
+            using var form = new ReviewWindow();
+            int result = 1;
+            form.Shown += async (_, _) =>
+            {
+                try
+                {
+                    DraftWorkflowResult built = args[0] == "--demo-smoke"
+                        ? await form.CreateDemoAsync(output) : await form.BuildReviewedAsync(manifest, output);
+                    Application.DoEvents();
+                    using var bitmap = new Bitmap(form.Width, form.Height);
+                    form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, form.Size));
+                    bitmap.Save(capture, System.Drawing.Imaging.ImageFormat.Png);
+                    Console.WriteLine($"{built.Status.State}; numeric: {built.Status.NumericStatus}; UI work ticks: {form.WorkTicks}");
+                    result = built.Status.NumericStatus == "passed" && form.PaintCount > 0 ? 0 : 2;
+                }
+                catch (Exception error) { Console.Error.WriteLine("Cannot build draft: " + error.Message); }
+                finally { form.Close(); }
+            };
+            Application.Run(form);
+            return result;
+        }
         if (args is ["--smoke", var input, var png, var sideIndex])
         {
             using var form = new ReviewWindow();
@@ -44,31 +68,105 @@ sealed class ReviewWindow : Form
     private readonly ComboBox sides = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 145 };
     private readonly Label summary = new() { AutoSize = true, Padding = new Padding(12, 7, 0, 0) };
     private readonly Plot plot = new() { Dock = DockStyle.Fill };
+    private readonly Button open = new() { Text = "Open run.json", AutoSize = true };
+    private readonly Button demo = new() { Text = "Create demo", AutoSize = true };
+    private readonly Button build = new() { Text = "Build reviewed case", AutoSize = true };
+    private readonly Button showOutput = new() { Text = "Open output folder", AutoSize = true, Enabled = false };
+    private readonly ToolStripStatusLabel activity = new("Open a report or create a draft. Engineer suitability is assessed separately.") { Spring = true, TextAlign = ContentAlignment.MiddleLeft };
+    private readonly ToolStripProgressBar progressBar = new() { Style = ProgressBarStyle.Marquee, Visible = false, Width = 100 };
+    private readonly System.Windows.Forms.Timer workTimer = new() { Interval = 100 };
+    private bool busy;
+    private string? outputFolder;
     private RunResult? run;
 
     public ReviewWindow()
     {
-        Text = "CAD Portfolio — geometry and source review";
+        Text = "CAD Portfolio — surface draft workflow";
         ClientSize = new Size(1000, 580);
         MinimumSize = new Size(720, 440);
         Font = new Font("Segoe UI", 10);
-        var toolbar = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 48, Padding = new Padding(8) };
-        var open = new Button { Text = "Open run.json", AutoSize = true };
+        var toolbar = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true, MinimumSize = new Size(0, 48), Padding = new Padding(8) };
         open.Click += (_, _) =>
         {
             using var dialog = new OpenFileDialog { Filter = "Run report|run.json|JSON|*.json" };
             if (dialog.ShowDialog(this) == DialogResult.OK) OpenRunOrWarn(dialog.FileName);
         };
         toolbar.Controls.AddRange([open, sides, summary]);
+        var commands = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 43, Padding = new Padding(8, 4, 8, 4) };
+        commands.Controls.AddRange([demo, build, showOutput]);
+        var status = new StatusStrip(); status.Items.AddRange([activity, progressBar]);
         Controls.Add(plot);
         Controls.Add(toolbar);
+        Controls.Add(commands);
+        Controls.Add(status);
         sides.SelectedIndexChanged += (_, _) => UpdateSelection();
+        workTimer.Tick += (_, _) => WorkTicks++;
+        demo.Click += async (_, _) =>
+        {
+            using var picker = new FolderBrowserDialog { Description = "Choose a location for a new demo workspace." };
+            if (picker.ShowDialog(this) == DialogResult.OK)
+                await RunOrWarn(() => CreateDemoAsync(DraftWorkflow.NewFolder(picker.SelectedPath, "demo")));
+        };
+        build.Click += async (_, _) =>
+        {
+            using var input = new OpenFileDialog { Filter = "Reviewed case|case.json|JSON|*.json", Title = "Select reviewed case.json (mesh, references and support domains)" };
+            if (input.ShowDialog(this) != DialogResult.OK) return;
+            using var picker = new FolderBrowserDialog { Description = "Choose an output location outside the input folder. A new draft folder is created." };
+            if (picker.ShowDialog(this) == DialogResult.OK)
+                await RunOrWarn(() => BuildReviewedAsync(input.FileName, DraftWorkflow.NewFolder(picker.SelectedPath, "draft")));
+        };
+        showOutput.Click += (_, _) =>
+        {
+            if (outputFolder is not null)
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(outputFolder) { UseShellExecute = true });
+        };
     }
 
     public void SelectSide(int index) => sides.SelectedIndex = index;
     public int SelectedCount => sides.Items.Count;
     public int PaintCount => plot.PaintCount;
     public string GeometryDescription => plot.Description;
+    public int WorkTicks { get; private set; }
+
+    public Task<DraftWorkflowResult> CreateDemoAsync(string workspace) =>
+        RunWorkflowAsync(p => DraftWorkflow.Demo(workspace, p));
+    public Task<DraftWorkflowResult> BuildReviewedAsync(string manifest, string output) =>
+        RunWorkflowAsync(p => DraftWorkflow.Build(manifest, output, p));
+
+    private async Task RunOrWarn(Func<Task<DraftWorkflowResult>> action)
+    {
+        try { await action(); }
+        catch (Exception error) { MessageBox.Show(this, error.Message, "Draft generation stopped", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+    }
+
+    private async Task<DraftWorkflowResult> RunWorkflowAsync(Func<IProgress<string>, DraftWorkflowResult> action)
+    {
+        if (busy) throw new InvalidOperationException("A draft operation is already running.");
+        busy = true; outputFolder = null; WorkTicks = 0; workTimer.Start(); progressBar.Visible = true;
+        open.Enabled = demo.Enabled = build.Enabled = sides.Enabled = showOutput.Enabled = false;
+        try
+        {
+            var progress = new Progress<string>(message => activity.Text = message);
+            DraftWorkflowResult result = await Task.Run(() => action(progress));
+            if (TryOpenRun(Path.Combine(result.Output, "run.json")) is string error) throw new InvalidDataException(error);
+            outputFolder = result.Output;
+            activity.Text = $"{result.Status.CadSides} CAD sides · checks: {result.Status.NumericStatus} · {result.Status.UnroundedSides} unrounded · {result.Status.AutomatedElapsedSeconds:F1}s automatic · engineer review remains";
+            return result;
+        }
+        catch { activity.Text = "Draft generation stopped. Source files are unchanged; review the new output log."; throw; }
+        finally
+        {
+            workTimer.Stop(); busy = false; progressBar.Visible = false;
+            open.Enabled = demo.Enabled = build.Enabled = sides.Enabled = true;
+            showOutput.Enabled = outputFolder is not null;
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) workTimer.Dispose();
+        base.Dispose(disposing);
+    }
 
     public void OpenRunOrWarn(string path)
     {

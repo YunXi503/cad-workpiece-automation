@@ -1,0 +1,139 @@
+{
+  "schema": "historical-rounding-records/1",
+  "recordedDate": "2026-11-04",
+  "reviewedDate": "2026-11-06",
+  "scope": "Read from three private historical logs; not rerun in this update, not the current public Case A geometry.",
+  "dimensionStepMm": 0.01,
+  "recordedResidualLimit": 1e-07,
+  "recordedMovementLimitMm": 0.05,
+  "cases": [
+    {
+      "id": "legacy-rounded-a",
+      "sourceLogSha256": "ef8a432fb917e0daf6e81825f2376052c916b671f78e52d8b927a1aff09f7810",
+      "sides": [
+        {
+          "side": "upper",
+          "lines": 31,
+          "arcs": 30,
+          "dimensionResidualMmRecorded": 7.6383e-14,
+          "endpointResidualMmRecorded": 1.7975e-13,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 1.11e-13,
+          "radialResidualMmRecorded": 8.5265e-14,
+          "movementBoundMmRecorded": 0.015877
+        },
+        {
+          "side": "lower",
+          "lines": 14,
+          "arcs": 13,
+          "dimensionResidualMmRecorded": 4.0412e-14,
+          "endpointResidualMmRecorded": 1.1677e-13,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 3.0215e-13,
+          "radialResidualMmRecorded": 3.5527e-14,
+          "movementBoundMmRecorded": 0.0051113
+        },
+        {
+          "side": "left",
+          "lines": 21,
+          "arcs": 20,
+          "dimensionResidualMmRecorded": 5.1403e-14,
+          "endpointResidualMmRecorded": 3.5527e-14,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 1.146e-13,
+          "radialResidualMmRecorded": 3.5527e-14,
+          "movementBoundMmRecorded": 0.015623
+        }
+      ]
+    },
+    {
+      "id": "legacy-rounded-b",
+      "sourceLogSha256": "3c9ed85db70f10c806f0c1a9b2467ded5fc18262619d30606acd433c7f8b5dbc",
+      "sides": [
+        {
+          "side": "upper",
+          "lines": 14,
+          "arcs": 13,
+          "dimensionResidualMmRecorded": 2.8422e-14,
+          "endpointResidualMmRecorded": 1.6573e-13,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 4.8309e-14,
+          "radialResidualMmRecorded": 2.8422e-14,
+          "movementBoundMmRecorded": 0.0077535
+        },
+        {
+          "side": "lower",
+          "lines": 5,
+          "arcs": 4,
+          "dimensionResidualMmRecorded": 1.5987e-14,
+          "endpointResidualMmRecorded": 5.8593e-14,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 1.3746e-14,
+          "radialResidualMmRecorded": 2.8422e-14,
+          "movementBoundMmRecorded": 0.0050479
+        },
+        {
+          "side": "left",
+          "lines": 12,
+          "arcs": 11,
+          "dimensionResidualMmRecorded": 3.908e-14,
+          "endpointResidualMmRecorded": 5.6843e-14,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 4.5806e-14,
+          "radialResidualMmRecorded": 5.6843e-14,
+          "movementBoundMmRecorded": 0.0069133
+        }
+      ]
+    },
+    {
+      "id": "legacy-rounded-c",
+      "sourceLogSha256": "7c5497cdca1d28719cd40d637c2734183c42a7db6ee06fe6676f2dc4e52cc6fa",
+      "sides": [
+        {
+          "side": "upper",
+          "lines": 7,
+          "arcs": 6,
+          "dimensionResidualMmRecorded": 4.2633e-14,
+          "endpointResidualMmRecorded": 1.2079e-13,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 1.0605e-15,
+          "radialResidualMmRecorded": 5.6843e-14,
+          "movementBoundMmRecorded": 0.0033019
+        },
+        {
+          "side": "lower",
+          "lines": 4,
+          "arcs": 3,
+          "dimensionResidualMmRecorded": 7.1054e-15,
+          "endpointResidualMmRecorded": 2.5864e-14,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 5.5511e-16,
+          "radialResidualMmRecorded": 1.4211e-14,
+          "movementBoundMmRecorded": 0.0094412
+        },
+        {
+          "side": "left",
+          "lines": 5,
+          "arcs": 4,
+          "dimensionResidualMmRecorded": 3.5527e-14,
+          "endpointResidualMmRecorded": 4.6219e-14,
+          "jointResidualMmRecorded": 0.0,
+          "unitTangentDifferenceRecorded": 2.4286e-16,
+          "radialResidualMmRecorded": 1.1369e-13,
+          "movementBoundMmRecorded": 0.0046761
+        }
+      ]
+    }
+  ],
+  "totalSides": 9,
+  "totalPrimitives": 217,
+  "precision": "Values transcribed at the decimal precision of the saved logs; raw geometry and logs stay local.",
+  "nativeExecutionInThisUpdate": false,
+  "nativeRoundedRevisionVerified": false,
+  "historicalNativeAttempt": {
+    "case": "legacy-rounded-c",
+    "status": "blocked-before-geometry",
+    "reason": "No active reference Part"
+  },
+  "engineerTimeSavingMeasured": false
+}

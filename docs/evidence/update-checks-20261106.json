@@ -1,0 +1,76 @@
+{
+  "schema": "public-acceptance-run/1",
+  "measuredUtc": "2026-11-06T01:27:51.642828+00:00",
+  "os": "Windows",
+  "python": "3.14.2",
+  "steps": [
+    {
+      "step": "cli-build",
+      "exitCode": 0,
+      "elapsedSeconds": 3.152
+    },
+    {
+      "step": "geometry-math",
+      "exitCode": 0,
+      "elapsedSeconds": 3.933
+    },
+    {
+      "step": "stl_input_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 4.142
+    },
+    {
+      "step": "source_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 9.898
+    },
+    {
+      "step": "case_a_evidence",
+      "exitCode": 0,
+      "elapsedSeconds": 0.185
+    },
+    {
+      "step": "surface_display",
+      "exitCode": 0,
+      "elapsedSeconds": 0.17
+    },
+    {
+      "step": "acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 19.498
+    },
+    {
+      "step": "arm_acceptance",
+      "exitCode": 0,
+      "elapsedSeconds": 132.039
+    },
+    {
+      "step": "check_docs",
+      "exitCode": 0,
+      "elapsedSeconds": 0.794
+    },
+    {
+      "step": "public-tree",
+      "exitCode": 0,
+      "elapsedSeconds": 1.084
+    },
+    {
+      "step": "viewer-build",
+      "exitCode": 0,
+      "elapsedSeconds": 4.637
+    },
+    {
+      "step": "viewer-open",
+      "exitCode": 0,
+      "elapsedSeconds": 31.384
+    },
+    {
+      "step": "viewer-workflow",
+      "exitCode": 0,
+      "elapsedSeconds": 10.135
+    }
+  ],
+  "complete": true,
+  "passed": true,
+  "scope": "public fixtures, aggregate receipt consistency and file audit; no native host or manufacturing claims"
+}
