@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
 <title id="title">選點平面與側線延伸的工程流程</title>
-<desc id="desc">歷史路徑由人工選點開始，程式自動擬合局部平面，經正側視審看。公開程式路徑從已審查支持到側線、G1線弧、約束草圖與有限延伸面。兩者都需要工程師確認形狀和焊道處理。</desc>
+<desc id="desc">歷史路徑以選取點群為輸入，程式自動擬合局部平面，經正側視審看。公開程式路徑從已審查支持到側線、G1線弧、約束草圖與有限延伸面。兩者都需要工程師確認形狀和焊道處理。</desc>
 <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#62788c" stroke-width="1.4"/></marker></defs>
 <rect width="1200" height="650" fill="#f8fafc"/>
 <g font-family="Microsoft JhengHei, Noto Sans CJK TC, sans-serif" fill="#173249">
@@ -11,7 +11,7 @@
 <rect x="40" y="156" width="240" height="111" rx="8"/><rect x="330" y="156" width="240" height="111" rx="8"/><rect x="620" y="156" width="240" height="111" rx="8"/><rect x="910" y="156" width="250" height="111" rx="8"/>
 </g>
 <g font-size="21" font-weight="700"><text x="62" y="191">選取局部點群</text><text x="352" y="191">程式自動擬合</text><text x="642" y="191">建立局部平面</text><text x="932" y="191">正視與側視審看</text></g>
-<g font-size="17"><text x="62" y="222">先分清板面與鄰近特徵</text><text x="62" y="248">選點仍有人工判斷</text><text x="352" y="222">求平面位置與方向</text><text x="352" y="248">不推定當年求解器種類</text><text x="642" y="222">顯示有限矩形範圍</text><text x="642" y="248">分區保留局部幾何</text><text x="932" y="222">看傾斜、高度與覆蓋</text><text x="932" y="248">再看多區面總覽</text></g>
+<g font-size="17"><text x="62" y="222">先分清板面與鄰近特徵</text><text x="62" y="248">選域自動化程度待核</text><text x="352" y="222">求平面位置與方向</text><text x="352" y="248">不推定當年求解器種類</text><text x="642" y="222">顯示有限矩形範圍</text><text x="642" y="248">分區保留局部幾何</text><text x="932" y="222">看傾斜、高度與覆蓋</text><text x="932" y="248">再看多區面總覽</text></g>
 <text x="40" y="324" font-size="21" font-weight="700" fill="#805d30">公開程式路徑　側線與有限線弧延伸</text>
 <g fill="#fbf4e8" stroke="#c6a573" stroke-width="1.5">
 <rect x="40" y="347" width="240" height="111" rx="8"/><rect x="330" y="347" width="240" height="111" rx="8"/><rect x="620" y="347" width="240" height="111" rx="8"/><rect x="910" y="347" width="250" height="111" rx="8"/>
