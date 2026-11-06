@@ -4,6 +4,8 @@
 
 ## 這版具體增加什麼
 
+**同日貼面補充**：新增[兩種貼面方法與幾何圖解](surface-methods.md)及[完整圖集](surface-gallery.md)。使用者確認歷史局部矩形面是選點後由程式自動擬合平面；18組59張未編修視埠圖補足中央凸台、長肢、孔座、短肢肩部及多區面總覽。兩張通用SVG說明流程與平面幾何，不把歷史求解器寫成本庫已有的可執行功能；[圖片對應與SHA](evidence/historical-surfaces.json)可核對原圖。這次只補文件與圖片，數值核心、現行CAD計畫與原生收據不變。
+
 | 範圍 | 實際更新與查核 |
 | --- | --- |
 | 操作程式 | WinForms 新增 Create demo／Build reviewed case／Open output folder，背景建構、核對、狀態與錯誤記錄。[操作](operator-guide.md) |

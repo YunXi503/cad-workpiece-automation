@@ -25,13 +25,13 @@
     },
     {
       "path": "EXPERIMENT_LOG.md",
-      "bytes": 19473,
-      "sha256": "0970647549b3b4f9596f21188bbe1a7b22a95eef5491739814573f2f0dbd311e"
+      "bytes": 21434,
+      "sha256": "95762d9c63e7632913cdbd0b5357c19c15e310a470313334f147c13141f56b31"
     },
     {
       "path": "README.md",
-      "bytes": 10100,
-      "sha256": "daf0e0caa038c3ec2af19597d7cd6b568dd9faff9c6ec33ed91a9c77912f8428"
+      "bytes": 10933,
+      "sha256": "57da2a078bbd88771a0f5d3c31f3fae2c87052d75567f105dab94cba2aaa0e91"
     },
     {
       "path": "assets/arm-design.png",
@@ -109,6 +109,306 @@
       "sha256": "adce1eec7aae7b543970a408dc907ad4697e7fe9d3671acd4e3e916750bc41b6"
     },
     {
+      "path": "assets/historical-surfaces/group-01-view-1.png",
+      "bytes": 165647,
+      "sha256": "586b39d83f239de085634d9d826984dfb29a234091a3bff7627c207b3dba8cb4"
+    },
+    {
+      "path": "assets/historical-surfaces/group-01-view-2.png",
+      "bytes": 185021,
+      "sha256": "2672944e3c338cd8318ed28014b4d424ec98fcda618c4b6fbc5c5bab69983c2d"
+    },
+    {
+      "path": "assets/historical-surfaces/group-01-view-3.png",
+      "bytes": 157803,
+      "sha256": "8d1a279497cf412d1c32a0ff999b509ef9021bf4dc54f380e1bdb5be86d13e75"
+    },
+    {
+      "path": "assets/historical-surfaces/group-02-view-1.png",
+      "bytes": 402060,
+      "sha256": "aa29bc79d6eaffb32b7090391c2c5b41bdf8086f75a961b90db0e2a64d2fe94d"
+    },
+    {
+      "path": "assets/historical-surfaces/group-02-view-2.png",
+      "bytes": 227151,
+      "sha256": "e59073aef7a6c717476cfdc32e175eee6fe244cd22e671c6e8f050e1194c5371"
+    },
+    {
+      "path": "assets/historical-surfaces/group-02-view-3.png",
+      "bytes": 261621,
+      "sha256": "570a48b1d66a5da5e7e5d86f5241c68f91d70c3ff36f4ce64b5112c5bafc43fd"
+    },
+    {
+      "path": "assets/historical-surfaces/group-03-view-1.png",
+      "bytes": 318443,
+      "sha256": "cab17c3f09f3d8fafa4a45325262ea760e724e909e7f05c76a806dc9f82a6acd"
+    },
+    {
+      "path": "assets/historical-surfaces/group-03-view-2.png",
+      "bytes": 126624,
+      "sha256": "3777f2d1fab2676ec97ce0b60edfad59eb149cf9cb43ed602fb2b11c981cf881"
+    },
+    {
+      "path": "assets/historical-surfaces/group-03-view-3.png",
+      "bytes": 299419,
+      "sha256": "0a53526d7942d45a433be8f1724a08d278c060692a83048d4f6b8fa67bdac01c"
+    },
+    {
+      "path": "assets/historical-surfaces/group-03-view-4.png",
+      "bytes": 287209,
+      "sha256": "dd72597b0f3fda9061d55e230594646143f62d38c6dde0189296d306b9e0d496"
+    },
+    {
+      "path": "assets/historical-surfaces/group-04-view-1.png",
+      "bytes": 243933,
+      "sha256": "361a38c04f2d5b7269bdb6aa6b08687ae7ce73d1173c10fe067f373472dbb527"
+    },
+    {
+      "path": "assets/historical-surfaces/group-04-view-2.png",
+      "bytes": 174672,
+      "sha256": "d5fed7bf397298aa45a384ca67b37751acfb00fee32243a8d54eb6a73de83338"
+    },
+    {
+      "path": "assets/historical-surfaces/group-04-view-3.png",
+      "bytes": 149024,
+      "sha256": "738e2e1edfaf269dd9f558652590b5fdfb35c0380243c8fe1d8cc82252c56611"
+    },
+    {
+      "path": "assets/historical-surfaces/group-05-view-1.png",
+      "bytes": 154622,
+      "sha256": "a0198b190353048c7cc35c27f53101369b825e51cf66545accb74243f6d17768"
+    },
+    {
+      "path": "assets/historical-surfaces/group-05-view-2.png",
+      "bytes": 144582,
+      "sha256": "e039c9495b7805a62f37b379e1ee68afb8a4c6e52c6dbb0fbd2131039222ac29"
+    },
+    {
+      "path": "assets/historical-surfaces/group-05-view-3.png",
+      "bytes": 221339,
+      "sha256": "09fab879af4e94567ae6a6517dd1484671a2a605de9a191e27a650115d8ca67b"
+    },
+    {
+      "path": "assets/historical-surfaces/group-06-view-1.png",
+      "bytes": 307999,
+      "sha256": "98ad061a5c6ecb637e2f94d2b59ec978a7d5688b02ca4de15f0ae0b9bf8e3b5c"
+    },
+    {
+      "path": "assets/historical-surfaces/group-06-view-2.png",
+      "bytes": 154742,
+      "sha256": "cfaddd3ea4dc4212ecc4c7e89b61c0795010eb9deaf8b50d9db2c31794f7a313"
+    },
+    {
+      "path": "assets/historical-surfaces/group-06-view-3.png",
+      "bytes": 116791,
+      "sha256": "81fff9f9365d0494d7c2c725ec6fb9ac97627fca1814971da9137897dd588aba"
+    },
+    {
+      "path": "assets/historical-surfaces/group-07-view-1.png",
+      "bytes": 132087,
+      "sha256": "8713b6df38f31083b48face4d47461520c8f2aa2b11f4ec8b07aa64fdb7f2079"
+    },
+    {
+      "path": "assets/historical-surfaces/group-07-view-2.png",
+      "bytes": 126344,
+      "sha256": "3653bc1469ff7eb3197e39dc84466ee69d1fbc3100c945c4fe93a6a71c20ac29"
+    },
+    {
+      "path": "assets/historical-surfaces/group-07-view-3.png",
+      "bytes": 105572,
+      "sha256": "00dccbdffb61a2f9a55293fdb4f61a4cd0b76728d016c30270f9f083e801164c"
+    },
+    {
+      "path": "assets/historical-surfaces/group-08-view-1.png",
+      "bytes": 235846,
+      "sha256": "5cb258cb2a2cca02fcebf45581f6bce911428b923e4448efc1e007bc5de21505"
+    },
+    {
+      "path": "assets/historical-surfaces/group-08-view-2.png",
+      "bytes": 144229,
+      "sha256": "1096bc6fc9f9ee66f14a9d695fc6207cf89a8f617af52593a1f523579fc673f0"
+    },
+    {
+      "path": "assets/historical-surfaces/group-08-view-3.png",
+      "bytes": 217949,
+      "sha256": "9eecc35816f7fa1ffc26bc421e449858e76f4233ccf6718a4f303f95be59a007"
+    },
+    {
+      "path": "assets/historical-surfaces/group-09-view-1.png",
+      "bytes": 144591,
+      "sha256": "878360950cd7242053787dc7ea781c3be39e0f881fa251d944f81389fc563283"
+    },
+    {
+      "path": "assets/historical-surfaces/group-09-view-2.png",
+      "bytes": 103442,
+      "sha256": "83c9ae1f47f69c83140830422246819f575eacedaf3758c83613396a7f33c348"
+    },
+    {
+      "path": "assets/historical-surfaces/group-09-view-3.png",
+      "bytes": 68791,
+      "sha256": "e69a3184a504d853eef8c96e94e6b79b2eb6309d5da31b0234183c15c73c6dcf"
+    },
+    {
+      "path": "assets/historical-surfaces/group-11-view-1.png",
+      "bytes": 202959,
+      "sha256": "8de09aae0dccecdaca7518613c72c41494a19aceff9cf997666c6bb78a5ee115"
+    },
+    {
+      "path": "assets/historical-surfaces/group-11-view-2.png",
+      "bytes": 156904,
+      "sha256": "369e5fa1d8a13f572aa9538611925fe6b5bd029c6cb447ed4e1b646ebb0835ff"
+    },
+    {
+      "path": "assets/historical-surfaces/group-11-view-3.png",
+      "bytes": 205805,
+      "sha256": "924a62d8cc8284fc9b501e025fa017c9a68ec54959cafead2385351b5a089453"
+    },
+    {
+      "path": "assets/historical-surfaces/group-12-view-1.png",
+      "bytes": 227790,
+      "sha256": "24fca6c02e4da2be40b26b5e348b56c61d1762a5224872fb6235138f2fe739d5"
+    },
+    {
+      "path": "assets/historical-surfaces/group-12-view-2.png",
+      "bytes": 90629,
+      "sha256": "5412090e9d0e317d4a490b398a4e00c337ee56e11bde819a466971ddc9308608"
+    },
+    {
+      "path": "assets/historical-surfaces/group-12-view-3.png",
+      "bytes": 279269,
+      "sha256": "57e5c45c4ca2540cd214cc61341da078a4898049e01c1dabe5ac427e3aa18adc"
+    },
+    {
+      "path": "assets/historical-surfaces/group-13-view-1.png",
+      "bytes": 250913,
+      "sha256": "bf9a6dd56fd36d221319b734cf4b33d8e0f4ee70ee9f9c7a3e0913a4209894dd"
+    },
+    {
+      "path": "assets/historical-surfaces/group-13-view-2.png",
+      "bytes": 103969,
+      "sha256": "01f89189010e09400768c4d1611ccdcc5428289d83d68a660610a6e4253b3858"
+    },
+    {
+      "path": "assets/historical-surfaces/group-13-view-3.png",
+      "bytes": 97930,
+      "sha256": "e8924a12599a80cab428bfec590eac0e891e1b85d901a3015d671d9909bb2b21"
+    },
+    {
+      "path": "assets/historical-surfaces/group-14-view-1.png",
+      "bytes": 153324,
+      "sha256": "0e44a8d2740f2815369e71841165dde94c5aa0b8b67be67cf19e17dcfc56e822"
+    },
+    {
+      "path": "assets/historical-surfaces/group-14-view-2.png",
+      "bytes": 128921,
+      "sha256": "733e485ce3cadca6c8f6337bc2472848d8b77465d9b4495b0ad77ba6434af563"
+    },
+    {
+      "path": "assets/historical-surfaces/group-14-view-3.png",
+      "bytes": 67864,
+      "sha256": "f86e54dbc66da121deb62e5d81fa653d57d9d551d073b0a74fe5a8a9424aac21"
+    },
+    {
+      "path": "assets/historical-surfaces/group-15-view-1.png",
+      "bytes": 142377,
+      "sha256": "8df0f5818f592bf091cf68bc02747ca9129e098b8ac981935b7fb95d2104a483"
+    },
+    {
+      "path": "assets/historical-surfaces/group-15-view-2.png",
+      "bytes": 120673,
+      "sha256": "49319da19e50f9f6d5ca19ef056f11b5e272c20392ed54232f03aa19baff29dc"
+    },
+    {
+      "path": "assets/historical-surfaces/group-15-view-3.png",
+      "bytes": 135246,
+      "sha256": "c5cfcfeef34182902a838f13e098f62786036ec5d862017067e04bd699afaa35"
+    },
+    {
+      "path": "assets/historical-surfaces/group-16-view-1.png",
+      "bytes": 194539,
+      "sha256": "00d765ea51dc3258fecaebd586d2032cbd8692238c714e61a055029b13fc9bfb"
+    },
+    {
+      "path": "assets/historical-surfaces/group-16-view-2.png",
+      "bytes": 90731,
+      "sha256": "102e5bb944985ef9c09f6647603319d1fafad79a16ce174cbe81b2a620b60338"
+    },
+    {
+      "path": "assets/historical-surfaces/group-16-view-3.png",
+      "bytes": 156330,
+      "sha256": "b1e8cab12fe7c9239975356cb581ce44fc55ecf5da23c3b7e72ad9d9203c70d1"
+    },
+    {
+      "path": "assets/historical-surfaces/group-17-view-1.png",
+      "bytes": 263204,
+      "sha256": "67535c982ce8bdbf094b7c92336078ff1fb57f100d65bd82f0365da023e3f5c6"
+    },
+    {
+      "path": "assets/historical-surfaces/group-17-view-2.png",
+      "bytes": 94478,
+      "sha256": "24cee79c8c24372333362180f06c62ad7226b277d3d4f3213fe90f46c8a30518"
+    },
+    {
+      "path": "assets/historical-surfaces/group-17-view-3.png",
+      "bytes": 165450,
+      "sha256": "96d9af48ad79eba039edef76428d215e0e5cec43c429ef15cecf7f52a53f61e8"
+    },
+    {
+      "path": "assets/historical-surfaces/group-18-view-1.png",
+      "bytes": 137750,
+      "sha256": "03a50fd9d4d8609dc9707c55f4a70675fa710b02cb9dc24aa042c290307ba612"
+    },
+    {
+      "path": "assets/historical-surfaces/group-18-view-2.png",
+      "bytes": 61204,
+      "sha256": "6cbde3b867fdea6b0399ecbcd7e64c485e78b87618f0514e85b0ae546e499b18"
+    },
+    {
+      "path": "assets/historical-surfaces/group-18-view-3.png",
+      "bytes": 71904,
+      "sha256": "58a617acfb6f9fa656467e16dffeae48fc5837db7172f884f86cf24c9993b014"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-1.png",
+      "bytes": 268883,
+      "sha256": "f5c5280d64ee74e232d0ca9f5254b2f2eaded1284de4f44794830d57a1270c36"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-2.png",
+      "bytes": 44369,
+      "sha256": "a2a80e714af120cb3f5b6ddf8d0e144fa0092364ea0e50115b7f4f562cbd9add"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-3.png",
+      "bytes": 164416,
+      "sha256": "070da5dbae4da311243348b9986c02a8ba7435a08e4238f63e5058514e6c6bb7"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-4.png",
+      "bytes": 209207,
+      "sha256": "c4158ee86d7284d67b1cd912b81bad031ff415415f44a1fa7789518797a294e4"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-5.png",
+      "bytes": 233230,
+      "sha256": "66332219bd843055959626cab7e4e48c42882c52eb377159616c538171750df6"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-6.png",
+      "bytes": 198939,
+      "sha256": "ae844bbfc3a31213f1df2d7f0290b63086f734016f4e4c6c2a79a80cfe896883"
+    },
+    {
+      "path": "assets/historical-surfaces/group-19-view-7.png",
+      "bytes": 266104,
+      "sha256": "5a54f8e4cba73160e3b81224a0b5b3395fb0fdf9bbe1eb2b54ff7461b04ac9bf"
+    },
+    {
+      "path": "assets/local-plane-geometry.svg",
+      "bytes": 3067,
+      "sha256": "c6521cbefa9d69d9f8f60db1d2aa0666d03347f67e912a19d7fd8772f07ea8d4"
+    },
+    {
       "path": "assets/mixed-cover.svg",
       "bytes": 1118,
       "sha256": "056ebe4054cb2e19f9400b4c00b4d07fddc077b997f7abb9367ce82ad75572ad"
@@ -117,6 +417,11 @@
       "path": "assets/normal.svg",
       "bytes": 18609,
       "sha256": "1c29619f1b26ca9c900562f5c9b09f1d7acb956ba6caea4cbf76510b661e43e0"
+    },
+    {
+      "path": "assets/surface-method-flow.svg",
+      "bytes": 3973,
+      "sha256": "3c980886a4e0672fa872162171da85b08adad851dae76e471c6e6b46e587e375"
     },
     {
       "path": "assets/workpiece.svg",
@@ -130,8 +435,8 @@
     },
     {
       "path": "docs/completeness-audit.md",
-      "bytes": 6605,
-      "sha256": "31129ba46b0ea39f4e09c6e9fb2dbd263543cc834b9a2e8cb1efc4b8d6a39d83"
+      "bytes": 7085,
+      "sha256": "b8037785c0a4d475c5977b8a42cf30c098e46a5629c38e39caa5792aada87bde"
     },
     {
       "path": "docs/engineering-acceptance.md",
@@ -202,6 +507,11 @@
       "path": "docs/evidence/historical-rounding.json",
       "bytes": 4774,
       "sha256": "28ac402f6e64d00cf82cb0121c904162de9761614df5bbd73ac4471290288172"
+    },
+    {
+      "path": "docs/evidence/historical-surfaces.json",
+      "bytes": 20616,
+      "sha256": "6690cad499c1a4a9ed6b17c5dc1a41fe52c9450e6163bb6a64cff2a9641cb042"
     },
     {
       "path": "docs/evidence/update-checks-20261106.json",
@@ -375,18 +685,18 @@
     },
     {
       "path": "docs/project-history.md",
-      "bytes": 4628,
-      "sha256": "729957aa91c9233e1e3a7103877c6caa43da6546c50679d83fa5ceb441dd0c54"
+      "bytes": 4942,
+      "sha256": "237535ee16bcb6e2d63471882b1d527d302b02c60a56a944a415a30b0cd92b29"
     },
     {
       "path": "docs/publication.md",
-      "bytes": 2942,
-      "sha256": "be6e64e3eade63f041094a09d6121bc4cb893a4f0417abc744490186bf321f6f"
+      "bytes": 3488,
+      "sha256": "875c63d7074e5dba6bf99b90b93dc9ac68bae650c59e99bd4d299d95fb4557f7"
     },
     {
       "path": "docs/review-original-case.md",
-      "bytes": 8088,
-      "sha256": "3a6f7ed2773f886c980d6ba1e3fb210571ee56707bc59eb5dc1d679ec839aa08"
+      "bytes": 9203,
+      "sha256": "188a78101c8fbf313ef7bd2d3975018cedb1751c0320979ea6dab2f5f568d29d"
     },
     {
       "path": "docs/review.md",
@@ -405,8 +715,18 @@
     },
     {
       "path": "docs/surface-contact.md",
-      "bytes": 7567,
-      "sha256": "53bab7b998cd1aba58e03c55d6b355ed966fff8152098a9fc43a0f9f18cdd784"
+      "bytes": 7875,
+      "sha256": "cc777d0a3f536f371eaebdd22bf9958c15e65b077b9f91743e30a5fd2e01fea4"
+    },
+    {
+      "path": "docs/surface-gallery.md",
+      "bytes": 14439,
+      "sha256": "39f707bf5e562d93057c895fb39f32a509f30a450226e69c29895507800cfd9e"
+    },
+    {
+      "path": "docs/surface-methods.md",
+      "bytes": 10815,
+      "sha256": "3406e380d82e7086e1021117a4ff981c8c6c9db36a7e3cc1294c9ec3955656cb"
     },
     {
       "path": "docs/suspension-arm.md",
@@ -420,13 +740,13 @@
     },
     {
       "path": "docs/technical-map.md",
-      "bytes": 4742,
-      "sha256": "4078c73448ee63464e1b87f3c6e8404b83001cfc2009ab62bcfb2b5fe7655de3"
+      "bytes": 5149,
+      "sha256": "a67be615a166744acbaa889e5c3d7fb233987030f13770c5e16a03d6c8876d34"
     },
     {
       "path": "docs/update-summary.md",
-      "bytes": 3510,
-      "sha256": "ae1b86de66f1030231ca663ce85828c7d76f56bdc4503fe2521da4a549c35967"
+      "bytes": 4078,
+      "sha256": "b01c47b956f5b5fdadd64668ee51967171b1074c3db1841faa0e97387835f237"
     },
     {
       "path": "docs/verification.md",

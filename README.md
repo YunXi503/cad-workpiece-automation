@@ -10,6 +10,12 @@
 
 彩面取自**同一份已在 VSTA 建立三個有限延伸特徵的 CAD 計畫**，在未修改的掃描上重繪疊合；不是 CATIA 截圖。它們沿 Z = -50～+50 mm 延伸，供側邊貼面建模使用。[貼面完整案例：用途、建面、局部距離與限制](docs/surface-contact.md)
 
+**貼面也包含局部板面。** 歷史專案由工程師選取點群，再由程式自動擬合局部平面，處理中央凸台、長肢／短肢板面及孔座附近。下圖是原 CAD 中多區平面與掃描同場的歷史畫面；與上方現行三側線弧延伸計畫分版記錄。
+
+![歷史局部貼面總覽：多區點群、自動擬合平面與原工件同場](assets/historical-surfaces/group-19-view-5.png)
+
+[**貼面方法與幾何圖解**](docs/surface-methods.md)說明選點平面與側線延伸兩種做法、焊道／孔座／肩部的判讀；[**完整 18 組、59 張原生圖對照**](docs/surface-gallery.md)保留各區正側視。圖中面重疊不代表已修剪接合或通過接觸驗收，歷史平面求解器的公開重現仍待補。
+
 **交付重點是外形可用、剩餘手調少、流程更快；精度作診斷，0.3 mm 不單獨決定專案成敗。** 已實跑自動建模；全區去焊道效果與實際節省工時仍需工程確認／對照。[工程草稿交付判準](docs/engineering-acceptance.md)
 
 | 工作 | 已實跑的自動處理 | 工程師仍需處理 |
@@ -23,7 +29,7 @@
 | 入口 | 可以核對的內容 |
 | --- | --- |
 | **重跑示範** | [快速開始](#快速開始) · [WinForms 操作](docs/operator-guide.md)：建立示範或從已審查設定生成、核對與開啟草稿。 |
-| **閱讀幾何與 Macro** | [技術／程式對照](docs/technical-map.md) · [貼面案例](docs/surface-contact.md) · [C# 推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
+| **閱讀幾何與 Macro** | [技術／程式對照](docs/technical-map.md) · [兩種貼面方法與圖](docs/surface-methods.md) · [側邊貼面診斷](docs/surface-contact.md) · [C# 推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
 | **查看歷史方案** | [25 個可執行反例與決策](docs/engineering-decisions.md) · [角色與時間線](docs/project-history.md)。 |
 
 ## 原件到底難在哪裡
