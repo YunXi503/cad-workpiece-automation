@@ -17,6 +17,8 @@
 ## 在 VSTA 編輯器建置與執行
 
 1. 依 [快速開始](../README.md#快速開始) 生成並驗證解析 fixture 的 `cad-plan.json`；原件持有人則使用本機私有 Case A 計畫。請勿將實件計畫上傳。CATIA 開啟可測試的 3D Shape 參考 Part。
+
+   使用新 WinForms 時，從 **Open output folder** 取得該次 `cad-plan.json`，將下列命令的計畫路徑換成該檔。離線 GUI 沒有執行 CATIA，`workflow-run.json` 的 `nativeCadExecuted` 保持 false；原生成功以當次宿主收據判斷。[操作指南](operator-guide.md)
 2. 在 CATIA 開啟 **Macros → Macro libraries → PLM VSTA projects**，建立獨立的 C# 測試庫，選它並按 **Edit**。本次安裝的 `MacroEdit` 原生命令也可開啟 Macros 視窗。
 3. 把新庫原本的 `namespace` 複製到下列命令。產生器把同一份公開 `MacroWorkflow.cs` 和合成計畫編進來源，並保留宿主提供的 `ThisApplication` 類別介面。需要 Python 3.10 以上。
 

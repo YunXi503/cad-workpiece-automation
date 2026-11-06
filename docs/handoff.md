@@ -2,6 +2,8 @@
 
 接手先照 [快速開始](../README.md#快速開始)跑 `source generate/run/verify`，預期 3/3 工程草稿側線。原件持有人使用同一流程讀本機私有 manifest，見 [Case A](original-case.md#重跑與本機私有資料)。原始支持在 `source-run.json → source.anchors`，衍生草稿在 `draft.sides`，原框未定與排除在 `source.frames`，減段嘗試在 `fitting[].geometry.trials`。全部衍生站都不能冒稱原始觀測。
 
+Windows 也可啟動 Viewer 按 **Create demo** 或 **Build reviewed case**，完成生成、數值核對並開啟結果。新增工作記錄與 GUI／CLI 對照見[操作指南](operator-guide.md)。定位某項技術／歷史決策用[程式地圖](technical-map.md)。
+
 以下 `job.json`／`section` 欄位仍適用於早期解析基準，與新 reviewed-source schema 分開。 [舊懸吊臂回歸](suspension-arm.md)
 
 Viewer 直接標示 `max pre-round fit XY`、`display: rounded` 和紅圈的取整前階段。`overlay.svg` 舊標籤 `max fit XY` 及紅圈仍指**取整前擬合**，彩線在取整通過時顯示取整結果。取整後兩組點距見 `source verify` 的 `cadXYMaximum` 與[獨立重算 PNG](../assets/case-a-fitting.png)。

@@ -13,6 +13,8 @@
 
 新增的[貼面圖](surface-contact.md)由相同私有原件與原生計畫重繪；只公開 PNG、獨立繪圖／垂足程式與[固定彙總](evidence/case-a-surface-contact.json)，不發布原座標、完整支持資料、網格、CAD 計畫或瀏覽器可還原的 3D 模型。
 
+本次新增的WinForms原件流程圖是程式實際繪製的去識別視窗，沒有原帳號／路徑；[三件九側歷史彙總](evidence/historical-rounding.json)只含存檔log的數值、通用代號與SHA，不包含原log、工件座標或公司程式。新GUI生成的整個工作目錄仍只保存在使用者本機，不能整包上傳實件輸出。
+
 ## 檢查與清冊
 
 `python tools/audit_publication.py` 列舉公開候選檔，拒絕原網格／參考點／CAD／編譯物與壓縮包，以及個人絕對路徑和原生模型身分。圖像另經人工視讀；自動文字檢查不能代替圖像檢查或完整資料權限判斷。

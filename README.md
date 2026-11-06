@@ -2,9 +2,11 @@
 
 **C# 計算幾何** · **3DEXPERIENCE CATIA C#／VSTA Macro 開發、編輯與除錯**
 
+[本次完整更新、驗證與仍待處理項目](docs/update-summary.md)
+
 **以減少工程師手動畫線、加約束與建面為目標：快速生成貼近主要外形、簡化難加工焊道細節的貼面草稿。** 從掃描推導三側工程側線，建立可編輯相切線弧與延伸面，供工程師審看、局部微調。本版採原始第一號工件 **Case A**：外形及全部 342,369 個三角面保持，重切 83 個原剖框並核對來源支持。公司與產品名稱去識別；原始檔、公司程式與完整日誌留本機。
 
-![原始 Case A 與三側有限貼面草稿同座標疊合：兩個斜視呈現面的位置、高度，以及合格和超差的支持樣點](assets/case-a-surfaces.png)
+![原始 Case A 與三側有限貼面草稿同座標疊合：面的位置、高度及 0.3 mm 診斷參考內外的支持樣點](assets/case-a-surfaces.png)
 
 彩面取自**同一份已在 VSTA 建立三個有限延伸特徵的 CAD 計畫**，在未修改的掃描上重繪疊合；不是 CATIA 截圖。它們沿 Z = -50～+50 mm 延伸，供側邊貼面建模使用。[貼面完整案例：用途、建面、局部距離與限制](docs/surface-contact.md)
 
@@ -20,8 +22,8 @@
 
 | 入口 | 可以核對的內容 |
 | --- | --- |
-| **重跑示範** | [快速開始](#快速開始)：不用私有資料，生成解析測試件，跑完整來源流程與獨立驗證。 |
-| **閱讀幾何與 Macro** | [貼面案例](docs/surface-contact.md) · [原件演算與實測](docs/original-case.md) · [C# 幾何推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
+| **重跑示範** | [快速開始](#快速開始) · [WinForms 操作](docs/operator-guide.md)：建立示範或從已審查設定生成、核對與開啟草稿。 |
+| **閱讀幾何與 Macro** | [技術／程式對照](docs/technical-map.md) · [貼面案例](docs/surface-contact.md) · [C# 推導](docs/source-geometry.md) · [VSTA 宿主操作](docs/macro.md)。 |
 | **查看歷史方案** | [25 個可執行反例與決策](docs/engineering-decisions.md) · [角色與時間線](docs/project-history.md)。 |
 
 ## 原件到底難在哪裡
@@ -53,6 +55,18 @@
 
 需要 [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)；測試另需 Python 3.10+。CLI 支援 Windows／Linux，WinForms 與 VSTA 需 Windows，VSTA 另需授權 CATIA 環境。以下在儲存庫根目錄執行，每次使用新的輸入與輸出目錄。
 
+Windows 可先啟動桌面程式，按 **Create demo** 建立獨立測試工作區；持有已審查原件設定者按 **Build reviewed case** 選 `case.json`。程式沿用同一核心產生側線／CAD 計畫、重播數值核對，再直接開啟圖面。
+
+```shell
+dotnet run --project src/Viewer -c Release
+```
+
+![原始 Case A 的 WinForms 生成、核對與審閱流程](assets/case-a-workflow.png)
+
+GUI 與 CLI 對同一輸入的四個核心輸出已逐位元對照；介面另存 `workflow-run.json` 和數值核對結果。自動耗時、未取整狀態與工程師接受分開列；原生 CATIA 不由這個離線按鈕執行。[操作、輸入條件與輸出](docs/operator-guide.md)
+
+Windows／Linux 的 CLI 路徑：
+
 ```shell
 dotnet --version
 dotnet build src/Cli -c Release
@@ -82,7 +96,8 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment check-all
 
 - **中文**：開發 C#／WinForms 掃描至 CAD 流程，針對 83 個原始剖框建立支持來源核對及混蓋診斷，實作有限線弧、G1 相切、保公差減段與 0.01 mm 尺寸重建；三側草稿 XY 偏差均小於 0.3 mm。
 - **中文**：開發與除錯 3DEXPERIENCE CATIA C#／VSTA Macro，自動建立 3 草圖、165 線弧、405 有效約束及 3 側貼面草稿，減少需手動建立的幾何工作，供工程師審看與局部微調；實際節省工時待量測。
+- **中文**：整合 WinForms 背景執行、來源保護、獨立驗證與可追溯輸出，將示範生成／草稿建構／核對／審閱接成操作流程；保留原資料、未取整狀態與錯誤診斷。
 - **English**: Developed a C# / WinForms scan-to-CAD workflow with source-triangle provenance, finite tangent line–arc fitting, verified reduction, and tolerance-checked dimension rounding.
 - **English**: Automated three editable surface drafts with 165 line–arc elements and 405 valid constraints using CATIA C# / VSTA macros, with native readback and traceable geometry; labor-time savings remain to be measured.
 
-[驗收與限制](docs/verification.md) · **[原規劃查漏與未完成項目](docs/completeness-audit.md)** · [雙視角審查](docs/review-original-case.md) · [公開分界](docs/publication.md) · [實作實驗紀錄](EXPERIMENT_LOG.md) · [早期解析懸吊臂回歸案例](docs/suspension-arm.md)
+[驗收與限制](docs/verification.md) · [後期三件九側取整紀錄](docs/historical-rounding.md) · **[查漏與未完成項目](docs/completeness-audit.md)** · [雙視角審查](docs/review-original-case.md) · [公開分界](docs/publication.md) · [實作實驗紀錄](EXPERIMENT_LOG.md) · [早期解析懸吊臂回歸](docs/suspension-arm.md)

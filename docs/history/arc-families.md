@@ -27,3 +27,7 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-families
 原專案曾找到受控多弧正例，仍需另外驗證排程覆蓋、主壁身分和首點。後續工程草稿交付保留診斷用途。
 
 [回方案索引](../engineering-decisions.md)
+
+## 現行工程草稿中的角色
+
+多弧模型提供表達能力，也增加候選與可編輯元件。應以主要輪廓和剩餘修改判斷是否值得增加弧數；受控正例仍不等於完整自動搜尋器。 [現行交付判準](../engineering-acceptance.md)。

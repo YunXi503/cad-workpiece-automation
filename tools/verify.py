@@ -23,7 +23,8 @@ def main():
     steps.append(("public-tree", [sys.executable, "tools/audit_publication.py"]))
     if platform.system() == "Windows":
         steps += [("viewer-build", [dotnet, "build", "src/Viewer", "-c", "Release", "--nologo"]),
-                  ("viewer-open", [sys.executable, "tests/viewer_open.py"])]
+                  ("viewer-open", [sys.executable, "tests/viewer_open.py"]),
+                  ("viewer-workflow", [sys.executable, "tests/viewer_workflow.py"])]
     rows = []
     for name, command in steps:
         print(f"Running {name}", flush=True)
