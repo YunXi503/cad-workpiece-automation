@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+<title id="title">點群與局部平面的幾何關係</title>
+<desc id="desc">通用示意：灰色有限平面由面內u、v方向和法向n描述。點p的平面垂足q與法向偏差r只描述無限平面；有限面還有邊界。圖不是實件量測或當年求解器的證明。</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#264960" stroke-width="1.4"/></marker></defs>
+<rect width="1200" height="600" fill="#f8fafc"/>
+<g font-family="Microsoft JhengHei, Noto Sans CJK TC, sans-serif" fill="#173249">
+<text x="36" y="48" font-size="26" font-weight="700">局部貼面的幾何  方向、位置與有限範圍</text>
+<text x="36" y="82" font-size="17">通用示意，不是實件量測，也不認定當年的平面求解器。</text>
+<polygon points="70,367 388,222 684,326 366,471" fill="#dce7ed" stroke="#6f8e9e" stroke-width="2"/>
+<g fill="#277eaa"><circle cx="166" cy="317" r="5"/><circle cx="244" cy="296" r="5"/><circle cx="317" cy="321" r="5"/><circle cx="293" cy="379" r="5"/><circle cx="410" cy="415" r="5"/><circle cx="474" cy="325" r="5"/><circle cx="525" cy="350" r="5"/><circle cx="568" cy="302" r="5"/></g>
+<g stroke="#264960" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M366 382L554 448"/><path d="M366 382L203 456"/><path d="M366 382V162"/></g>
+<circle cx="366" cy="382" r="5" fill="#173249"/><text x="380" y="407" font-size="21">p0</text><text x="558" y="456" font-size="20">u / e1</text><text x="140" y="475" font-size="20">v / e2</text><text x="381" y="170" font-size="21">單位法向 n</text>
+<circle cx="477" cy="210" r="7" fill="#277eaa"/><text x="491" y="207" font-size="22">p</text>
+<path d="M477 210V358" stroke="#be663b" stroke-width="2.5" stroke-dasharray="7 5"/>
+<circle cx="477" cy="358" r="6" fill="#be663b"/><text x="490" y="377" font-size="22" fill="#9f4b24">q</text>
+<text x="492" y="277" font-size="19" fill="#9f4b24">r = n · (p − p0)</text>
+<text x="75" y="516" font-size="17">藍點：示意輸入點　橙線：法向偏差　灰框：有限平面範圍</text>
+<g font-size="20"><text x="735" y="164" font-weight="700">平面的位置與方向</text><text x="735" y="204">n · (x − p0) = 0</text><text x="735" y="260" font-weight="700">有限貼面</text><text x="735" y="300">S(u,v) = p0 + u e1 + v e2</text><text x="735" y="340">u、v 各有有限範圍</text><text x="735" y="396" font-weight="700">判讀時多看一步</text></g>
+<g font-size="18"><text x="735" y="431">垂足落在框外時，不能只看 |r|。</text><text x="735" y="466">正視看覆蓋，側視看方向與高度。</text><text x="735" y="501">多片面重疊，尚不代表已修剪接合。</text></g>
+<text x="36" y="566" font-size="16" fill="#526879">孔邊、焊道、折彎與不同板面混入同一點群時，需先核對區域；點多不等於物理位置正確。</text>
+</g></svg>
