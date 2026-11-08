@@ -30,8 +30,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10933,
-      "sha256": "bc54b7316b554e34b988b44b3a8e3403603f96a2cb3e430781aecd8930dd5dd0"
+      "bytes": 11160,
+      "sha256": "c978b9ada0bdb1d9f8895bdcf91fe74ea31d62e7869f10d26faf39771bbe118b"
     },
     {
       "path": "assets/arm-design.png",
@@ -72,6 +72,16 @@
       "path": "assets/case-a-joints.png",
       "bytes": 662830,
       "sha256": "4c424541a2ecf79ecf7e7773f48691d39d157277283cc2fbaaf702ff66ee9771"
+    },
+    {
+      "path": "assets/case-a-native-codisplay-oblique.jpg",
+      "bytes": 33702,
+      "sha256": "f4ed330b1671af7446edeafefff415f0eb7ba1925a63ce17e75fbedff6400c6b"
+    },
+    {
+      "path": "assets/case-a-native-codisplay-reverse.jpg",
+      "bytes": 33655,
+      "sha256": "7206eea4209b09bbb2861b36492bd083d926305d92327f15e747017ba92a296f"
     },
     {
       "path": "assets/case-a-native.jpg",
@@ -435,8 +445,8 @@
     },
     {
       "path": "docs/completeness-audit.md",
-      "bytes": 7085,
-      "sha256": "b8037785c0a4d475c5977b8a42cf30c098e46a5629c38e39caa5792aada87bde"
+      "bytes": 7549,
+      "sha256": "6c4cdec8ec98a3a204d9882023b39fc68529e6179e320d44354fd4521ea63730"
     },
     {
       "path": "docs/engineering-acceptance.md",
@@ -482,6 +492,11 @@
       "path": "docs/evidence/case-a-linux.json",
       "bytes": 6990,
       "sha256": "b0327b4a176864892b933beb0eb579e66ecc31dddeeaf1a044e02d4044e4f957"
+    },
+    {
+      "path": "docs/evidence/case-a-native-codisplay-20261108.json",
+      "bytes": 3761,
+      "sha256": "4dd137ee7538da2ba9e8d8173cae98f3c3a2dc4b4422cefff7306a8f4ef3c7b0"
     },
     {
       "path": "docs/evidence/case-a-native-controls.json",
@@ -670,8 +685,8 @@
     },
     {
       "path": "docs/macro.md",
-      "bytes": 8531,
-      "sha256": "531e74cd4f8a0507f0d2677ad6509fba27df96b098a2ce9e174f0659ee062467"
+      "bytes": 9581,
+      "sha256": "9f02235aee258c26873e16f54455c28fe1ebc16f61ccdb1897fe12150715d9d4"
     },
     {
       "path": "docs/operator-guide.md",
@@ -690,13 +705,18 @@
     },
     {
       "path": "docs/publication.md",
-      "bytes": 3488,
-      "sha256": "875c63d7074e5dba6bf99b90b93dc9ac68bae650c59e99bd4d299d95fb4557f7"
+      "bytes": 3919,
+      "sha256": "73865a7605293a3fa73156b71f4022a792da03429fc8f3a0e4530fe00096b9a9"
+    },
+    {
+      "path": "docs/review-native-20261108.md",
+      "bytes": 3386,
+      "sha256": "eef52de9cc8c5e6569e07a4a354ffe094acb942675d5c79e38d0a9b0a7e4e4d9"
     },
     {
       "path": "docs/review-original-case.md",
-      "bytes": 9203,
-      "sha256": "188a78101c8fbf313ef7bd2d3975018cedb1751c0320979ea6dab2f5f568d29d"
+      "bytes": 9494,
+      "sha256": "6a7757c59983d4fe7af1fef0525759645d0563516d4cb17120c8a99c51cd726d"
     },
     {
       "path": "docs/review.md",
@@ -715,8 +735,8 @@
     },
     {
       "path": "docs/surface-contact.md",
-      "bytes": 7875,
-      "sha256": "cc777d0a3f536f371eaebdd22bf9958c15e65b077b9f91743e30a5fd2e01fea4"
+      "bytes": 9891,
+      "sha256": "3591480195ab0dd39b4d5cd0e5961e01b4b2352308eb581ace831febe9414d72"
     },
     {
       "path": "docs/surface-gallery.md",
@@ -725,8 +745,8 @@
     },
     {
       "path": "docs/surface-methods.md",
-      "bytes": 10869,
-      "sha256": "902ca646dc21ac8aea8fa0ad812bf0bb85ce7301e5c44af6a48032f51ed7a45e"
+      "bytes": 10903,
+      "sha256": "d41321f294f5557b2691e73fd5bbfa4e185ea4a26cd90fa5d788154137cfc27d"
     },
     {
       "path": "docs/suspension-arm.md",
@@ -745,13 +765,13 @@
     },
     {
       "path": "docs/update-summary.md",
-      "bytes": 4078,
-      "sha256": "b01c47b956f5b5fdadd64668ee51967171b1074c3db1841faa0e97387835f237"
+      "bytes": 4934,
+      "sha256": "1eb65b86c9437c45e6413efb2a0a382df50989db4ae1fb7b4deac6eb4982ea88"
     },
     {
       "path": "docs/verification.md",
-      "bytes": 12395,
-      "sha256": "fc3c385b2fd7952db30403964f2e6b582679b323680a1abdb598436572ec15c7"
+      "bytes": 13499,
+      "sha256": "963f482fa6050859bfd28629ea7fb9627b8387dbf0fb98b116079c94e9c41ef0"
     },
     {
       "path": "docs/workpiece-case.md",
@@ -915,8 +935,8 @@
     },
     {
       "path": "tests/case_a_evidence.py",
-      "bytes": 4535,
-      "sha256": "934f1ef334273b56e6ee937a15e305a8b9c9a9578a99f24c8b51fc18481ff085"
+      "bytes": 6841,
+      "sha256": "44b0a44318a019b63eeabc64e31204738d2aa344802f1d1080cf3a19a8bc0114"
     },
     {
       "path": "tests/check_docs.py",

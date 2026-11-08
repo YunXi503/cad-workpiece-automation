@@ -1,0 +1,96 @@
+{
+  "schema": "portfolio-native-codisplay/1",
+  "measuredDate": "2026-11-08",
+  "scope": "fresh editor F5 run of unchanged Case A plan and public Macro; scan copied into the new isolated Part for native co-display",
+  "planSha256": "8ba8142641ee2a5e2ec91a7d56b8d7c0df3bb9e4314e570413dd1227417bb638",
+  "workflowSha256": "1d3607a1a02d48b4f686fe034ebfcc6099352aa02654f9490b9ff3aa463569ee",
+  "editorSourceSha256": "8c29f27ede4cae3666aba48b9843858b5183a145b6194ae25a88d43c7a454ecc",
+  "runtimeSha256": "df18d5db22099df6c48af246c508c07b5c9f7bf6cdfaa0e03025ce637ce0c133",
+  "host": {
+    "release": "CATIA R2022x",
+    "editor": "Visual Studio 2017 / VSTA",
+    "process": "DSYVstaDebugHost",
+    "entry": "CATMain",
+    "invocation": "Build current VSTA project, set startup project, press F5",
+    "apartment": "MTA"
+  },
+  "build": {
+    "succeeded": true,
+    "errors": 0,
+    "warnings": 0,
+    "sourceChangedForThisRun": false
+  },
+  "readbackLimitMm": 1e-07,
+  "sketchReadbacks": [
+    {
+      "name": "upper",
+      "curves": 59,
+      "activeConstraints": 145,
+      "maxResidual": 3.232969447708456e-13
+    },
+    {
+      "name": "lower",
+      "curves": 41,
+      "activeConstraints": 100,
+      "maxResidual": 6.029155041345696e-13
+    },
+    {
+      "name": "left",
+      "curves": 65,
+      "activeConstraints": 160,
+      "maxResidual": 8.952838470577262e-13
+    }
+  ],
+  "postScanCopyReadbackRepeated": true,
+  "postScanCopyReadbacksMatchF5": true,
+  "surfaces": {
+    "sketchCount": 3,
+    "surfaceCount": 3,
+    "positiveOffset": 50,
+    "negativeOffset": 50,
+    "zMin": -50,
+    "zMax": 50
+  },
+  "scan": {
+    "meshSha256": "45b49c16e9d4615ef78ec4864a682d6f6776d3b256b7243378482fa7d8b4cb1b",
+    "triangleCount": 342369,
+    "nativePointCount": 174743,
+    "nativeBoundaryCount": 40,
+    "sourceAndCopyNativeStatisticsMatch": true,
+    "localMeshBoundsMatchNativeDisplay": true,
+    "boundsComparisonToleranceMm": 0.001,
+    "copyMethod": "Native Copy -> new isolated Part -> Paste Special / As Result",
+    "geometryTransformApplied": false,
+    "fullNativeTriangleCoordinateComparisonPerformed": false
+  },
+  "nativeCoDisplayEstablished": true,
+  "nativeViewports": [
+    {
+      "path": "assets/case-a-native-codisplay-oblique.jpg",
+      "sha256": "f4ed330b1671af7446edeafefff415f0eb7ba1925a63ce17e75fbedff6400c6b",
+      "view": "oblique",
+      "method": "native Viewer.CaptureToFile JPEG; tree hidden; unedited pixels"
+    },
+    {
+      "path": "assets/case-a-native-codisplay-reverse.jpg",
+      "sha256": "7206eea4209b09bbb2861b36492bd083d926305d92327f15e747017ba92a296f",
+      "view": "reverse",
+      "method": "native Viewer.CaptureToFile JPEG; tree hidden; unedited pixels"
+    }
+  ],
+  "referenceMetadataUnchanged": true,
+  "originalFilesPublished": false,
+  "plmSaveConfirmed": false,
+  "reopenVerified": false,
+  "physicalContactAccepted": false,
+  "engineeringWeldAcceptanceConfirmed": false,
+  "laborSavingMeasured": false,
+  "limitations": [
+    "Native scan provenance uses the observed source-to-copy action, matching statistics and rounded bounds; no full native triangle-coordinate export/comparison was performed.",
+    "Reference snapshot compares object names and collection counts only; it is not a complete model integrity certificate.",
+    "Viewport overlap/intersection is visual evidence, not native point-to-surface measurement or manufacturing contact acceptance.",
+    "Finite surfaces remain drafts: weld treatment, trimming/joining and remaining engineering edits need review.",
+    "Local save toast was observed; no PLM save/reopen was invoked or verified.",
+    "The historical company rounded revision and local plane fitting solver are separate versions/methods; this run does not verify them."
+  ]
+}

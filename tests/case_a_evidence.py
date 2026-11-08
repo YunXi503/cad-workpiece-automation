@@ -32,6 +32,34 @@ def main():
     assert native["surfaces"]["surfaceCount"] == native["surfaces"]["sketchCount"] == 3
     viewport = native["nativeViewport"]
     assert hashlib.sha256((ROOT / viewport["path"]).read_bytes()).hexdigest() == viewport["sha256"]
+    # New run is kept separate from the historical receipt. Check cross-version
+    # bindings and actual exported bytes, not just independently copied totals.
+    codisplay = read("case-a-native-codisplay-20261108.json")
+    assert codisplay["measuredDate"] == "2026-11-08" > native["measuredDate"]
+    for key in ("planSha256", "workflowSha256", "editorSourceSha256", "surfaces", "readbackLimitMm"):
+        assert codisplay[key] == native[key], key
+    assert codisplay["host"]["process"] == "DSYVstaDebugHost" and codisplay["host"]["apartment"] == "MTA"
+    assert codisplay["build"]["succeeded"] and not codisplay["build"]["sourceChangedForThisRun"]
+    assert codisplay["postScanCopyReadbackRepeated"] and codisplay["postScanCopyReadbacksMatchF5"]
+    for before, after in zip(native["sketchReadbacks"], codisplay["sketchReadbacks"], strict=True):
+        assert before["side"] == after["name"]
+        assert all(before[key] == after[key] for key in ("curves", "activeConstraints", "maxResidual"))
+    scan = codisplay["scan"]
+    assert scan["meshSha256"] == geometry["inputFingerprint"].split(":")[1]
+    assert scan["triangleCount"] == geometry["originalTriangles"]
+    assert scan["sourceAndCopyNativeStatisticsMatch"] and scan["localMeshBoundsMatchNativeDisplay"]
+    assert not scan["geometryTransformApplied"] and not scan["fullNativeTriangleCoordinateComparisonPerformed"]
+    assert codisplay["nativeCoDisplayEstablished"]
+    assert len(codisplay["nativeViewports"]) == 2
+    assert {v["view"] for v in codisplay["nativeViewports"]} == {"oblique", "reverse"}
+    for view in codisplay["nativeViewports"]:
+        blob = (ROOT / view["path"]).read_bytes()
+        assert blob.startswith(b"\xff\xd8") and hashlib.sha256(blob).hexdigest() == view["sha256"]
+        assert view["sha256"] != viewport["sha256"], "Old surface-only image cannot substitute for co-display"
+    assert len({v["sha256"] for v in codisplay["nativeViewports"]}) == 2
+    assert all(not codisplay[key] for key in ("originalFilesPublished", "plmSaveConfirmed", "reopenVerified",
+        "physicalContactAccepted", "engineeringWeldAcceptanceConfirmed", "laborSavingMeasured"))
+    print("Nov 8 receipt/image bindings agree; native co-display recorded, full mesh comparison and engineering acceptance remain unverified.")
     controls = read("case-a-native-controls.json")
     assert controls["planSha256"] == native["planSha256"] and controls["workflowSha256"] == native["workflowSha256"]
     assert len(controls["controls"]) == 5 and all(c["exitCode"] == 1 and not c["successReceiptCreated"] for c in controls["controls"])
