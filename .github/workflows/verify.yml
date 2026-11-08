@@ -23,6 +23,7 @@ jobs:
       - run: python tests/stl_input_acceptance.py
       - run: python tests/source_acceptance.py
       - run: python tests/case_a_evidence.py
+      - run: python tests/portfolio_consistency.py
       - run: python tests/surface_display.py
       - run: python tests/acceptance.py
       - run: python tests/arm_acceptance.py

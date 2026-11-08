@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run wide-cover
 
 原專案實際查到跨框選面切換。保留工程寬度作候選資訊，草稿輸入另加來源身分核對與人工確認。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run wide-cover
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：相鄰兩框的獨立最寬候選名稱不同。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `firstPick` | `A` |
+| `nextPick` | `B` |
+
+選擇由A換成B；A／B只是合成候選身分，W最大不保證同一物理蓋。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 較寬蓋可提供工程資訊，跨框換蓋會直接增加修形工作。來源身份、主要外形與局部審看要一起用，不能以單框寬度漂亮或距離很小代替工程可用。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

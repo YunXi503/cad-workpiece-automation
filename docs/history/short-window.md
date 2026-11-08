@@ -24,8 +24,23 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run short-window
 
 原專案固定方向後仍有窗落在圓角內。直度與帶寬保留作診斷，物理首點仍需來源位置證據。
 
-[回方案索引](../engineering-decisions.md)
+
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：自由直線殘差近零，但固定方向帶寬與錯位仍大於0.1。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `freeLineError` | `0` |
+| `fixedDirectionBand` | `1` |
+| `parallelButWrongOffset` | `3` |
+
+直度0仍可能落在錯方向或錯位置；1與3是本例座標下的帶寬／偏移，不是Case A實測。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
 
 ## 現行工程草稿中的角色
 
 直度可提示候選，不必等精確圓角首點證明才提供近似草稿。仍要看位置是否正確，避免把短而直但錯位的片段交給工程師整段修回。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

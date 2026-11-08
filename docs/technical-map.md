@@ -29,6 +29,8 @@ flowchart LR
 
 [公式與假設](source-geometry.md) · [原件剖框／實測](original-case.md) · [25 個歷史反例](engineering-decisions.md)
 
+想沿具體數字理解，可先讀[三個可跑的判斷小例](source-geometry.md#先用三個可跑小例理解判斷)，再用[實跑證據對照](evidence-guide.md#同樣叫實跑證明的範圍不同)分辨自製反例、歷史原圖、現行原生與工程接受。
+
 ## C#／VSTA 與操作工程
 
 | 技術與入口 | 可核對內容 |

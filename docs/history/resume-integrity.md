@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run resume-integrity
 
 交付沿用完整性清冊、換目錄重跑、分階段結果與來源核對。舊 Windows 載入問題另分下載區域標記、框架與 COM 相依性排查。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run resume-integrity
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：內容移動到別名稱仍相同，修改內容必須不相同。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `relocatedMatch` | `True` |
+| `contentChangeRejected` | `True` |
+
+公開例比較記憶體內payload的SHA，並未真的搬檔；完整CLI搬移／來源保護另由整合測試核對。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 新輸出、來源指紋及模型身份讓重跑不覆蓋舊工作、不選錯 Part。這有助減少返工；人工改形後仍要有相符的新計畫／驗證，不能直接沿用舊成功收據。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

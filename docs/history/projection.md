@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run projection
 
 歷史試驗擴充了工程推估，起投點與真實壁段仍需確認。缺少唯一性或來源身分時保留未定。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,22 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run projection
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：單一有限支撐應命中1次，加入另一支撐後命中2次。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `uniqueHits` | `1` |
+| `ambiguousHits` | `2` |
+| `role` | `inferred` |
+
+2次命中是歧義，不能擅自取第一個。投射角色保留inferred，不冒充觀測點。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 推估可減少人工補線，須明列來源和偏移假設。是否適合避開焊道或保肩部由幾何與工程範圍共同判讀，投射點不改標原始量測。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

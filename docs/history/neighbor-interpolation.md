@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run neighbor-interpolation
 
 原專案允許明示的工程推估。已排除的套筒範圍與來源不明的跨支缺口仍需維持排除或未定。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run neighbor-interpolation
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：同蓋單缺點轉inferred，異蓋仍保持gap。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `sameCover` | `inferred` |
+| `differentCover` | `gap` |
+
+推估點不是新增掃描觀測；原缺口與來源ID仍需保留。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 明示近似與插值符合可微調工程草稿的交付範圍。重點是主要外形可用、剩餘修改少；精確物理首點證書不是先交草稿的必要條件。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

@@ -26,8 +26,23 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-families
 
 原專案曾找到受控多弧正例，仍需另外驗證排程覆蓋、主壁身分和首點。後續工程草稿交付保留診斷用途。
 
-[回方案索引](../engineering-decisions.md)
+
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：多弧接點切向差≤1e-10，三弧終點對單弧的距離>0.1。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `families` | `1,2,3` |
+| `maxJoinTangentResidual` | `1.52656e-16` |
+| `singleArcErrorAtTriarcEnd` | `3.21027` |
+
+切向差是無因次量；約3.21027的單弧距離說明此受控多弧模型的表達差異。這是正例構造，不是自動搜尋器。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
 
 ## 現行工程草稿中的角色
 
 多弧模型提供表達能力，也增加候選與可編輯元件。應以主要輪廓和剩餘修改判斷是否值得增加弧數；受控正例仍不等於完整自動搜尋器。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

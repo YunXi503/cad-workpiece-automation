@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 from xml.etree import ElementTree
+from portfolio_consistency import verify_history_results
 
 ROOT = Path(__file__).resolve().parents[1]
 DOTNET = os.environ.get("PORTFOLIO_DOTNET", "dotnet")
@@ -195,6 +196,7 @@ def main():
         preview.write_text(svg, encoding="utf-8", newline="\n")
 
         results = json.loads(command("experiment", "check-all")[0])
+        verify_history_results(results)
         listed = {row.split("\t")[0] for row in command("experiment", "list")[0].splitlines()}
         assert all(r["reproduced"] for r in results) and len(listed) == len(results)
         for result in results:

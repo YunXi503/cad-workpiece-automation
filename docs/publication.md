@@ -21,6 +21,8 @@
 
 ## 檢查與清冊
 
+本次全路徑複查另公開[乾淨副本重跑摘要](evidence/clean-reader-20261108.json)與[25方法合成輸出](evidence/history-replay-20261108.json)，只含公開程式版本、環境、步驟結束碼／耗時、狀態與自製例觀察。測試耗時不是人工省時；沒有原工件座標、使用者路徑或私有完整日誌。
+
 `python tools/audit_publication.py` 列舉公開候選檔，拒絕原網格／參考點／CAD／編譯物與壓縮包，以及個人絕對路徑和原生模型身分。圖像另經人工視讀；自動文字檢查不能代替圖像檢查或完整資料權限判斷。
 
 審查後先將公開檔 staged，再執行 `python tools/audit_publication.py --write-inventory`，產生[公開清冊](evidence/public-files.json)。清冊取 staged Git blob 的精確 bytes／SHA256，保留舊原生計畫的 `-text` 例外，避免 Windows 換行轉換導致假差異。清冊不雜湊自己。CI 用 `--check-inventory` 核對每個公開檔。

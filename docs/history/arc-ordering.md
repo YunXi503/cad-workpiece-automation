@@ -26,8 +26,23 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-ordering
 
 歷史回放也發現可行模型落在早期排序之外。當時不能把搜索沒找到當成幾何無解。後續以正例回放與剪枝界分開記錄。
 
-[回方案索引](../engineering-decisions.md)
+
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：相同6候選：前2個最佳誤差>0.3，全部候選最佳≤0.3。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `shortlistBest` | `2.24264` |
+| `fullListBest` | `0.242641` |
+| `candidateCount` | `6` |
+
+2.24264與0.242641來自同一候選集；漏選歸因於shortlist覆蓋，不能寫成幾何無解。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
 
 ## 現行工程草稿中的角色
 
 有限預算有助讓流程在可用時間內交出結果。漏選與未定要保存，不能將未找到稱成無解；工程候選可供審看，不能隱藏原搜索限制。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

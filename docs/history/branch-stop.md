@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run branch-stop
 
 歷史方法在已檢查的幾何上提供候選與對照。末刀成功與側壁物理首點分開驗收，跨新工件通用性待驗證。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,24 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run branch-stop
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：全域末站及固定方向無效；改方向有效，二分末站與6.4差<1e-6。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `globalStationValid` | `False` |
+| `earlyStop` | `5` |
+| `fixedDirectionValid` | `False` |
+| `reorientedValid` | `True` |
+| `searchedLastStation` | `6.4` |
+
+5是預先給定的提早停止位置，不是求解結果；末站約6.4來自簡化分支謂詞，不能當實件毫米範圍。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 短肢末端與套筒交界是工程範圍問題。保肩部、避免進入套筒比追求密集末端取點更重要；已接受的站距只適用於對應工件與版次。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

@@ -1,0 +1,56 @@
+{
+  "schema": "portfolio-clean-reader/1",
+  "measuredUtc": "2026-11-08T07:11:29.329422+00:00",
+  "sourceCommit": "9c9da8d1d02732926d0c3794083fcbb136e7a247",
+  "os": "Windows",
+  "dotnetSdk": "10.0.403",
+  "scope": "Fresh default-main public clone, existing installed SDK supplied explicitly; README CLI path and history/math only; no private geometry, no licensed CAD execution",
+  "steps": [
+    {
+      "step": "sdk",
+      "exitCode": 0,
+      "elapsedSeconds": 0.422
+    },
+    {
+      "step": "cli-build",
+      "exitCode": 0,
+      "elapsedSeconds": 6.875
+    },
+    {
+      "step": "source-generate",
+      "exitCode": 0,
+      "elapsedSeconds": 0.422
+    },
+    {
+      "step": "source-run",
+      "exitCode": 0,
+      "elapsedSeconds": 0.468
+    },
+    {
+      "step": "source-verify",
+      "exitCode": 0,
+      "elapsedSeconds": 0.485
+    },
+    {
+      "step": "history-list",
+      "exitCode": 0,
+      "elapsedSeconds": 0.156
+    },
+    {
+      "step": "history-mixed-cover",
+      "exitCode": 0,
+      "elapsedSeconds": 0.156
+    },
+    {
+      "step": "history-all",
+      "exitCode": 0,
+      "elapsedSeconds": 0.235
+    },
+    {
+      "step": "geometry-math",
+      "exitCode": 0,
+      "elapsedSeconds": 3.312
+    }
+  ],
+  "passed": true
+}

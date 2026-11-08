@@ -2,6 +2,20 @@
 
 入口是 [SourcePipeline.Run](../src/Core/SourcePipeline.cs)。純 .NET 核心不參考 CATIA，JSON 是跨平台數值與 Windows 宿主間的明確邊界。歷史沿用核心與本庫新寫實作分開，原件結果見[Case A](original-case.md)。
 
+## 先用三個可跑小例理解判斷
+
+| 工程疑問 | 命令中的ID及本次輸出 | 由此改變什麼決策 |
+| --- | --- | --- |
+| 排序後看似連續，為何輪廓仍錯？ | `experiment run angle-sort`：假長弦4，原連通分量2 | 用原交線共端點拓撲保存分串，不能把排序新增的線當原觀測。 |
+| 為何修平滑仍有凹折？ | `experiment run mixed-cover`：支持重用=True，切向跳變1.02899→0 | 錯誤已進入錨點層，先拒用矛盾來源，再依已授權方式推估。切向差無因次，不是角度。 |
+| XY很近，為何有限面仍碰不到？ | `experiment run finite-surface`：XY=0.08、Z缺口=0.7，三維距離0.704557 | 查有限高度，不能只縮小橫向擬合誤差；`sqrt(0.08²+0.7²)`重現此數字。 |
+
+以上是2026-11-08真正重跑的自製反例，並非Case A實測；完整命令前綴、接受判準和原值見[歷史索引](engineering-decisions.md)與[輸出收據](evidence/history-replay-20261108.json)。
+
+![來源矛盾如何先改變錨點，再造成側線凹折的合成對照](../assets/mixed-cover.svg)
+
+實件路徑依序讀：`SourcePipeline.Run`核輸入 → `SourceEvidence`重切／查支持 → `EngineeringDraft`產生明示推估草稿 → `GeneralFitting`建G1鏈並減段 → `MultiBendFitting`取整重建 → `SourceVerification`重播／獨立量距 → VSTA建草圖及有限面。下一節起逐一說明數學；[完整問題到證據路徑](evidence-guide.md)把它接到原生圖與工程判斷。
+
 ## 平面剖切與拓撲
 
 原剖框使用 `n·(x,y)+offset=0`。三角形邊兩端帶符號距離異號時，以 `t=d0/(d0-d1)` 求交，保留原面 ID；沿 `u=horizontal·(XY-origin)` 裁至原有界區間。有限線段分別保存，共端點組串不靠極角排序，不以最長串取代目標身分。

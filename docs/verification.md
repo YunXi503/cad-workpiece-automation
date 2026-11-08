@@ -1,5 +1,7 @@
 # 驗收與證據
 
+先用[證據對照表](evidence-guide.md#同樣叫實跑證明的範圍不同)分辨公開反例、歷史平面圖、Case A原生、外部STA負控制及Linux／CI；同樣叫「通過」，驗證範圍不同。
+
 首頁主案例已改為未修改的原始 **Case A**。原始檔留本機，公開彙總見 [case-a-geometry.json](evidence/case-a-geometry.json)，完整判準與取樣域見[原件報告](original-case.md)。
 
 **2026-11-06 現行交付目標：減少工程師手動工作與時間，生成貼近主要外形、可簡化難加工焊道細節的可微調貼面草稿。** 精度是診斷資訊，舊 0.3 mm 接觸標準不單獨決定整個專案成敗。[工程交付判準與工時紀錄方式](engineering-acceptance.md)

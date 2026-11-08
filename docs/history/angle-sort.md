@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run angle-sort
 
 原專案回查到長弦在後處理產生。後續以共端點組串保留缺口，讓原始連通關係可重播。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run angle-sort
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：極角串應出現大於3的假長弦，原拓撲仍為2串。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `inventedChord` | `4` |
+| `connectedComponents` | `2` |
+
+4的長弦不是原交線；兩個共端點分量保持分開。座標是自製反例，與實件尺寸無關。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 快速排序若創造跨缺口長弦，會讓工程師修錯誤外緣。保來源拓撲是降低返工的基礎；接受衍生推估也要明列，不能讓排序生成的邊冒充原始觀測。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

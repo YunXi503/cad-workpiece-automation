@@ -1,0 +1,522 @@
+{
+  "schema": "portfolio-history-replay/1",
+  "measuredUtc": "2026-11-08T07:11:29.329422+00:00",
+  "sourceCommit": "9c9da8d1d02732926d0c3794083fcbb136e7a247",
+  "os": "Windows",
+  "dotnetSdk": "10.0.403",
+  "scope": "25 independently rewritten synthetic minimal examples from a fresh public clone; not historical raw solvers or original-workpiece acceptance",
+  "numericDisplayComparison": {
+    "absoluteTolerance": 1e-12,
+    "relativeTolerance": 1e-09,
+    "scope": "Cross-platform observation-log comparison only; does not alter geometry acceptance limits"
+  },
+  "sourceFilesSha256": {
+    "src/Core/Drawing.cs": "b5d03378778c34794ed187acc5923dc939e8731c31caa660017efdbc4d460703",
+    "src/Core/EngineeringDraft.cs": "f1b746dfa9db48ef3b56b4879feb9402ce14053e1e12eb21e62672edb73f8705",
+    "src/Core/Experiments.cs": "9f4fb767468919ffedbac7a90ade0d6caa5c29ca4ab6833e91075737fc94c106",
+    "src/Core/GeneralFitting.cs": "bf8a84ac458309acc8e784b18d96303ffda7f2b6f6a972ec3870c4348cc1fac6",
+    "src/Core/Geometry.cs": "bd3e789b258674de09ce62ef244a2697ebfde6b1967d461dcd629f62ef018697",
+    "src/Core/MultiBendFitting.cs": "d3c816f077665edf320abe8dd1b3aff7679917da1b499fc956469600d3b0e588",
+    "src/Core/ReferenceGeometry.cs": "41b044b08ba8e8c2e7d74737bf04b15647c4ac8d06330d82d3af93dd76fcaaed",
+    "src/Core/ReviewedFixture.cs": "9dc3ec8826808b74e6aa5b2d18ad8ab53425877194f831896d4db518fd155b2c",
+    "src/Core/Scan.cs": "513e05730f5ec3d2603e7b18d0292dfcf1879ad0849476d1af4eb93843dd963d",
+    "src/Core/ShellSections.cs": "257ff6b70f83d180fd2a9dbf5a15e1bca63485ab56869e66ab166f372291bf42",
+    "src/Core/SourceEvidence.cs": "e2d4b0c230e9c108f434b473dd0d07a3e984eda80599a7e633dfdcc64d9934cc",
+    "src/Core/SourcePipeline.cs": "dd83982a8931ac24e0872524c4160834a3a52c9e2cadc4b6b8f90596bca31cc8",
+    "src/Core/SourceVerification.cs": "c8633db9509f9397eaea4fafb9b1ab035345410d14fe4af20d2b09ce36b920b6",
+    "src/Core/SupportGeometry.cs": "0d32a5f446c515474d3638c96dce3b9f5220339b8194c2e59092da0fd6a734ba",
+    "src/Core/SuspensionArmFixture.cs": "b8b89e5be1cd4993b5c34798ddfe08b1e7b6d0c08a30a3f96562f6d9079c4748",
+    "src/Core/Verification.cs": "b81513e6c09f87e61e1aab2f7250e9c33e1cadbc9cb52557edd81d3698448a1e",
+    "src/Core/WorkpieceFixture.cs": "4fa45ea1efa68838c4a9708b7b03a44e8fbca2359b8d202decdcd78b8225c4a6",
+    "src/Cli/Program.cs": "05cb5f2bc32616759c851c31991da73621bafa4a0a993f07934191e555d622e3"
+  },
+  "historicalStatuses": {
+    "closed-route": "部分沿用",
+    "bend-density": "部分沿用",
+    "angle-sort": "被取代",
+    "longest-chain": "被取代",
+    "short-window": "僅供診斷",
+    "free-circle": "僅供診斷",
+    "arc-families": "僅供診斷",
+    "arc-ordering": "僅供診斷",
+    "necessary-bound": "僅供診斷",
+    "wide-cover": "部分沿用",
+    "mixed-cover": "正式採用",
+    "per-side": "僅供診斷",
+    "projection": "僅供診斷",
+    "weld-apex": "僅供診斷",
+    "outer-extension": "待驗證",
+    "neighbor-interpolation": "部分沿用",
+    "branch-stop": "待驗證",
+    "cloud-raster": "部分沿用",
+    "axis-bins": "待驗證",
+    "paired-center": "部分沿用",
+    "arc-length": "正式採用",
+    "adaptive-tolerance": "正式採用",
+    "fit-reduction": "正式採用",
+    "finite-surface": "正式採用",
+    "resume-integrity": "正式採用"
+  },
+  "results": [
+    {
+      "id": "closed-route",
+      "title": "Closed guide has two paths",
+      "mechanism": "Enumerate both endpoint routes and check which reaches the expected boundary.",
+      "observations": [
+        {
+          "key": "forwardIntersects",
+          "value": "False"
+        },
+        {
+          "key": "reverseIntersects",
+          "value": "True"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "bend-density",
+      "title": "Guide density versus section spacing",
+      "mechanism": "Bisect spans by chord sag, then compare with independently fixed section stations.",
+      "observations": [
+        {
+          "key": "chordSpans",
+          "value": "8"
+        },
+        {
+          "key": "sectionStations",
+          "value": "5"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "angle-sort",
+      "title": "Polar ordering bridges disconnected strips",
+      "mechanism": "Compare a global angle sort with endpoint-connected components.",
+      "observations": [
+        {
+          "key": "inventedChord",
+          "value": "4"
+        },
+        {
+          "key": "connectedComponents",
+          "value": "2"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "longest-chain",
+      "title": "Longest component loses the intended wall",
+      "mechanism": "Compare longest length and component membership near the intended boundary.",
+      "observations": [
+        {
+          "key": "lengthPick",
+          "value": "10"
+        },
+        {
+          "key": "boundaryPick",
+          "value": "20"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "short-window",
+      "title": "Locally straight is not the intended wall",
+      "mechanism": "Measure free-direction straightness and alignment with the fixed wall direction.",
+      "observations": [
+        {
+          "key": "freeLineError",
+          "value": "0"
+        },
+        {
+          "key": "fixedDirectionBand",
+          "value": "1"
+        },
+        {
+          "key": "parallelButWrongOffset",
+          "value": "3"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "free-circle",
+      "title": "A fixed point set can contradict a circle hypothesis",
+      "mechanism": "Use equal-power equations: three non-collinear points fix the circle, then test a fourth.",
+      "observations": [
+        {
+          "key": "exactFirstThree",
+          "value": "True"
+        },
+        {
+          "key": "fourthPointRadialResidual",
+          "value": "0.59235914724640049"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "arc-families",
+      "title": "Single, double and triple tangent-arc families",
+      "mechanism": "Build arc families with unequal radii from shared endpoint tangents.",
+      "observations": [
+        {
+          "key": "families",
+          "value": "1,2,3"
+        },
+        {
+          "key": "maxJoinTangentResidual",
+          "value": "1.5265566588595902E-16"
+        },
+        {
+          "key": "singleArcErrorAtTriarcEnd",
+          "value": "3.2102677343280068"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "arc-ordering",
+      "title": "A short candidate budget can miss a feasible solution",
+      "mechanism": "Compare fixed-budget ranking and a full evaluation of the same candidates.",
+      "observations": [
+        {
+          "key": "shortlistBest",
+          "value": "2.2426406871192848"
+        },
+        {
+          "key": "fullListBest",
+          "value": "0.24264068711928477"
+        },
+        {
+          "key": "candidateCount",
+          "value": "6"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "necessary-bound",
+      "title": "A necessary condition prunes infeasible radius intervals",
+      "mechanism": "Apply the triangle inequality to chord length and radial tolerance.",
+      "observations": [
+        {
+          "key": "lowerRadius",
+          "value": "4.9500000000000002"
+        },
+        {
+          "key": "discarded",
+          "value": "2"
+        },
+        {
+          "key": "survivingIsOnlyNecessary",
+          "value": "True"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "wide-cover",
+      "title": "Independently widest covers can switch identity",
+      "mechanism": "Select widest per section and detect incompatible source IDs across neighboring sections.",
+      "observations": [
+        {
+          "key": "firstPick",
+          "value": "A"
+        },
+        {
+          "key": "nextPick",
+          "value": "B"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "mixed-cover",
+      "title": "Conflicting cover support creates a kink",
+      "mechanism": "Guard a repeated edge identity before choosing an anchor.",
+      "observations": [
+        {
+          "key": "supportConflict",
+          "value": "True"
+        },
+        {
+          "key": "beforeTangentJump",
+          "value": "1.0289915108550531"
+        },
+        {
+          "key": "afterTangentJump",
+          "value": "0"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "per-side",
+      "title": "An invalid side need not suppress the other",
+      "mechanism": "Report separate side decisions and preserve the rejected side as unresolved.",
+      "observations": [
+        {
+          "key": "acceptedCoupled",
+          "value": "0"
+        },
+        {
+          "key": "acceptedSeparate",
+          "value": "1"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "projection",
+      "title": "Projection can yield one hit or an ambiguity",
+      "mechanism": "Intersect a transverse ray with local finite supports and require a unique hit.",
+      "observations": [
+        {
+          "key": "uniqueHits",
+          "value": "1"
+        },
+        {
+          "key": "ambiguousHits",
+          "value": "2"
+        },
+        {
+          "key": "role",
+          "value": "inferred"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "weld-apex",
+      "title": "Weld apex cue depends on support on both sides",
+      "mechanism": "Require a positive local peak and points to either side.",
+      "observations": [
+        {
+          "key": "twoSidedCue",
+          "value": "True"
+        },
+        {
+          "key": "truncatedCue",
+          "value": "False"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "outer-extension",
+      "title": "Local continuation needs one compatible boundary per side",
+      "mechanism": "Check endpoint alignment and matching branch identity before proposing a bridge.",
+      "observations": [
+        {
+          "key": "sameBranchProposal",
+          "value": "True"
+        },
+        {
+          "key": "crossBranchProposal",
+          "value": "False"
+        },
+        {
+          "key": "role",
+          "value": "inferred bridge"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "neighbor-interpolation",
+      "title": "A source-bound gap can be interpolated selectively",
+      "mechanism": "Only infer a single gap between matching observed cover IDs.",
+      "observations": [
+        {
+          "key": "sameCover",
+          "value": "inferred"
+        },
+        {
+          "key": "differentCover",
+          "value": "gap"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "branch-stop",
+      "title": "A short branch can end before the global station limit",
+      "mechanism": "Compare global stations, central stop, fixed station rotation and last valid interval.",
+      "observations": [
+        {
+          "key": "globalStationValid",
+          "value": "False"
+        },
+        {
+          "key": "earlyStop",
+          "value": "5"
+        },
+        {
+          "key": "fixedDirectionValid",
+          "value": "False"
+        },
+        {
+          "key": "reorientedValid",
+          "value": "True"
+        },
+        {
+          "key": "searchedLastStation",
+          "value": "6.3999999761581421"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "cloud-raster",
+      "title": "Raster closing can connect separate silhouette regions",
+      "mechanism": "Close a binary row by dilation and erosion and check a deliberate gap.",
+      "observations": [
+        {
+          "key": "originalGap",
+          "value": "True"
+        },
+        {
+          "key": "afterClosing",
+          "value": "True"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "axis-bins",
+      "title": "Axis-bin envelopes hide a second branch",
+      "mechanism": "Group projected points by X and keep one envelope value per bin.",
+      "observations": [
+        {
+          "key": "points",
+          "value": "6"
+        },
+        {
+          "key": "bins",
+          "value": "3"
+        },
+        {
+          "key": "lowerBranchRetained",
+          "value": "False"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "paired-center",
+      "title": "Index-based centerline assumes matching stations",
+      "mechanism": "Compare row-index midpoint with a midpoint after aligning one boundary by arc length.",
+      "observations": [
+        {
+          "key": "indexCenterEndpoint",
+          "value": "3"
+        },
+        {
+          "key": "matchedCenterEndpoint",
+          "value": "4"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "arc-length",
+      "title": "Uniform stations use arc length instead of source row index",
+      "mechanism": "Reparameterize a nonuniform polyline with cumulative lengths.",
+      "observations": [
+        {
+          "key": "originalPoints",
+          "value": "4"
+        },
+        {
+          "key": "newStations",
+          "value": "5"
+        },
+        {
+          "key": "stepError",
+          "value": "0"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "adaptive-tolerance",
+      "title": "Selecting a draft tolerance changes the segment trade-off",
+      "mechanism": "Evaluate each trial using its actual finite-geometry deviation.",
+      "observations": [
+        {
+          "key": "strictCount",
+          "value": "7"
+        },
+        {
+          "key": "draftCount",
+          "value": "5"
+        },
+        {
+          "key": "limitPointThreeCount",
+          "value": "5"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "fit-reduction",
+      "title": "Reducing editable entities preserves checked XY fit",
+      "mechanism": "Fit a tangent chain, then coalesce compatible pieces and remeasure both point sets.",
+      "observations": [
+        {
+          "key": "baseline",
+          "value": "6"
+        },
+        {
+          "key": "reduced",
+          "value": "3"
+        },
+        {
+          "key": "maxUniformXY",
+          "value": "0.0064226667088163047"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "finite-surface",
+      "title": "A finite extension has a separate height failure mode",
+      "mechanism": "Clamp Z to the extrusion range before combining the planar and vertical components.",
+      "observations": [
+        {
+          "key": "xy",
+          "value": "0.080000000000000002"
+        },
+        {
+          "key": "zGap",
+          "value": "0.70000000000000018"
+        },
+        {
+          "key": "finiteDistance",
+          "value": "0.70455659815234173"
+        }
+      ],
+      "reproduced": true
+    },
+    {
+      "id": "resume-integrity",
+      "title": "Resume needs source identity, including after relocation",
+      "mechanism": "Hash equal content under two names and reject changed content.",
+      "observations": [
+        {
+          "key": "relocatedMatch",
+          "value": "True"
+        },
+        {
+          "key": "contentChangeRejected",
+          "value": "True"
+        }
+      ],
+      "reproduced": true
+    }
+  ]
+}
