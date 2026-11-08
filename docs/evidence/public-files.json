@@ -30,8 +30,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 11160,
-      "sha256": "c978b9ada0bdb1d9f8895bdcf91fe74ea31d62e7869f10d26faf39771bbe118b"
+      "bytes": 11312,
+      "sha256": "3fa7ebfa81159768ecc01be7dc1b5c95cea9549f94fe63cdbb776317de9c5cbe"
     },
     {
       "path": "assets/arm-design.png",
@@ -710,8 +710,8 @@
     },
     {
       "path": "docs/review-native-20261108.md",
-      "bytes": 3386,
-      "sha256": "eef52de9cc8c5e6569e07a4a354ffe094acb942675d5c79e38d0a9b0a7e4e4d9"
+      "bytes": 3665,
+      "sha256": "973673292838ed888ae064d7cd5edf1a70f7bc753d83e0dcf3b867e282ee8a46"
     },
     {
       "path": "docs/review-original-case.md",

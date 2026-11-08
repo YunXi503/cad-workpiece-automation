@@ -94,7 +94,7 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment check-all
 
 完整公開建置／回歸可用 `python tools/verify.py`，逐步日誌與實測摘要保存在新的 `artifacts/verification-*`。它不會自動執行授權 CAD 宿主或宣稱製造貼合通過。
 
-本次原件已在 VSTA 編輯器建置並以 F5 實跑：**3 草圖、165 線弧、405 有效約束、3 個 Z±50 mm 有限延伸面**，最大原生讀回殘差 **8.95e-13 mm**。當次計畫 SHA 與離線原件輸出一致，原生新建測試 Part 不匯入或改動原 STL。[去識別收據](docs/evidence/case-a-vsta.json) · [原生圖](assets/case-a-native.jpg) · [VSTA 操作與實際除錯](docs/macro.md)
+原件已在 VSTA 編輯器建置並以 F5 實跑：**3 草圖、165 線弧、405 有效約束、3 個 Z±50 mm 有限延伸面**，最大原生讀回殘差 **8.95e-13 mm**。11-05 首次測試只顯示三側面，[舊收據與原日期](docs/evidence/case-a-vsta.json)保留；**11-08 以同一來源／計畫重新 F5，並將掃描副本貼入新 Part 完成原生同場展示**，貼入後再驗讀回。原 STL 沒有修改或公開。[新收據及同場圖綁定](docs/evidence/case-a-native-codisplay-20261108.json) · [VSTA 操作與實際除錯](docs/macro.md)
 
 ## 我的角色與履歷條目
 
