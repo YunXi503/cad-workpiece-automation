@@ -17,6 +17,8 @@
 
 使用者另提供局部平面貼合圖集，已逐張視讀並發布[18組59張視埠圖](surface-gallery.md)，以通用組號保留原順序與原圖片 bytes；沒有公司／產品／帳號／路徑／原生模型編號。原 Word 不上傳；[圖片來源清冊](evidence/historical-surfaces.json)只記文件及圖片 SHA、對應、尺寸和狀態，不含實件座標。PNG 未含文字或 EXIF metadata。兩張新增 SVG 是通用方法示意，不嵌入私有幾何。歷史畫面不移用為當前 Macro 計畫的新原生驗收。
 
+11-08 新增的兩張原生同場 JPEG 經逐張視讀，沒有帳號、產品名稱、原生 Part 編號或檔案路徑，像素保持 CATIA 匯出原樣。[新收據](evidence/case-a-native-codisplay-20261108.json)只含固定欄位、SHA、數量、殘差與限制；原 STL／完整計畫／執行記錄／IDE 全畫面及來源比較座標留本機。原生 Copy／Paste 在獨立驗證件內完成，未執行 PLM 保存。
+
 ## 檢查與清冊
 
 `python tools/audit_publication.py` 列舉公開候選檔，拒絕原網格／參考點／CAD／編譯物與壓縮包，以及個人絕對路徑和原生模型身分。圖像另經人工視讀；自動文字檢查不能代替圖像檢查或完整資料權限判斷。
