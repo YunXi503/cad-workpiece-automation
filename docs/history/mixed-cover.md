@@ -30,8 +30,23 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run mixed-cover
 
 ![混蓋來源衝突前後的合成錨點](../../assets/mixed-cover.svg)
 
-[回方案索引](../engineering-decisions.md)
+
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：完整支持重用必須被辨識；錯錨點切向跳變>0.5，防護後<1e-12。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `supportConflict` | `True` |
+| `beforeTangentJump` | `1.02899` |
+| `afterTangentJump` | `0` |
+
+1.02899→0是兩個單位切向向量的差，無因次，並非角度或毫米。此合成修復不等於整件貼合合格。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
 
 ## 現行工程草稿中的角色
 
 先修來源矛盾能避免擬合把凹折保存到 CAD。這比單純加密或壓低數字更接近少返工的目的；局部修復的實證不擴大成全件焊道或工時驗收。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

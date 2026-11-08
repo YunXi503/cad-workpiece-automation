@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run necessary-bound
 
 歷史專案保留精確必要條件、原序支持與證書核對。通過必要條件的候選仍需有限弧、相切及位置驗證。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,22 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run necessary-bound
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：必要半徑下界4.95，4個候選中應安全排除2個。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `lowerRadius` | `4.95` |
+| `discarded` | `2` |
+| `survivingIsOnlyNecessary` | `True` |
+
+留下來只表示未違反必要條件；沒有量到接點／切向與來源正確，就不能宣布有解。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 安全剪枝可減少不必要的求解，通過必要條件卻不保證有用輪廓。工程草稿不以前置完成全部精確模型搜尋作門檻，保留此工具作求解診斷。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

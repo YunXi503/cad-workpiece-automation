@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run longest-chain
 
 歷史案例的較短串包含目標側壁，最長串還可能無法封閉。後續先保留多串與來源，再以蓋面到側壁的上下文判定。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run longest-chain
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：最長串與目標邊界選到的來源ID不同，目標ID為20。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `lengthPick` | `10` |
+| `boundaryPick` | `20` |
+
+10／20是合成三角面來源ID，不是長度；最長候選沒有目標壁的物理保證。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 目標側壁較短時仍可能最有用，應保留候選和來源供判讀。把最大串當答案可能節省當下計算，卻把選錯區域的成本留給工程師。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

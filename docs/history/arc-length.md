@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-length
 
 原專案保留原始和等分兩套點一起驗證。缺口和獨立分串需先保留，各自等分。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,22 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run arc-length
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：4個不均原點重採樣為5站，單位步長誤差≤1e-12且末點保持。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `originalPoints` | `4` |
+| `newStations` | `5` |
+| `stepError` | `0` |
+
+站距一致是參數化性質，不能增加原始觀測密度或填出新的物理支持。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 站距統一有助自動處理與結果比較，均分點仍是中間資料。送入 CAD 的元件應看可編輯性與剩餘手調，不必把全部致密點逐一建成草圖元素。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

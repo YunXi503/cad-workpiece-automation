@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run bend-density
 
 後續流程保留彎處加密和剖框站距分設。實際節省工時與跨工件覆蓋待量測。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,21 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run bend-density
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：弦高加密與獨立站距的點數不能直接互換。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `chordSpans` | `8` |
+| `sectionStations` | `5` |
+
+8個弦跨度與5個剖框站位是不同取樣契約；不能把第幾個點當固定毫米站位。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 彎處加密是計算取樣策略，不等於 CAD 應保留更多細碎元件。保主要外形與簡化焊道時，須另外評估短段是否增加手調及加工複雜度。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

@@ -18,7 +18,7 @@ def main():
     out.mkdir(parents=True)
     steps = [("cli-build", [dotnet, "build", "src/Cli", "-c", "Release", "--nologo"]),
              ("geometry-math", [dotnet, "run", "--project", "tests/GeometryChecks", "-c", "Release"])]
-    for name in ["stl_input_acceptance", "source_acceptance", "case_a_evidence", "surface_display", "acceptance", "arm_acceptance", "check_docs"]:
+    for name in ["stl_input_acceptance", "source_acceptance", "case_a_evidence", "portfolio_consistency", "surface_display", "acceptance", "arm_acceptance", "check_docs"]:
         steps.append((name, [sys.executable, f"tests/{name}.py"]))
     steps.append(("public-tree", [sys.executable, "tools/audit_publication.py"]))
     if platform.system() == "Windows":

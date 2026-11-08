@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run finite-surface
 
 歷史驗證也先分離高度覆蓋與橫向偏差。修正高度後，工程接觸帶的貼合仍要另驗。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,22 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run finite-surface
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：XY≤0.3，但加入有限高度後三維距離>0.3。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `xy` | `0.08` |
+| `zGap` | `0.7` |
+| `finiteDistance` | `0.704557` |
+
+XY=0.08，Z缺口=0.7，合成最近距離約0.704557；這是高度失效控制，不是原件量測。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 有限高度覆蓋是面能否在需要位置工作的診斷。距離提供審看依據，固定 0.3 mm 不單獨決定工程草稿成敗；實際精密接觸要求另外界定。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

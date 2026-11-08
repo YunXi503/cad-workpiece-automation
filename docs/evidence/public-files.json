@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "bytes": 1149,
-      "sha256": "110a2f6c28f7faccf3caa46617e295db6d3dad91e0293ed756640b741561928e"
+      "bytes": 1200,
+      "sha256": "82130a26f45ff6f4d11d82542f5fc714356277feb0ae1427bb3c67cbdf915d35"
     },
     {
       "path": ".gitignore",
@@ -25,13 +25,13 @@
     },
     {
       "path": "EXPERIMENT_LOG.md",
-      "bytes": 21792,
-      "sha256": "b1852cf8719291dfe8cd4cbfd915354f10187ee6eb25e8bedf23d3dc3f67ce3e"
+      "bytes": 23834,
+      "sha256": "4c985ca6dcb38359218f25ad49159776e1f3e844d5c9d499c322f7961695781f"
     },
     {
       "path": "README.md",
-      "bytes": 11312,
-      "sha256": "3fa7ebfa81159768ecc01be7dc1b5c95cea9549f94fe63cdbb776317de9c5cbe"
+      "bytes": 11536,
+      "sha256": "3ffd43e8fa53217542a689f296d1dd754e8761ce004b554edcab305a9a0c6d34"
     },
     {
       "path": "assets/arm-design.png",
@@ -445,8 +445,8 @@
     },
     {
       "path": "docs/completeness-audit.md",
-      "bytes": 7549,
-      "sha256": "6c4cdec8ec98a3a204d9882023b39fc68529e6179e320d44354fd4521ea63730"
+      "bytes": 8001,
+      "sha256": "b5d42db5e0465e99e10f7c62ce6ae1f41da40aee5e9a58047262de2c3a775b49"
     },
     {
       "path": "docs/engineering-acceptance.md",
@@ -455,8 +455,13 @@
     },
     {
       "path": "docs/engineering-decisions.md",
-      "bytes": 6063,
-      "sha256": "98f23d2033ccbeda0aa047ecccc2110fb2351e4edf416079f6c26019722f5706"
+      "bytes": 7458,
+      "sha256": "cf6452750de85e3b40a8bc3bbb43340304686c9e127aa7526616fe935e95edcc"
+    },
+    {
+      "path": "docs/evidence-guide.md",
+      "bytes": 6411,
+      "sha256": "295b8b1c5697781a8490a69ec08ac6c3a318aba292132e2089b6942887d0bc8a"
     },
     {
       "path": "docs/evidence/arm-offline.json",
@@ -519,6 +524,11 @@
       "sha256": "0f62c0a3daecc3e1dea7f1e0890ab32128c4043d9b575206caa009212560b430"
     },
     {
+      "path": "docs/evidence/clean-reader-20261108.json",
+      "bytes": 1259,
+      "sha256": "8247eae366956e9d767de967fd9b0761a6cb925924ebd30f678c0ed47bde5a5f"
+    },
+    {
       "path": "docs/evidence/historical-rounding.json",
       "bytes": 4774,
       "sha256": "28ac402f6e64d00cf82cb0121c904162de9761614df5bbd73ac4471290288172"
@@ -527,6 +537,11 @@
       "path": "docs/evidence/historical-surfaces.json",
       "bytes": 20616,
       "sha256": "6690cad499c1a4a9ed6b17c5dc1a41fe52c9450e6163bb6a64cff2a9641cb042"
+    },
+    {
+      "path": "docs/evidence/history-replay-20261108.json",
+      "bytes": 15308,
+      "sha256": "3f472d3a13977e96a1d1ebd0132b97ee12dbd222e571eeeec5cdefa1f2520aec"
     },
     {
       "path": "docs/evidence/update-checks-20261106.json",
@@ -545,8 +560,8 @@
     },
     {
       "path": "docs/geometry.md",
-      "bytes": 3186,
-      "sha256": "ffbe20a0740a813c4915fddf847ce25ceac88f3dc32e236b47772bbaac5e905a"
+      "bytes": 3285,
+      "sha256": "1479aebdebc45b280ba4ca51811edc1631535271c5b9f2fa4932d4515bd6c793"
     },
     {
       "path": "docs/handoff.md",
@@ -560,128 +575,128 @@
     },
     {
       "path": "docs/history/adaptive-tolerance.md",
-      "bytes": 1578,
-      "sha256": "13b962409ca64a3f709c309b1c3c2767c5c6460f3aed6ed349277dc5f75cf088"
+      "bytes": 2271,
+      "sha256": "39ee0dcffe29c430b79154a0dd2bdbe316d8da7c407819a5f74fb954aef14588"
     },
     {
       "path": "docs/history/angle-sort.md",
-      "bytes": 1578,
-      "sha256": "602876617b7636e70df70c1dc27872903e2c805bddd77645cd3a64f5a6ae6fbd"
+      "bytes": 2234,
+      "sha256": "155eb6fb60a248bfaf9fe237b20566fd094156eab699e03f06366d2d88088fe7"
     },
     {
       "path": "docs/history/arc-families.md",
-      "bytes": 1851,
-      "sha256": "731a8396685a0b0326ca00f83b60542c458e1b32912bc89316160b2f16f04377"
+      "bytes": 2600,
+      "sha256": "9f1e800f78adc8ca0cc46aabadce5114cf05076d74db2d95d733046150578af8"
     },
     {
       "path": "docs/history/arc-length.md",
-      "bytes": 1491,
-      "sha256": "8771993c19b6dbbb38e5d7d34f44bdf4fb33f2d8ae3c4e3e83daddd4fc530327"
+      "bytes": 2160,
+      "sha256": "46eeb66f4a1cbe51ebc3bf2f6c4f684ed50bf10bb72ed4b0ceb89910eeec3dba"
     },
     {
       "path": "docs/history/arc-ordering.md",
-      "bytes": 1680,
-      "sha256": "db2584ec0b0ec2f72bb513353e01d0894f09663479b5e648ca58619c82cf56f8"
+      "bytes": 2366,
+      "sha256": "4a7449566debd2b514f0a90b121831d2a76843bd99e8d7499fdcfa4edfe5b86f"
     },
     {
       "path": "docs/history/axis-bins.md",
-      "bytes": 1496,
-      "sha256": "8083c761bb58ba2242d110f5db119f23ec582a1aaa64d173dc56ab3bca00eade"
+      "bytes": 2154,
+      "sha256": "4af23005d77ab3fc75588b78b90a0be4df01cc0af86a05cb5007a9d3b964cd8e"
     },
     {
       "path": "docs/history/bend-density.md",
-      "bytes": 1531,
-      "sha256": "0825b274c3e96c0bbf6408cbaea540737f13fb72090f76fcafe8b3e6ee97fb98"
+      "bytes": 2164,
+      "sha256": "76a5d060f896da4d2359e880b29f3b2ceb7408ac307b4afc89cafc0d42dc263c"
     },
     {
       "path": "docs/history/branch-stop.md",
-      "bytes": 1568,
-      "sha256": "cf758bcb66e210a1c74d092c906d7c955601c14062d117fc75b6aa7154e2f50e"
+      "bytes": 2363,
+      "sha256": "17d801965da7a68dc428178f8c33687e58d1bdb58c827a8536479d06a27a43d9"
     },
     {
       "path": "docs/history/closed-route.md",
-      "bytes": 1571,
-      "sha256": "29ea25135e991fe920de5c8fb9206502a51255642409f9c992510b75c43c5e40"
+      "bytes": 2227,
+      "sha256": "3aaf746368d72849c2715b0545915624bdaa7ea7f2bf9513e0df219217c3283b"
     },
     {
       "path": "docs/history/cloud-raster.md",
-      "bytes": 1651,
-      "sha256": "622b4e6875f23dd96e0d0dc92e408c0424ef851868aac9b0c61a74cb91563234"
+      "bytes": 2326,
+      "sha256": "c68a16f7e5174b8cefdb3162b758b88114d58a3ad597ff152cf60c8aa2ba8bef"
     },
     {
       "path": "docs/history/finite-surface.md",
-      "bytes": 1498,
-      "sha256": "2da0cf7dcabeddbedc01103657f0142e13ffe2e9e00b104e461d71d445c9734d"
+      "bytes": 2151,
+      "sha256": "d7d7a54e50ce605957236df7c1c7abfa0a5f9b39492810013e9978d2c47f24c3"
     },
     {
       "path": "docs/history/fit-reduction.md",
-      "bytes": 2264,
-      "sha256": "09313dfe80c7c43d1a350dc801a9b544947f1f747e4c113619a984cb90fc12a3"
+      "bytes": 2952,
+      "sha256": "351142b55daa9ad11c80accdce84d64891637d356175f3ae76cdc7ca873c8ba9"
     },
     {
       "path": "docs/history/free-circle.md",
-      "bytes": 1618,
-      "sha256": "ae51bddd1e205953e3c3343c704bfbcd195976ffd97da9bf50a9777f7253a65b"
+      "bytes": 2300,
+      "sha256": "5a6fd51696f9f9c0854afa13e2c08bd269c626b41f4cd4b37e5cef9418d9c3e6"
     },
     {
       "path": "docs/history/longest-chain.md",
-      "bytes": 1530,
-      "sha256": "46b981da80dfa1132c011acda3b28ef533a349b34be2b961db0d106b9b6d3c71"
+      "bytes": 2166,
+      "sha256": "3a81bc3fd81d8a60fbbe53c516ae23646f0bb0ebe035c23ffd06dbf085b0423b"
     },
     {
       "path": "docs/history/mixed-cover.md",
-      "bytes": 2324,
-      "sha256": "eeae8f8a0913b2bcae579ef629e14cf782b7870af59082ce52d57db7ed2c0980"
+      "bytes": 3054,
+      "sha256": "350390efb0b105bc7188855720dec93ca59fee1b33ac3b4d8d172b8634db3074"
     },
     {
       "path": "docs/history/necessary-bound.md",
-      "bytes": 1598,
-      "sha256": "f7a0774b39bd517ab555bd7ff18253ef2cf2df25539ebdda7195a9f5ba2515cc"
+      "bytes": 2282,
+      "sha256": "02c60c1df68630a07fed5c9496ef2728fce56094337473b696c686344b07a180"
     },
     {
       "path": "docs/history/neighbor-interpolation.md",
-      "bytes": 1570,
-      "sha256": "125ef627ef6379ec55d514af285366064281133f8b5504aa5628f889a90842b5"
+      "bytes": 2173,
+      "sha256": "cad246026f645e24ecf8420be06be47192464f7a0af58e199613a5057b80ce10"
     },
     {
       "path": "docs/history/outer-extension.md",
-      "bytes": 1542,
-      "sha256": "16347da1ad91dd45032a93e496c5fb6078674923d40654a8503d99e11486e19b"
+      "bytes": 2223,
+      "sha256": "8cbe72d953dcb22f8c17ef8966c8e795c509d46adfde15c041c030aa8721add4"
     },
     {
       "path": "docs/history/paired-center.md",
-      "bytes": 1512,
-      "sha256": "72718e774383a2d2b51f88a35596a9033016d4d41670ea2cf2fe32969a55a3fa"
+      "bytes": 2158,
+      "sha256": "d8961acceba9c28e11be21723f78891631ede83b0a361ee899aacb72f03f1d4d"
     },
     {
       "path": "docs/history/per-side.md",
-      "bytes": 1538,
-      "sha256": "838271839fe93ca97e7f21be49ae32ea6062fe8f50896d993c68ad506c859d3e"
+      "bytes": 2144,
+      "sha256": "dc6dd1af39ea90125ccede38a315d2e243b9b1e39ed9636aaf7d27779f5819ba"
     },
     {
       "path": "docs/history/projection.md",
-      "bytes": 1504,
-      "sha256": "95076265a0e20a9500e3fa1485f1ae850a1e2a4a76d2c7bd1e994b1c1b8a8549"
+      "bytes": 2168,
+      "sha256": "fc55bdf6882994f28d4cd7661805aa11f6fc20d611e03356fa2d830b09545f78"
     },
     {
       "path": "docs/history/resume-integrity.md",
-      "bytes": 1685,
-      "sha256": "f8b0c17e0d40ef08c31d482493a9617f597aa67177d56b24ec7d689669061099"
+      "bytes": 2363,
+      "sha256": "ccf1940075cd00096fd3f6397b65ae320d2a4cf41f15a12fb48572576cbb3356"
     },
     {
       "path": "docs/history/short-window.md",
-      "bytes": 1604,
-      "sha256": "10e1007de660d5f0ab68d71b125b22197648c64dda13f6f3ff66cccefa01870f"
+      "bytes": 2303,
+      "sha256": "72f6f260a9dc517399f05cb7739b4d7571837e4fb78088df9711104d01c650c9"
     },
     {
       "path": "docs/history/weld-apex.md",
-      "bytes": 1560,
-      "sha256": "b6f865f9a1e18d7af572f75e242da1e98419dd46d1d92bc54a12b1c9864926ec"
+      "bytes": 2223,
+      "sha256": "6dff774aac99d943274cee42d9bd02e0f874899f18607b9b1c74d7ffafa21f4a"
     },
     {
       "path": "docs/history/wide-cover.md",
-      "bytes": 1557,
-      "sha256": "3938c2c2da74591e2ca8d6d696b45cbb8ad5307fb38872e855be56a33ff26fad"
+      "bytes": 2158,
+      "sha256": "bd5e62d38bc2a2da47f0436b9ad7717d33566c591e0f4447d13dc38355155671"
     },
     {
       "path": "docs/macro.md",
@@ -700,18 +715,23 @@
     },
     {
       "path": "docs/project-history.md",
-      "bytes": 4942,
-      "sha256": "237535ee16bcb6e2d63471882b1d527d302b02c60a56a944a415a30b0cd92b29"
+      "bytes": 5341,
+      "sha256": "eb2f98ee6243bd0e3e5514a8d580019b3b417defaf278141b27301096d3e3166"
     },
     {
       "path": "docs/publication.md",
-      "bytes": 3919,
-      "sha256": "73865a7605293a3fa73156b71f4022a792da03429fc8f3a0e4530fe00096b9a9"
+      "bytes": 4267,
+      "sha256": "5b4b7b7c4a071664cfde8cfad405c2625b7bddf7f0f69331facdd88cc0ae3c8c"
+    },
+    {
+      "path": "docs/review-full-20261108.md",
+      "bytes": 4504,
+      "sha256": "59966be677ab682db6376d52dec60dfbe0babbd81992a3a515d13a9bea88eb06"
     },
     {
       "path": "docs/review-native-20261108.md",
-      "bytes": 3665,
-      "sha256": "973673292838ed888ae064d7cd5edf1a70f7bc753d83e0dcf3b867e282ee8a46"
+      "bytes": 3835,
+      "sha256": "bcfd34f49ab21dede486cb379da55c32a6d5d77b053bcd164e683bb9bb0ad960"
     },
     {
       "path": "docs/review-original-case.md",
@@ -725,8 +745,8 @@
     },
     {
       "path": "docs/source-geometry.md",
-      "bytes": 4874,
-      "sha256": "51559b037708a248023f505931e50578bf8b3825ca3aec59f5436eb8cde3fef3"
+      "bytes": 6398,
+      "sha256": "14cd12b8f19729acb3b3c191dca237864139b2d6b17e9b6fc0c0dc34eca4488e"
     },
     {
       "path": "docs/stl-input.md",
@@ -745,8 +765,8 @@
     },
     {
       "path": "docs/surface-methods.md",
-      "bytes": 10903,
-      "sha256": "d41321f294f5557b2691e73fd5bbfa4e185ea4a26cd90fa5d788154137cfc27d"
+      "bytes": 10927,
+      "sha256": "55042b652b5f7271d5ab76a75cbc9a4b3517b339e33cc9456fc69f7b8839340b"
     },
     {
       "path": "docs/suspension-arm.md",
@@ -760,18 +780,18 @@
     },
     {
       "path": "docs/technical-map.md",
-      "bytes": 5149,
-      "sha256": "a67be615a166744acbaa889e5c3d7fb233987030f13770c5e16a03d6c8876d34"
+      "bytes": 5424,
+      "sha256": "878cf9767e73e851b118db646b3d2291a27d24a5ec345ba319624d3448bc1dd4"
     },
     {
       "path": "docs/update-summary.md",
-      "bytes": 4934,
-      "sha256": "1eb65b86c9437c45e6413efb2a0a382df50989db4ae1fb7b4deac6eb4982ea88"
+      "bytes": 5822,
+      "sha256": "b6a0aaa24461e4580df59b15fd59120e2a138877dc4c3d1b022bd66b5745df63"
     },
     {
       "path": "docs/verification.md",
-      "bytes": 13499,
-      "sha256": "963f482fa6050859bfd28629ea7fb9627b8387dbf0fb98b116079c94e9c41ef0"
+      "bytes": 13713,
+      "sha256": "88e5659b2b68d4e99317c9c1230cabcada764b12a7fde8a4107093630202b75b"
     },
     {
       "path": "docs/workpiece-case.md",
@@ -925,8 +945,8 @@
     },
     {
       "path": "tests/acceptance.py",
-      "bytes": 12017,
-      "sha256": "59f276e908dfe5e3b369bdead7153215cca999f570621b1236afe92c895b59b7"
+      "bytes": 12114,
+      "sha256": "30a4e8b3d991fef0ddda6d2c5ef09cff6a66a0eb829dcb7bc1a00dd98c7c329d"
     },
     {
       "path": "tests/arm_acceptance.py",
@@ -940,13 +960,18 @@
     },
     {
       "path": "tests/check_docs.py",
-      "bytes": 1915,
-      "sha256": "c99ad7a6987ff333fac31a2a71f05bd33279c7f6442821a30c30145ced4e5959"
+      "bytes": 1923,
+      "sha256": "ae512585e14c95d1f635980efd988147d3494dd3df98cbfd0ac17f69d5174431"
     },
     {
       "path": "tests/native_controls.py",
       "bytes": 3846,
       "sha256": "d67c0d6bcc4455f80bf9d2a47c997eceb2f36eaf09f758be416c0b7f69523422"
+    },
+    {
+      "path": "tests/portfolio_consistency.py",
+      "bytes": 5185,
+      "sha256": "167ddb5011f5d96d1e0d62a8968985b6dcd8bef08ae155c5f274fa1932f75977"
     },
     {
       "path": "tests/source_acceptance.py",
@@ -1015,8 +1040,8 @@
     },
     {
       "path": "tools/verify.py",
-      "bytes": 2416,
-      "sha256": "7bc8d001a5dc43b0e1f50c3e2ada7fc75c18b3d9b348be6de3336aa5cc8c7e57"
+      "bytes": 2441,
+      "sha256": "f9ac8a1091a3e5e4e822315f7a9b34e9118dbf22ab766b70ec76ecc372953ad6"
     }
   ],
   "limitations": "Source-coordinate plans and raw native logs remain local. This inventory does not prove removal of pre-existing remote caches."

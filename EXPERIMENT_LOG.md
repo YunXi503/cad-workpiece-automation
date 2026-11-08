@@ -2,6 +2,14 @@
 
 This log tracks implementation changes; measured original-case results are separate from analytic fixtures and historical evidence. Original inputs remain local.
 
+## 2026-11-08 — Current evidence and full reading-path audit
+
+- Native continuation: the previously blocked host recovered. Same loaded VSTA source and Case A plan were built and executed with editor F5 in a new isolated Part: 3 sketches, 165 finite primitives, 405 valid active constraints and 3 finite surfaces. Native Copy / Paste Special as Result added a scan display copy; repeated sketch/surface readback was unchanged. [Dated receipt](docs/evidence/case-a-native-codisplay-20261108.json) and [two original viewport exports](docs/surface-contact.md#本次-catia-原生同場展示) preserve the new result without rewriting Nov 5 evidence.
+- Scan provenance is the observed copy action plus matching native statistics and rounded bounds, not a complete triangle-coordinate certificate. No PLM save/reopen, labor-time measurement or whole-weld engineering acceptance is inferred. Earlier pending entries below retain their historical scope.
+- A new depth-one clone of default main completed 9 actual SDK/build/source/history/math steps with exit0, using an explicitly supplied installed .NET 10.0.403 SDK. No original-workpiece data or licensed host entered this reader test. [Clean-reader receipt](docs/evidence/clean-reader-20261108.json).
+- Re-ran all 25 minimal methods and added actual observations, criteria and interpretations to every history page; statuses, original decisions and unknown reasons remain. Corrected potentially inflated interpretations of the pre-listed tolerance choices, simplified branch-stop predicate and in-memory resume example. [Actual synthetic outputs](docs/evidence/history-replay-20261108.json).
+- Added a problem-to-code/evidence guide, a three-example geometry walk, dated timeline and checks for method IDs/entry lines/statuses/output tables and all 59 historical images. These are documentation/evidence maintenance changes, not new fitting algorithms. Historical plane solver/source mapping and native manual-edit continuity remain incomplete. [Review record](docs/review-full-20261108.md).
+
 ## 2026-11-05 — original Case A delivery
 
 - Authorized goal: use original geometry, complete source-aware geometry programs and VSTA editor execution, publish deidentified portfolio without original files.

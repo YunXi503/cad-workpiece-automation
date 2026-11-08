@@ -20,7 +20,6 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run axis-bins
 
 早期區間程式保留於歷史基線。後續處理引入分支與順序核對，這個舊入口何時完全停用，現有紀錄未確認。
 
-[回方案索引](../engineering-decisions.md)
 
 ## 設計假設、失效條件與留下的技術
 
@@ -32,6 +31,22 @@ dotnet src/Cli/bin/Release/net10.0/Cli.dll experiment run axis-bins
 
 以上是歷史方法的適用邊界與現行去向。此頁命令實跑獨立最小反例，原公司程式與原資料留本機；缺少紀錄的淘汰原因不補推測。
 
+## 2026-11-08 公開最小重現的實測
+
+**本反例判準**：6點變3個上包絡區間，不能保留較低分支。
+
+| 輸出欄位 | 本次值 |
+| --- | --- |
+| `points` | `6` |
+| `bins` | `3` |
+| `lowerBranchRetained` | `False` |
+
+lowerBranchRetained=False是預期暴露的失效；reproduced=True不表示區間法成為最終採用。
+
+本輪 `reproduced=true`，表示自製例的預期現象重現；不改變頁首歷史採用狀態，也不等於原公司程式已完整重寫。數值表顯示6位有效數字，完整輸出與數值來源版本見[25方法實跑收據](../evidence/history-replay-20261108.json)；無私有工件輸入。
+
 ## 現行工程草稿中的角色
 
 區間包絡適合初步觀察。若吞掉分支或肩部，會把工作轉成工程師重新修形；應保留原點與分支判斷，不因粗略輪廓較快就宣稱整體省時。 [現行交付判準](../engineering-acceptance.md)。
+
+[回方案索引](../engineering-decisions.md)

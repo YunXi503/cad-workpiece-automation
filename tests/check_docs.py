@@ -14,7 +14,7 @@ def slug(value):
     return re.sub(r"\s", "-", value)
 
 def main():
-    pages = [ROOT / "README.md", *sorted((ROOT / "docs").rglob("*.md"))]
+    pages = [*sorted(ROOT.glob("*.md")), *sorted((ROOT / "docs").rglob("*.md"))]
     errors = []
     count = 0
     for page in pages:
